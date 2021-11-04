@@ -5,6 +5,15 @@ import ScrollToTop from "./component/scrollToTop";
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
+import { Admin } from "./pages/admin";
+import { Checkout } from "./pages/checkout";
+import { Contacto } from "./pages/contacto";
+import { Login } from "./pages/login";
+import { Productos } from "./pages/productos";
+import { Registro } from "./pages/registro";
+import { Servicios } from "./pages/servicios";
+import { Trabajos } from "./pages/trabajos";
+
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -30,6 +39,30 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/single/:theid">
 							<Single />
+						</Route>
+						<Route exact path="/login">
+							<Login />
+						</Route>
+						<Route exact path="/registro">
+							<Registro />
+						</Route>
+						<Route exact path="/checkout">
+							<Checkout />
+						</Route>
+						<Route exact path="/admin">
+							<Admin />
+						</Route>
+						<Route exact path="/contacto">
+							<Contacto />
+						</Route>
+						<Route exact path="/productos">
+							<Productos />
+						</Route>
+						<Route exact path="/servicios">
+							<Servicios />
+						</Route>
+						<Route exact path="/trabajos">
+							<Trabajos />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>

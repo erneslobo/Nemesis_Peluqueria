@@ -1,0 +1,44 @@
+
+.mega {
+  background-color: black;
+  display: flex; 
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  background-color: white;
+  border-radius: 4% ;
+  width: 50vh;
+  height: 50vh;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  
+}
+
+h4 {
+  margin-bottom: 15px;
+}
+
+#div1{
+  display: block;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+}
+
+input {
+  margin-top: auto;
+  width: 200%;
+}
+
+button {
+  width: 100%;
+}
+
+a {
+  color: rgb(0, 0, 0);
+}
+

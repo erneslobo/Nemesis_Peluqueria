@@ -9,6 +9,10 @@ export const Registro = () => {
 				<div className="container box">
 					<div id="div1">
 						<h4>Registrarse</h4>
+						<div className="mb-3" id="nombreCompleto">
+							<input type="text" className="form-control" placeholder="Nombre" />
+							<input type="text" className="form-control" placeholder="Apellido" />
+						</div>
 						<div className="mb-3">
 							<input type="email" className="form-control" placeholder="Email" />
 						</div>

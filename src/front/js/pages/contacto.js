@@ -7,7 +7,7 @@ import telefonoLogo from "../../img/telefono.png";
 
 export const Contacto = () => {
 	return (
-		<div className="container text-white">
+		<div className="registro container">
 			<div className="row text-center mt-3">
 				<h2>Contacto</h2>
 			</div>
@@ -16,7 +16,7 @@ export const Contacto = () => {
 					<div className="col">
 						<a
 							href="https://www.instagram.com/nemesis.peluqueria/"
-							className="d-flex align-items-center"
+							className="linkContacto d-flex align-items-center"
 							target="_blank"
 							rel="noopener noreferrer">
 							<div className="flex-shrink-0">
@@ -28,7 +28,7 @@ export const Contacto = () => {
 					<div className="col">
 						<a
 							href="https://api.whatsapp.com/send?phone=59892875997&fbclid=IwAR1JfkouJneqduBmPPjcnsvt6kLNuBqW0adMfstVzKTK3UWn0njcMLssV2I"
-							className="d-flex align-items-center"
+							className="linkContacto d-flex align-items-center"
 							target="_blank"
 							rel="noopener noreferrer">
 							<div className="flex-shrink-0">
@@ -42,7 +42,7 @@ export const Contacto = () => {
 					<div className="col">
 						<a
 							href="https://www.facebook.com/N%C3%A9mesis-Peluquer%C3%ADa-110139923033512/"
-							className="d-flex align-items-center"
+							className="linkContacto d-flex align-items-center"
 							target="_blank"
 							rel="noopener noreferrer">
 							<div className="flex-shrink-0">

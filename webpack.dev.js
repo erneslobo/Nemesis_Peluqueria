@@ -4,6 +4,8 @@ const common = require('./webpack.common.js');
 const PrettierPlugin = require("prettier-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('./webpack.common.js');
 
 const port = 3000;
 let publicUrl = `http://localhost:${port}`;

@@ -14,6 +14,9 @@ export const Registro = () => {
 							<input type="text" className="form-control" placeholder="Apellido" />
 						</div>
 						<div className="mb-3">
+							<input type="text" className="form-control" placeholder="Número de Teléfono" />
+						</div>
+						<div className="mb-3">
 							<input type="email" className="form-control" placeholder="Email" />
 						</div>
 						<div className="mb-3">

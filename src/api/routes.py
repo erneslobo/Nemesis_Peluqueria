@@ -130,6 +130,27 @@ def get_usuario_favoritos():
     usuario_favoritos = list(map(lambda x: x.serialize(), usuario_favoritos))
     return jsonify(usuario_favoritos)
 
+"""
+URL = https://url_base/api/usuario ['PUT']
+Necesita un token de authenticacion que se obtiene por medio del log in.
+Endpoint es utilizado para actualizar los datos de un usuario, como el password
+En el body se tiene que enviar un objeto con el field que se quiere actualizar, por ejemplo, para actualizar el password:
+{
+    "password":"test"
+}
+
+Retorna el objecto de usuario ya actualizado.
+Ejemplo de respuesta:
+{
+    "admin": false,
+    "apellido": "Moreira",
+    "email": "mel.morle0128@gmail.com",
+    "id": 2,
+    "nombre": "Melania",
+    "telefono": "+50685922635"
+}
+"""
+
 @api.route('/usuario', methods=['PUT'])
 @jwt_required()
 def actualizar_usuario():
@@ -230,7 +251,8 @@ def login():
 
 """
 URL = https://url_base/api/favoritos/<int:muestra_id> ['POST']
-Endpoint utilizado para login. En el body se envia email y password como por ejemplo:
+Endpoint utilizado para agregar muestras a favoritos.
+Retorna un list de favoritos que contiene objectos de muestra
 
 [
     {
@@ -262,6 +284,26 @@ def agregar_favoritos(muestra_id):
     else:
         raise APIException('Favorito ya existe', status_code=409)
 
+"""
+URL = https://url_base/api/orden ['POST']
+Endpoint utilizado para crear un orden de compra. En el body se envia metodo_pago y monto_total como por ejemplo:
+
+{
+    "metodo_pago" : "mercado pago",
+    "monto_total" : "100.52"
+}
+
+Retorna un objecto de orden ya creada
+
+{
+    "id": 3,
+    "metodo_pago": "mercado pago",
+    "monto_total": 100.52,
+    "usuario_id": 2
+}
+
+"""
+
 @api.route('/orden', methods=['POST'])
 @jwt_required()
 def agregar_orden():
@@ -286,6 +328,27 @@ def agregar_orden():
     orden = orden.serialize()
     return jsonify(orden), 201
 
+
+"""
+URL = https://url_base/api/detalle_orden ['POST']
+Endpoint utilizado para agregar items a la orden. En el body se envia orden_id, producto_id y cantidad como por ejemplo:
+
+{
+    "orden_id" : 2,
+    "producto_id": 1,
+    "cantidad": 2
+}
+
+Retorna un objecto con los detalle de orden ya creada
+{
+    "cantidad": 2,
+    "id": 1,
+    "orden_id": 2,
+    "producto_id": 1
+}
+
+"""
+
 @api.route('/detalle_orden', methods=['POST'])
 @jwt_required()
 def agregar_detalle_orden():
@@ -309,6 +372,20 @@ def agregar_detalle_orden():
     detalle_orden = DetalleOrden.query.get(detalle_orden.id)
     detalle_orden = detalle_orden.serialize()
     return jsonify(detalle_orden), 201
+
+"""
+URL = https://url_base/api/favoritos/<int:muestra_id> ['DELETE']
+Endpoint utilizado para borrar muestras de la lista de favoritos. 
+
+Retorna la lista de favoritos ya actualizada con los objetos de muestra.
+[
+    {
+        "id": 4,
+        "muestra_id": 2,
+        "usuario_id": 2
+    }
+]
+"""
 
 @api.route('/favoritos/<int:muestra_id>', methods=['DELETE'])
 @jwt_required()

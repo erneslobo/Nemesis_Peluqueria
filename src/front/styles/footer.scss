@@ -1,4 +1,3 @@
-
 // div {
 //     border: red 1px dashed;
 
@@ -32,8 +31,8 @@
 }
 
 .redes img {
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     margin: 5px;
     justify-content: end;
     
@@ -46,15 +45,17 @@ font-size: 15px;
 margin-right: 10px;
 }
 
-.datos{
+.textos {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-.datos p {
+.textos p {
     margin: 0;
+    font-size: 15px;
+    color: whitesmoke;
 }
 
 // .facebook{
@@ -66,4 +67,18 @@ margin-right: 10px;
 .logoPelu img {
     width: 100%;
     height: auto;
+}
+
+.datos {
+    display: flex;
+    justify-content: space-around;
+}
+
+.locacion {
+    font-size: 40px;
+    color: whitesmoke;
+}
+
+.link {
+    text-decoration: none;
 }

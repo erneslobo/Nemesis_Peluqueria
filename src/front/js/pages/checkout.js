@@ -1,5 +1,9 @@
 import React from "react";
 
 export const Checkout = () => {
-	return <p />;
+	return (
+		<div>
+			<h1>Checkout view</h1>
+		</div>
+	);
 };

@@ -1,0 +1,57 @@
+.fondo {
+    background-color: black;
+}
+
+.miNavBar {
+    color: whitesmoke;
+}
+
+.navbar-brand img{
+    width: 20%;
+    height: auto;
+}
+
+.boton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white !important;
+    color: black;
+    font-weight: 600;
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+li {
+    font-weight: 600;
+}
+
+.carrito {
+    font-size: xx-large;
+}
+
+.link {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.link:hover {
+    color:grey;
+}
+
+.link-drop {
+    text-decoration: none;
+    color: black;
+}
+
+.link-drop:hover {
+    color: grey;
+}
+
+.link-drop li:active {
+    background-color: grey !important;
+}

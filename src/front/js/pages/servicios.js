@@ -1,5 +1,9 @@
 import React from "react";
 
 export const Servicios = () => {
-	return <p />;
+	return (
+		<div>
+			<h1>Servicios</h1>
+		</div>
+	);
 };

@@ -40,6 +40,7 @@ class Producto(db.Model):
     tipo = db.Column(db.String(250), nullable=False)
     categoria = db.Column(db.String(250), nullable=False)
     imagen = db.Column(db.String(250), nullable=False)
+    thumbnail = db.Column(db.String(250), nullable=False)
     activo = db.Column(db.Boolean(), nullable=False)
     detalle_ordenes = db.relationship('DetalleOrden', backref='producto', lazy=True)
 
@@ -63,6 +64,7 @@ class Muestra(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(250), unique=True, nullable=False)
     imagen = db.Column(db.String(250), nullable=False)
+    thumbnail = db.Column(db.String(250), nullable=False)
     categoria = db.Column(db.String(250), nullable=False)
     activo = db.Column(db.Boolean(), nullable=False)
     favoritos = db.relationship('Favoritos', backref='muestra', lazy=True)

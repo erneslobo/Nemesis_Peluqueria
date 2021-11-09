@@ -43,9 +43,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				myHeaders.append("Content-Type", "application/json");
 
 				let raw = JSON.stringify({
-					service_id: "service_hp30xv6",
-					template_id: "template_jpx3bxq",
-					user_id: "user_sejdWL8fjOFEBP89Qifp6",
+					service_id: process.env.EMAIL_SERVICE_ID,
+					template_id: process.env.EMAIL_TEMPLATE_ID,
+					user_id: process.env.EMAIL_USER_ID,
 					template_params: {
 						from_name: "Nemesis Peluqueria",
 						to_name: "Ernesto",

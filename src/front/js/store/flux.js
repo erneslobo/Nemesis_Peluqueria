@@ -15,7 +15,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			usuario_creado: false
+			usuario_creado: false,
+			usuario_autenticado: false
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -65,10 +66,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 
 				fetch(`${URL_BASE}registro`, requestOptions)
-					.then(response => response.text())
+					.then(response => response.json())
 					.then(result => {
 						console.log(result);
 						setStore({ usuario_creado: true });
+					})
+					.catch(error => console.log("error", error));
+			},
+			login: (email, password) => {
+				let myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				let raw = JSON.stringify({
+					email: email,
+					password: password
+				});
+
+				let requestOptions = {
+					method: "POST",
+					headers: myHeaders,
+					body: raw,
+					redirect: "follow"
+				};
+
+				fetch(`${URL_BASE}login`, requestOptions)
+					.then(response => response.json())
+					.then(result => {
+						console.log(result);
+						if (result.access_token) {
+							localStorage.setItem("Token", result.access_token);
+							setStore({ usuario_autenticado: true });
+						}
 					})
 					.catch(error => console.log("error", error));
 			}

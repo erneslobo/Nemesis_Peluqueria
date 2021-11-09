@@ -11,14 +11,24 @@ from api.models import db
 from api.routes import api
 from api.admin import setup_admin
 from flask_jwt_extended import JWTManager
-
+# from flask_mail import Mail
 
 ENV = os.getenv("FLASK_ENV")
 static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
 
-app.config["JWT_SECRET_KEY"] = "proyectoFinal"  # Change this!
+#integration de JWT token
+app.config["JWT_SECRET_KEY"] = "proyectoFinal" 
 jwt = JWTManager(app)
+
+#integration de email server para enviar correos desde del back end.
+# app.config['MAIL_SERVER']='smtp-mail.outlook.com'
+# app.config['MAIL_PORT'] = 587
+# app.config['MAIL_USERNAME'] = 'erneslobo29@hotmail.com'
+# app.config['MAIL_PASSWORD'] = '2017Trtln'
+# app.config['MAIL_USE_TLS'] = True
+# app.config['MAIL_USE_SSL'] = False
+# mail = Mail(app)
 
 app.url_map.strict_slashes = False
 

@@ -1,10 +1,14 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-from flask import Flask, request, jsonify, url_for, Blueprint
+import sys
+sys.path.append("..")
+
+from flask import Flask, request, jsonify, url_for, Blueprint, current_app
 from api.models import db, Usuario, Producto, Muestra, Orden, DetalleOrden, Favoritos
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+#from flask_mail import Message
 
 api = Blueprint('api', __name__)
 
@@ -407,3 +411,22 @@ def borrar_favoritos(muestra_id):
         return get_usuario_favoritos()
     else:
         raise APIException('Favorito no existe', status_code=404)
+
+"""
+Enviar correos desde el back end usando la libreria de flask-email.
+Sin embargo proveedores como gmail y hotmail no ven segura esta libreria y la cuenta se puede bloquear.
+Por lo que se va a usar un metodo de enviar emails desde el front end con emailjs.
+"""
+# @api.route("/password_recovery", methods=['POST'])
+# def password_recovery():
+#     from app import mail
+#     user_email = orden_id = request.json.get("email", None)
+#     if not user_email:
+#         raise APIException('Solicitud invalida, ingrese un correo por favor', status_code=404)
+#     msg = Message(subject="Hello",
+#                 sender=current_app.config.get("MAIL_USERNAME"),
+#                 recipients=["erneslobo@gmail.com"], # replace with your email for testing
+#                 body="This is a test email for python 4Geeks project")
+#     mail.send(msg)
+
+#     return "Message sent!"

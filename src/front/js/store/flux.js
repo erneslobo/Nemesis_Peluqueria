@@ -1,5 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const URL_BASE = "https://3001-indigo-alpaca-gnk5rbd1.ws-us18.gitpod.io/api/";
+	const URL_BASE = "https://3001-lime-shrimp-qqxe6e1e.ws-us18.gitpod.io/api/";
 	return {
 		store: {
 			message: null,
@@ -22,7 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			El objeto 'usuario_actual' tiene los datos del usuario que esta 
 			autenticado en un momento dado. Tiene la siguiente forma:
 
-			"user": {
+			"usuario_actual": {
 				"admin": true,
 				"apellido": "ADMIN",
 				"email": "admin@admin.com",

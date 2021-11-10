@@ -4,7 +4,6 @@ import { Context } from "../store/appContext";
 
 import nemesis_logo_sn from "../../img/nemesis_texto_sn_blanco.png";
 import "../../styles/navbar.scss";
-import { NULL } from "node-sass";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);

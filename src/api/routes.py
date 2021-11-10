@@ -236,22 +236,46 @@ Endpoint utilizado para login. En el body se envia email y password como por eje
     "password": "test"
 }
 
-La API retorna un token para futuras autenticaciones.
+La API retorna un token para futuras autenticaciones y los datos del usuario para uso en el front.
 {
-    "access_token": "xxxxxxxxxxxxxxxxx"
+    "access_token": "eyJ0eXTT4k5FC4saHguvifHZX8d9SKGkSTT4k5FC4saHguvifHZX8TT4k5FC4saHguvifHZX8muJk",
+    "user": {
+        "admin": true,
+        "apellido": "ADMIN",
+        "email": "admin@admin.com",
+        "id": 1,
+        "nombre": "ADMIN",
+        "telefono": "4343423432"
+    }
 }
 """
 
 @api.route("/login", methods=["POST"])
 def login():
+    nombre = request.json.get("nombre", None)
+    apellido = request.json.get("apellido", None)
+    telefono = request.json.get("telefono", None)
     email = request.json.get("email", None)
     password = request.json.get("password", None)
+    admin = request.json.get("admin", False)
+
     usuario = Usuario.query.filter_by(email=email, password=password).first()
     if usuario is None:
         raise APIException('Usuario o password incorrecto', status_code=401)
 
+    #datos del usuario
+    user =  Usuario(nombre=nombre,
+                apellido= apellido,
+                telefono = telefono,
+                email=email,
+                password=password,
+                admin = admin
+                )
+    user = Usuario.query.filter_by(email=email).first()
+    user = user.serialize()
+
     access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
+    return jsonify(access_token=access_token, user=user)
 
 """
 URL = https://url_base/api/favoritos/<int:muestra_id> ['POST']

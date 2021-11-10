@@ -58,6 +58,11 @@ export const Checkout = () => {
 						loading="lazy"
 					/>
 				</div>
+				<div className="col-auto pt-3">
+					<button type="submit" className="btn btn-dark mb-3">
+						Comprar!
+					</button>
+				</div>
 			</div>
 		</>
 	);

@@ -1,5 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const URL_BASE = "https://3001-aquamarine-blackbird-iz2jbcaj.ws-us18.gitpod.io/api/";
+	const URL_BASE = "https://3001-lime-shrimp-qqxe6e1e.ws-us18.gitpod.io/api/";
 	return {
 		store: {
 			message: null,
@@ -16,15 +16,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 			usuario_creado: false,
-			usuario_autenticado: false
+			usuario_autenticado: false,
+
+			/* 
+			El objeto 'usuario_actual' tiene los datos del usuario que esta 
+			autenticado en un momento dado. Tiene la siguiente forma:
+
+			"usuario_actual": {
+				"admin": true,
+				"apellido": "ADMIN",
+				"email": "admin@admin.com",
+				"id": 1,
+				"nombre": "ADMIN",
+				"telefono": "4343423432"
+			}
+			*/
+			usuario_actual: {},
+
+			prod_y_serv: []
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-
 			/*
+			   *********************** RECUPERAR PASSWORD ***********************
+
 			Integracion para enviar emails para recuperar contraseña
 			en el body se ocupa enviar los siguientes parametros en un formato JSON
 				{
@@ -40,7 +54,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 
 			*/
-
 			recuperarPassword: email => {
 				let myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
@@ -70,27 +83,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("error", error));
 			},
 
-			getMessage: () => {
-				// fetching data from the backend
-				fetch(process.env.BACKEND_URL + "/api/hello")
-					.then(resp => resp.json())
-					.then(data => setStore({ message: data.message }))
-					.catch(error => console.log("Error loading message from backend", error));
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
-			},
+			// *********************** REGISTRO ***********************
 			registro: (nombre, apellido, telefono, email, password, admin) => {
 				let myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
@@ -119,6 +112,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.log("error", error));
 			},
+
+			// *********************** LOGIN ***********************
 			login: (email, password) => {
 				let myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
@@ -142,10 +137,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (result.access_token) {
 							localStorage.setItem("Token", result.access_token);
 							setStore({ usuario_autenticado: true });
+							setStore({ usuario_actual: result.user });
 						}
 					})
 					.catch(error => console.log("error", error));
 			}
+
+			// *********************** TRAER PRODUCTOS Y SERVICIOS ***********************
+			//WIP
+			// getProductosYServicios: () => {
+			// 	fetch(`${URL_BASE}productos`)
+			// 		.then(res => res.json())
+			// 		.then(result => {
+			// 			setStore({ prod_y_serv: result.all_productos });
+			// 			console.log(prod_y_serv);
+			// 		})
+			// 		.catch(err => console.error(err));
+			// }
 		}
 	};
 };

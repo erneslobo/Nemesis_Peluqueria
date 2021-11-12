@@ -59,10 +59,10 @@ export const Contacto = () => {
 					</div>
 				</div>
 			</div>
-			<div className="row mt-2">
+			<div className="row mt-2 mb-5">
 				<div>
-					<p>Encuentranos en:</p>
-					<p>Alejandro Chucarro 1102, 11300 Montevideo, Departamento de Montevideo, Uruguay</p>
+					<h5>Encuentranos en:</h5>
+					<h5>Alejandro Chucarro 1102, 11300 Montevideo, Departamento de Montevideo, Uruguay</h5>
 				</div>
 				<iframe
 					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3271.788254382282!2d-56.15046068476206!3d-34.91176298038085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x959f810d52d2ad53%3A0xe8c7c84ba163d1b4!2sAlejandro%20Chucarro%201102%2C%2011300%20Montevideo%2C%20Departamento%20de%20Montevideo%2C%20Uruguay!5e0!3m2!1sen!2scr!4v1636215513118!5m2!1sen!2scr"

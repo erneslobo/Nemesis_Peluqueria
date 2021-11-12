@@ -1,10 +1,14 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-from flask import Flask, request, jsonify, url_for, Blueprint
+import sys
+sys.path.append("..")
+
+from flask import Flask, request, jsonify, url_for, Blueprint, current_app
 from api.models import db, Usuario, Producto, Muestra, Orden, DetalleOrden, Favoritos
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+#from flask_mail import Message
 
 api = Blueprint('api', __name__)
 
@@ -232,22 +236,46 @@ Endpoint utilizado para login. En el body se envia email y password como por eje
     "password": "test"
 }
 
-La API retorna un token para futuras autenticaciones.
+La API retorna un token para futuras autenticaciones y los datos del usuario para uso en el front.
 {
-    "access_token": "xxxxxxxxxxxxxxxxx"
+    "access_token": "eyJ0eXTT4k5FC4saHguvifHZX8d9SKGkSTT4k5FC4saHguvifHZX8TT4k5FC4saHguvifHZX8muJk",
+    "user": {
+        "admin": true,
+        "apellido": "ADMIN",
+        "email": "admin@admin.com",
+        "id": 1,
+        "nombre": "ADMIN",
+        "telefono": "4343423432"
+    }
 }
 """
 
 @api.route("/login", methods=["POST"])
 def login():
+    nombre = request.json.get("nombre", None)
+    apellido = request.json.get("apellido", None)
+    telefono = request.json.get("telefono", None)
     email = request.json.get("email", None)
     password = request.json.get("password", None)
+    admin = request.json.get("admin", False)
+
     usuario = Usuario.query.filter_by(email=email, password=password).first()
     if usuario is None:
         raise APIException('Usuario o password incorrecto', status_code=401)
 
+    #datos del usuario
+    user =  Usuario(nombre=nombre,
+                apellido= apellido,
+                telefono = telefono,
+                email=email,
+                password=password,
+                admin = admin
+                )
+    user = Usuario.query.filter_by(email=email).first()
+    user = user.serialize()
+
     access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
+    return jsonify(access_token=access_token, user=user)
 
 """
 URL = https://url_base/api/favoritos/<int:muestra_id> ['POST']
@@ -407,3 +435,22 @@ def borrar_favoritos(muestra_id):
         return get_usuario_favoritos()
     else:
         raise APIException('Favorito no existe', status_code=404)
+
+"""
+Enviar correos desde el back end usando la libreria de flask-email.
+Sin embargo proveedores como gmail y hotmail no ven segura esta libreria y la cuenta se puede bloquear.
+Por lo que se va a usar un metodo de enviar emails desde el front end con emailjs.
+"""
+# @api.route("/password_recovery", methods=['POST'])
+# def password_recovery():
+#     from app import mail
+#     user_email = orden_id = request.json.get("email", None)
+#     if not user_email:
+#         raise APIException('Solicitud invalida, ingrese un correo por favor', status_code=404)
+#     msg = Message(subject="Hello",
+#                 sender=current_app.config.get("MAIL_USERNAME"),
+#                 recipients=["erneslobo@gmail.com"], # replace with your email for testing
+#                 body="This is a test email for python 4Geeks project")
+#     mail.send(msg)
+
+#     return "Message sent!"

@@ -76,12 +76,14 @@
 		]
 	},
 	"dependencies": {
+		"@splidejs/react-splide": "^0.6.7",
 		"bootstrap": "^5.1.1",
 		"prop-types": "^15.6.1",
 		"react": "^16.14.0",
 		"react-dom": "^16.14.0",
 		"react-polyfills": "0.0.1",
 		"react-router-dom": "^5.2.0",
-		"reactstrap": "^9.0.0"
+		"reactstrap": "^9.0.0",
+		"swiper": "^7.2.0"
 	}
 }

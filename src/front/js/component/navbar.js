@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 import nemesis_logo_sn from "../../img/nemesis_texto_sn_blanco.png";
 import "../../styles/navbar.scss";
 
 export const Navbar = () => {
+	const { store, actions } = useContext(Context);
+
 	return (
 		<div className="container-fluid fondo">
 			<div className="container">
@@ -39,42 +42,39 @@ export const Navbar = () => {
 									<li className="nav-item text-nowrap mx-2">Nuestro trabajo</li>
 								</Link>
 								<li className="nav-item mx-2">
-									{/* Queda comentado lo que sería la lógica */}
-									{/* {(Condición: User is logged in) ? */}
-									<Link to="/login/" className="link">
-										<button type="button" className="btn boton px-4 py-1">
-											Ingresar
-										</button>
-									</Link>
-									:
-									<div className="dropdown ">
-										<button
-											className="btn boton px-4 py-1 dropdown-toggle"
-											type="button"
-											id="dropdownMenuButton1"
-											data-bs-toggle="dropdown"
-											aria-expanded="false">
-											Username
-											{/* {Usuario.nombre} */}
-										</button>
-										<ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-											<Link to="/#/" className="link-drop">
-												<li className="dropdown-item">Mis Favoritos</li>
-											</Link>
-											{/* {(Condición: User is ADMIN) ? */}
-											<Link to="/#/" className="link-drop">
-												<li className="dropdown-item">Admin</li>
-											</Link>
-											{/* :
-											""
-											} */}
-											<hr className="py-0 my-1" />
-											<Link to="/#/" className="link-drop">
-												<li className="dropdown-item">Sign out</li>
-											</Link>
-										</ul>
-									</div>
-									{/* } */}
+									{/* Renderiza distinto según si el usuario esta autenticado */}
+									{!store.usuario_autenticado ? (
+										<Link to="/login/" className="link">
+											<button type="button" className="btn boton px-4 py-1">
+												Ingresar
+											</button>
+										</Link>
+									) : (
+										<div className="dropdown ">
+											<button
+												className="btn boton px-4 py-1 dropdown-toggle"
+												type="button"
+												id="dropdownMenuButton1"
+												data-bs-toggle="dropdown"
+												aria-expanded="false">
+												{store.usuario_actual.nombre}
+											</button>
+											<ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+												<Link to="/#/" className="link-drop">
+													<li className="dropdown-item">Mis Favoritos</li>
+												</Link>
+												{store.usuario_actual.admin ? (
+													<Link to="/#/" className="link-drop">
+														<li className="dropdown-item">Admin</li>
+													</Link>
+												) : null}
+												<hr className="py-0 my-1" />
+												<Link to="/#/" className="link-drop">
+													<li className="dropdown-item">Sign out</li>
+												</Link>
+											</ul>
+										</div>
+									)}
 								</li>
 								<Link to="/checkout/" className="link">
 									<li className="nav-item mx-2 carrito">

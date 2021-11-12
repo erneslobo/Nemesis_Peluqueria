@@ -1,5 +1,6 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const URL_BASE = "https://3001-lime-shrimp-qqxe6e1e.ws-us18.gitpod.io/api/";
+	const URL_BASE = "https://3001-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/api/";
+	const WEB_URL_BASE = "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io";
 	return {
 		store: {
 			message: null,
@@ -17,6 +18,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			usuario_creado: false,
 			usuario_autenticado: false,
+			correo_password_enviado: false,
+			password_actualizado: false,
 
 			/* 
 			El objeto 'usuario_actual' tiene los datos del usuario que esta 
@@ -36,6 +39,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 			prod_y_serv: []
 		},
 		actions: {
+			cambiar_password: (password, token) => {
+				var myHeaders = new Headers();
+				myHeaders.append("Authorization", `Bearer ${token}`);
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify({
+					password: password
+				});
+
+				var requestOptions = {
+					method: "PUT",
+					headers: myHeaders,
+					body: raw,
+					redirect: "follow"
+				};
+
+				fetch(`${URL_BASE}usuario`, requestOptions)
+					.then(response => response.text())
+					.then(result => {
+						console.log(result);
+						setStore({ password_actualizado: true });
+					})
+					.catch(error => console.log("error", error));
+			},
+
 			/*
 			   *********************** RECUPERAR PASSWORD ***********************
 
@@ -50,6 +78,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						to_name: "Ernesto",
 						to_email: email,
 						message: "please access this link to recover your password"
+						passwordUrl: `${WEB_URL_BASE}/reset_password`,
+						token: result.access_token
 					}
 				}
 
@@ -59,15 +89,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				myHeaders.append("Content-Type", "application/json");
 
 				let raw = JSON.stringify({
-					service_id: process.env.EMAIL_SERVICE_ID,
-					template_id: process.env.EMAIL_TEMPLATE_ID,
-					user_id: process.env.EMAIL_USER_ID,
-					template_params: {
-						from_name: "Nemesis Peluqueria",
-						to_name: "Ernesto",
-						to_email: email,
-						message: "please access this link to recover your password"
-					}
+					email: email
 				});
 
 				let requestOptions = {
@@ -77,9 +99,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 					redirect: "follow"
 				};
 
-				fetch("https://api.emailjs.com/api/v1.0/email/send", requestOptions)
+				fetch(`${URL_BASE}password_reset`, requestOptions)
+					.then(response => response.json())
+					.then(result => {
+						console.log(encodeURIComponent(result.access_token));
+
+						raw = JSON.stringify({
+							service_id: process.env.EMAIL_SERVICE_ID,
+							template_id: process.env.EMAIL_TEMPLATE_ID,
+							user_id: process.env.EMAIL_USER_ID,
+							template_params: {
+								from_name: "Nemesis Peluqueria",
+								to_name: "Ernesto",
+								to_email: email,
+								message: "please access this link to recover your password",
+								passwordUrl: `${WEB_URL_BASE}/reset_password`,
+								token: result.access_token
+							}
+						});
+
+						requestOptions = {
+							method: "POST",
+							headers: myHeaders,
+							body: raw,
+							redirect: "follow"
+						};
+
+						return fetch("https://api.emailjs.com/api/v1.0/email/send", requestOptions);
+					})
 					.then(response => response.text())
-					.then(result => console.log(result))
+					.then(result => {
+						console.log(result);
+						setStore({ correo_password_enviado: true });
+					})
 					.catch(error => console.log("error", error));
 			},
 

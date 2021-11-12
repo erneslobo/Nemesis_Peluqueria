@@ -10,7 +10,7 @@ class Usuario(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     nombre = db.Column(db.String(250), nullable=False)
     apellido = db.Column(db.String(250), nullable=False)
-    telefono = db.Column(db.String(250), nullable=False)
+    telefono = db.Column(db.String(250))
     email = db.Column(db.String(250), unique=True, nullable=False)
     password = db.Column(db.String(250), nullable=False)
     admin = db.Column(db.Boolean, nullable=False)

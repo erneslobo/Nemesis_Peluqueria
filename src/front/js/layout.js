@@ -4,7 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
+import Detalle from "./pages/detalle";
 import { Admin } from "./pages/admin";
 import { Checkout } from "./pages/checkout";
 import { Contacto } from "./pages/contacto";
@@ -37,8 +37,8 @@ const Layout = () => {
 						<Route exact path="/demo">
 							<Demo />
 						</Route>
-						<Route exact path="/single/:theid">
-							<Single />
+						<Route exact path="/detalle/:theid">
+							<Detalle />
 						</Route>
 						<Route exact path="/login">
 							<Login />

@@ -1,5 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const URL_BASE = "https://3001-lime-shrimp-qqxe6e1e.ws-us18.gitpod.io/api/";
+	const URL_BASE = "https://3001-plum-cat-sg0ndcvm.ws-us18.gitpod.io/api/";
 	return {
 		store: {
 			message: null,
@@ -33,7 +33,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			*/
 			usuario_actual: {},
 
-			prod_y_serv: []
+			productosServicios: []
 		},
 		actions: {
 			/*
@@ -141,19 +141,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.catch(error => console.log("error", error));
-			}
+			},
 
 			// *********************** TRAER PRODUCTOS Y SERVICIOS ***********************
-			//WIP
-			// getProductosYServicios: () => {
-			// 	fetch(`${URL_BASE}productos`)
-			// 		.then(res => res.json())
-			// 		.then(result => {
-			// 			setStore({ prod_y_serv: result.all_productos });
-			// 			console.log(prod_y_serv);
-			// 		})
-			// 		.catch(err => console.error(err));
-			// }
+
+			getProductosYServicios: () => {
+				fetch(`${URL_BASE}productos`)
+					.then(res => res.json())
+					.then(result => {
+						setStore({ productosServicios: result });
+						console.log(productosServicios);
+					})
+					.catch(error => console.log("error", error));
+			}
 		}
 	};
 };

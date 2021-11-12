@@ -4,7 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
+import Detalle from "./pages/detalle";
 import { Admin } from "./pages/admin";
 import { Checkout } from "./pages/checkout";
 import { Contacto } from "./pages/contacto";
@@ -13,6 +13,8 @@ import { Productos } from "./pages/productos";
 import { Registro } from "./pages/registro";
 import { Servicios } from "./pages/servicios";
 import { Trabajos } from "./pages/trabajos";
+import { Recuperar_Password } from "./pages/recuperar_password";
+import { Reset_Password } from "./pages/password_reset";
 
 import injectContext from "./store/appContext";
 
@@ -37,14 +39,20 @@ const Layout = () => {
 						<Route exact path="/demo">
 							<Demo />
 						</Route>
-						<Route exact path="/single/:theid">
-							<Single />
+						<Route exact path="/detalle/:theid">
+							<Detalle />
 						</Route>
 						<Route exact path="/login">
 							<Login />
 						</Route>
 						<Route exact path="/registro">
 							<Registro />
+						</Route>
+						<Route exact path="/reset_password">
+							<Reset_Password />
+						</Route>
+						<Route exact path="/recuperar_password">
+							<Recuperar_Password />
 						</Route>
 						<Route exact path="/checkout">
 							<Checkout />

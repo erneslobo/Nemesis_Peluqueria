@@ -277,6 +277,17 @@ def login():
     access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token, user=user)
 
+@api.route("/password_reset", methods=["POST"])
+def password_reset():
+    email = request.json.get("email", None)
+
+    usuario = Usuario.query.filter_by(email=email).first()
+    if usuario is None:
+        raise APIException('usuario no existe', status_code=404)
+
+    access_token = create_access_token(identity=email)
+    return jsonify(access_token=access_token)
+
 """
 URL = https://url_base/api/favoritos/<int:muestra_id> ['POST']
 Endpoint utilizado para agregar muestras a favoritos.

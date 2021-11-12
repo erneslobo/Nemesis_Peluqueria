@@ -8,7 +8,7 @@ export const ImagenMuestra = ({ item, index }) => {
 	const { store, actions } = useContext(Context);
 	return (
 		<div className="col">
-			<div className="card">
+			<div className="card h-100">
 				<img src={item.thumbnail} className="card-img-top" alt="..." />
 			</div>
 		</div>

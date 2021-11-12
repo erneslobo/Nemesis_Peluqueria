@@ -1,5 +1,4 @@
 const getState = ({ getStore, getActions, setStore }) => {
-
 	const URL_BASE = "https://3001-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/api/";
 	const WEB_URL_BASE = "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io";
 	return {

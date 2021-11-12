@@ -77,6 +77,7 @@ class Muestra(db.Model):
             "id": self.id,
             "nombre": self.nombre,
             "imagen": self.imagen,
+            "thumbnail": self.thumbnail,
             "categoria": self.categoria,
             "activo": self.activo
         }

@@ -4,22 +4,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			],
 			usuario_creado: false,
 			usuario_autenticado: false,
 			correo_password_enviado: false,
 			password_actualizado: false,
+			muestras: [],
 
 			/* 
 			El objeto 'usuario_actual' tiene los datos del usuario que esta 
@@ -39,16 +28,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 			prod_y_serv: []
 		},
 		actions: {
+			obtener_muestras: () => {
+				if (localStorage.getItem("muestras") == null) {
+					let requestOptions = {
+						method: "GET",
+						redirect: "follow"
+					};
+					fetch(`${URL_BASE}muestras`, requestOptions)
+						.then(response => response.json())
+						.then(result => {
+							console.log(result);
+							setStore({ muestras: result });
+							localStorage.setItem("muestras", JSON.stringify(result));
+						})
+						.catch(error => console.log("error", error));
+				} else {
+					console.log(JSON.parse(localStorage.getItem("muestras")));
+					setStore({ muestras: JSON.parse(localStorage.getItem("muestras")) });
+				}
+			},
+
 			cambiar_password: (password, token) => {
-				var myHeaders = new Headers();
+				let myHeaders = new Headers();
 				myHeaders.append("Authorization", `Bearer ${token}`);
 				myHeaders.append("Content-Type", "application/json");
 
-				var raw = JSON.stringify({
+				let raw = JSON.stringify({
 					password: password
 				});
 
-				var requestOptions = {
+				let requestOptions = {
 					method: "PUT",
 					headers: myHeaders,
 					body: raw,
@@ -56,7 +65,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 
 				fetch(`${URL_BASE}usuario`, requestOptions)
-					.then(response => response.text())
+					.then(response => response.json())
 					.then(result => {
 						console.log(result);
 						setStore({ password_actualizado: true });
@@ -127,7 +136,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 						return fetch("https://api.emailjs.com/api/v1.0/email/send", requestOptions);
 					})
-					.then(response => response.text())
+					.then(response => response.json())
 					.then(result => {
 						console.log(result);
 						setStore({ correo_password_enviado: true });

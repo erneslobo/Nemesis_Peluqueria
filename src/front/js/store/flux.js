@@ -25,7 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			*/
 			usuario_actual: {},
 
-			prod_y_serv: []
+			productosServicios: []
 		},
 		actions: {
 			obtener_muestras: () => {
@@ -202,19 +202,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.catch(error => console.log("error", error));
-			}
+			},
 
 			// *********************** TRAER PRODUCTOS Y SERVICIOS ***********************
-			//WIP
-			// getProductosYServicios: () => {
-			// 	fetch(`${URL_BASE}productos`)
-			// 		.then(res => res.json())
-			// 		.then(result => {
-			// 			setStore({ prod_y_serv: result.all_productos });
-			// 			console.log(prod_y_serv);
-			// 		})
-			// 		.catch(err => console.error(err));
-			// }
+
+			getProductosYServicios: () => {
+				fetch(`${URL_BASE}productos`)
+					.then(res => res.json())
+					.then(result => {
+						setStore({ productosServicios: result });
+						console.log(productosServicios);
+					})
+					.catch(error => console.log("error", error));
+			}
 		}
 	};
 };

@@ -29,7 +29,10 @@ const injectContext = PassedComponent => {
 			 * store, instead use actions, like this:
 			 **/
 			state.actions.getProductosYServicios(); // <---- calling this function from the flux.js actions
+<<<<<<< HEAD
 			// state.actions.getProductosYServicios(); // <---- calling this function from the flux.js actions
+=======
+>>>>>>> develop
 			state.actions.obtener_muestras();
 		}, []);
 

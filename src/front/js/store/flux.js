@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const URL_BASE = "https://3001-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/api/";
-	const WEB_URL_BASE = "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io";
+	const URL_BASE = process.env.URL_BASE;
+	const WEB_URL_BASE = process.env.WEB_URL_BASE;
+
 	return {
 		store: {
 			message: null,
@@ -111,7 +112,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(`${URL_BASE}password_reset`, requestOptions)
 					.then(response => response.json())
 					.then(result => {
-						console.log(encodeURIComponent(result.access_token));
+						console.log(result.access_token);
 
 						raw = JSON.stringify({
 							service_id: process.env.EMAIL_SERVICE_ID,
@@ -136,7 +137,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 						return fetch("https://api.emailjs.com/api/v1.0/email/send", requestOptions);
 					})
-					.then(response => response.json())
+					.then(response => response.text())
 					.then(result => {
 						console.log(result);
 						setStore({ correo_password_enviado: true });

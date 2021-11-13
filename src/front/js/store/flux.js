@@ -1,6 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const URL_BASE = "https://3001-aquamarine-blackbird-iz2jbcaj.ws-us18.gitpod.io/api/";
-	const WEB_URL_BASE = "https://3000-aquamarine-blackbird-iz2jbcaj.ws-us18.gitpod.io";
+
+	const URL_BASE = process.env.URL_BASE;
+	const WEB_URL_BASE = process.env.WEB_URL_BASE;
+
 
 	return {
 		store: {
@@ -112,7 +114,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(`${URL_BASE}password_reset`, requestOptions)
 					.then(response => response.json())
 					.then(result => {
-						console.log(encodeURIComponent(result.access_token));
+						console.log(result.access_token);
 
 						raw = JSON.stringify({
 							service_id: process.env.EMAIL_SERVICE_ID,

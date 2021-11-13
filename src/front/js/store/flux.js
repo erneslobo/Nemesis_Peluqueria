@@ -1,10 +1,6 @@
 const getState = ({ getStore, getActions, setStore }) => {
-<<<<<<< HEAD
 	const URL_BASE = "https://3001-plum-cat-sg0ndcvm.ws-us18.gitpod.io/api/";
-=======
-	const URL_BASE = "https://3001-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/api/";
-	const WEB_URL_BASE = "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io";
->>>>>>> develop
+	const WEB_URL_BASE = "https://3000-plum-cat-sg0ndcvm.ws-us18.gitpod.io";
 	return {
 		store: {
 			message: null,
@@ -140,7 +136,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 						return fetch("https://api.emailjs.com/api/v1.0/email/send", requestOptions);
 					})
-					.then(response => response.json())
+					.then(response => response.text())
 					.then(result => {
 						console.log(result);
 						setStore({ correo_password_enviado: true });

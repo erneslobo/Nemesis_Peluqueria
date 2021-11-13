@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
@@ -7,6 +7,15 @@ import "../../styles/navbar.scss";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
+
+	useEffect(
+		() => {
+			if (store.usuario_autenticado) {
+				actions.obtener_favoritos();
+			}
+		},
+		[store.usuario_autenticado]
+	);
 
 	return (
 		<div className="container-fluid fondo">

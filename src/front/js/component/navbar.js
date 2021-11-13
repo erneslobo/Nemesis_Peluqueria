@@ -69,7 +69,7 @@ export const Navbar = () => {
 													</Link>
 												) : null}
 												<hr className="py-0 my-1" />
-												<Link to="/#/" className="link-drop">
+												<Link to="/" className="link-drop">
 													<li className="dropdown-item">Sign out</li>
 												</Link>
 											</ul>

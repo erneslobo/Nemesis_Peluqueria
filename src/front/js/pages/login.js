@@ -38,7 +38,7 @@ export const Login = () => {
 									onChange={e => setPassword(e.target.value)}
 									value={password}
 								/>
-								<Link to={`/registrarse`} id="CrearUsuario">
+								<Link to={`/recuperar_password`} id="CrearUsuario">
 									{"¿Olvidaste tu contraseña?"}
 								</Link>
 							</div>

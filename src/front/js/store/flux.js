@@ -1,8 +1,6 @@
 const getState = ({ getStore, getActions, setStore }) => {
-
 	const URL_BASE = process.env.URL_BASE;
 	const WEB_URL_BASE = process.env.WEB_URL_BASE;
-
 
 	return {
 		store: {

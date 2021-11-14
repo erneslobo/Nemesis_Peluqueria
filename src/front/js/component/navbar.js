@@ -78,9 +78,8 @@ export const Navbar = () => {
 													</Link>
 												) : null}
 												<hr className="py-0 my-1" />
-												<Link to="/" className="link-drop">
-													<li className="dropdown-item">Cerrar sesión</li>
-												</Link>
+
+												{/* <li className="dropdown-item" onClick={() => {store.usuario_actual.nombre ? localStorage.removeItem('user') } > Cerrar sesión</li> */}
 											</ul>
 										</div>
 									)}

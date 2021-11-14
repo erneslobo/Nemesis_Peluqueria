@@ -1,0 +1,26 @@
+// .botones {
+//     background-color: black!important;
+//     color: whitesmoke!important;
+// }
+
+.card {
+    filter: drop-shadow(3px 3px 7px grey);
+}
+
+.card img {
+    height: 300px;
+    width: auto;
+    object-fit: cover;
+}
+
+.drop-categorias li:hover{
+    cursor: pointer;
+}
+
+.drop-categorias li:active {
+    background-color: grey !important;
+}
+
+.descripcion {
+    font-size: 14px!important;
+}

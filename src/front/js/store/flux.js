@@ -191,6 +191,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 							}
 						});
 
+						console.log(process.env.EMAIL_USER_ID);
+
 						requestOptions = {
 							method: "POST",
 							headers: myHeaders,

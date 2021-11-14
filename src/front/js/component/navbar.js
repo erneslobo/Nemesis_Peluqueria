@@ -79,7 +79,22 @@ export const Navbar = () => {
 												) : null}
 												<hr className="py-0 my-1" />
 
-												{/* <li className="dropdown-item" onClick={() => {store.usuario_actual.nombre ? localStorage.removeItem('user') } > Cerrar sesión</li> */}
+												{/* 	<li className="dropdown-item" onClick={() => {store.usuario_autenticado ? (
+													localStorage.removeItem('user'), 
+													<Link to="/" className="link-drop">
+														<li className="dropdown-item">Cerrar sesión</li>
+													</Link>
+												) : null}   */}
+												<li
+													className="dropdown-item"
+													onClick={() => {
+														localStorage.removeItem("Token"),
+															localStorage.removeItem(store.usuario_actual);
+													}}>
+													<Link to="/" className="link-drop">
+														<li className="dropdown-item">Cerrar sesión</li>
+													</Link>
+												</li>
 											</ul>
 										</div>
 									)}

@@ -1,56 +1,53 @@
 import React, { useState, useContext, useEffect } from "react";
 import Card from "../component/card";
+import "../../styles/card.scss";
 
 import { Context } from "../store/appContext";
 
 export const Productos = () => {
 	const { store, actions } = useContext(Context);
 
-	//let clonLista = store.productosServicios;
+	const [lista, setLista] = useState(store.productosServicios);
 
-	const [lista, setLista] = useState([]);
+	// Genero un array con los valores únicos de todas las categorías que encuentre para popular el dropdown
+	const arrayCategorias = ["---Todas---", ...new Set(store.productosServicios.map(items => items.categoria))];
 
-	const arrayCategorias = ["Todo", ...new Set(store.productosServicios.map(items => items.categoria))];
-
-	//const arrayFiltro = store.productosServicios.filter(item => item.categoria == "Manicuría");
-	//console.log(arrayFiltro);
-
-	const filtrar = item => {
-		if (item == "Todo") {
+	// Filtro los resultados según la categoría elegida (esta función se llama en el dropdown)
+	const filtrar = categ => {
+		if (categ == "---Todas---") {
 			setLista(store.productosServicios);
 		} else {
-			setLista(store.productosServicios.filter(elem => elem.categoria == item));
+			setLista(store.productosServicios.filter(elem => elem.categoria == categ));
 		}
 	};
 
-	useEffect(() => {
-		filtrar("Todo");
-	}, []);
-
 	return (
 		<div>
-			<div className="dropdown ">
-				<button
-					className="btn boton px-4 py-1 dropdown-toggle"
-					type="button"
-					id="dropdownMenuButton1"
-					data-bs-toggle="dropdown"
-					aria-expanded="false">
-					Categorías
-				</button>
-				<ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-					{arrayCategorias.map((item, index) => {
-						return (
-							<li className="dropdown-item" key={index} onClick={e => filtrar(item)}>
-								{item}
-							</li>
-						);
-					})}
-				</ul>
-			</div>
-
-			<div className="container">
-				<h2>Productos</h2>
+			<div className="container my-3">
+				<div className="d-flex justify-content-between my-3">
+					<div>
+						<h2>Productos</h2>
+					</div>
+					<div className="dropdown">
+						<button
+							className="btn btn-dark px-4 py-1 dropdown-toggle"
+							type="button"
+							id="dropdownMenuButton1"
+							data-bs-toggle="dropdown"
+							aria-expanded="false">
+							Categorías
+						</button>
+						<ul className="dropdown-menu drop-categorias" aria-labelledby="dropdownMenuButton1">
+							{arrayCategorias.map((item, index) => {
+								return (
+									<li className="dropdown-item" key={index} onClick={e => filtrar(item)}>
+										{item}
+									</li>
+								);
+							})}
+						</ul>
+					</div>
+				</div>
 				<div className="row">
 					{lista.map((item, index) => {
 						if (item.tipo == "Producto") return <Card item={item} key={index} id={index} />;

@@ -1,12 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
-<<<<<<< HEAD
-	const URL_BASE = "https://3001-plum-cat-sg0ndcvm.ws-us18.gitpod.io/api/";
-	const WEB_URL_BASE = "https://3000-plum-cat-sg0ndcvm.ws-us18.gitpod.io";
-=======
 	const URL_BASE = process.env.URL_BASE;
 	const WEB_URL_BASE = process.env.WEB_URL_BASE;
 
->>>>>>> develop
 	return {
 		store: {
 			message: null,

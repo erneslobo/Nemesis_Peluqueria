@@ -22,11 +22,13 @@ const Card = props => {
 								<span>Detalles</span>
 							</Link>
 						</div>
-						<div>
-							<Link to="#" className="btn btn-outline-primary">
-								<span>Agregar al carrito</span>
-							</Link>
-						</div>
+						{props.item.tipo == "Producto" ? (
+							<div>
+								<Link to="#" className="btn btn-outline-primary">
+									<span>Agregar al carrito</span>
+								</Link>
+							</div>
+						) : null}
 					</div>
 				</div>
 			</div>

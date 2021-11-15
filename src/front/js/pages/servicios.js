@@ -7,7 +7,7 @@ import { Context } from "../store/appContext";
 export const Servicios = () => {
 	const { store, actions } = useContext(Context);
 
-	const [lista, setLista] = useState(store.productosServicios);
+	// const [lista, setLista] = useState(store.productosServicios);
 
 	// Genero un array con los valores únicos de todas las categorías que encuentre para popular el dropdown
 	const arrayCategorias = ["---Todas---", ...new Set(store.productosServicios.map(items => items.categoria))];

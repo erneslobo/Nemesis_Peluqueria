@@ -85,12 +85,7 @@ export const Navbar = () => {
 														<li className="dropdown-item">Cerrar sesión</li>
 													</Link>
 												) : null}   */}
-												<li
-													className="dropdown-item"
-													onClick={() => {
-														localStorage.removeItem("Token"),
-															localStorage.removeItem(store.usuario_actual);
-													}}>
+												<li className="dropdown-item" onClick={actions.cerrarSesion}>
 													<Link to="/" className="link-drop">
 														<li className="dropdown-item">Cerrar sesión</li>
 													</Link>

@@ -94,6 +94,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			obtener_muestras: () => {
 				if (localStorage.getItem("muestras") == null) {
+					console.log("muestrasS");
 					let requestOptions = {
 						method: "GET",
 						redirect: "follow"
@@ -280,6 +281,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(productosServicios);
 					})
 					.catch(error => console.log("error", error));
+			},
+			cerrarSesion: () => {
+				localStorage.removeItem("Token");
+				setStore({ usuario_autenticado: false });
+				setStore({ usuario_actual: {} });
 			}
 		}
 	};

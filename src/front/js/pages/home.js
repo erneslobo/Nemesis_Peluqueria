@@ -8,9 +8,13 @@ export const Home = () => {
 	return (
 		<div className="container">
 			<div className="row containerImagenPrincipal d-flex text-center">
-				<img src="https://dummyimage.com/1400x500" className="img-fluid p-0 " alt="..." />
-				<div className="textoImagenPrincipal">
-					<h5>The largest community of photo enthusiasts</h5>
+				<img
+					src="https://res.cloudinary.com/erneslobo/image/upload/v1636836077/Portada_ohrzr5.jpg"
+					className="img-fluid p-0 imagenPrincipal"
+					alt="..."
+				/>
+				<div className="textoImagenPrincipal text-white">
+					<h2>The largest community of photo enthusiasts</h2>
 				</div>
 			</div>
 			<Carrusel />

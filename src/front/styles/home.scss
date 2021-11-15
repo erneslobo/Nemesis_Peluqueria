@@ -11,3 +11,22 @@
     height: 400px;
     width: 100%;
 }
+
+.imagenMuestra {
+    position: relative;
+}
+
+.icono {
+    position: absolute;
+    top: 2%;
+    right: 5%;
+    display: none;
+}
+
+.fa-heart:hover {
+    color: red;
+}
+
+.imagenMuestra:hover .icono {
+    display: flex;
+}

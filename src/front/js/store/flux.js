@@ -10,7 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			correo_password_enviado: false,
 			password_actualizado: false,
 			muestras: [],
-
+			favoritos: [],
 			/* 
 			El objeto 'usuario_actual' tiene los datos del usuario que esta 
 			autenticado en un momento dado. Tiene la siguiente forma:
@@ -25,10 +25,76 @@ const getState = ({ getStore, getActions, setStore }) => {
 			}
 			*/
 			usuario_actual: {},
-
-			productosServicios: []
+			productosServicios: [],
+			productosServiciosFiltrados: []
 		},
 		actions: {
+			actualizarProductosServiciosFiltrados: items => {
+				setStore({ productosServiciosFiltrados: items });
+			},
+
+			obtener_favoritos: () => {
+				console.log("Obtener Favoritos");
+				const store = getStore();
+				let myHeaders = new Headers();
+				myHeaders.append("Authorization", `Bearer ${localStorage.getItem("Token")}`);
+
+				let requestOptions = {
+					method: "GET",
+					headers: myHeaders,
+					redirect: "follow"
+				};
+
+				fetch(`${URL_BASE}favoritos`, requestOptions)
+					.then(response => response.json())
+					.then(result => {
+						console.log(result);
+						for (let i in result) {
+							setStore({
+								favoritos: [...store.favoritos, store.muestras[result[i]["id"] - 1]]
+							});
+						}
+					})
+					.catch(error => console.log("error", error));
+			},
+
+			agregar_favoritos: muestra => {
+				const store = getStore();
+				let myHeaders = new Headers();
+				myHeaders.append("Authorization", `Bearer ${localStorage.getItem("Token")}`);
+
+				let requestOptions = {
+					method: "POST",
+					headers: myHeaders,
+					redirect: "follow"
+				};
+
+				fetch(`${URL_BASE}favoritos/${muestra["id"]}`, requestOptions)
+					.then(response => response.json())
+					.then(result => setStore({ favoritos: [...store.favoritos, muestra] }))
+					.catch(error => console.log("error", error));
+			},
+
+			remover_favoritos: muestra => {
+				const store = getStore();
+				let myHeaders = new Headers();
+				myHeaders.append("Authorization", `Bearer ${localStorage.getItem("Token")}`);
+
+				let requestOptions = {
+					method: "DELETE",
+					headers: myHeaders,
+					redirect: "follow"
+				};
+
+				fetch(`${URL_BASE}favoritos/${muestra["id"]}`, requestOptions)
+					.then(response => response.json())
+					.then(result => {
+						const filtrarFavoritos = store.favoritos.filter(item => item != muestra);
+						setStore({ favoritos: filtrarFavoritos });
+					})
+					.catch(error => console.log("error", error));
+			},
+
 			obtener_muestras: () => {
 				if (localStorage.getItem("muestras") == null) {
 					let requestOptions = {
@@ -128,6 +194,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 							}
 						});
 
+						console.log(process.env.EMAIL_USER_ID);
+
 						requestOptions = {
 							method: "POST",
 							headers: myHeaders,
@@ -212,6 +280,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(res => res.json())
 					.then(result => {
 						setStore({ productosServicios: result });
+						setStore({ productosServiciosFiltrados: result });
 						console.log(productosServicios);
 					})
 					.catch(error => console.log("error", error));

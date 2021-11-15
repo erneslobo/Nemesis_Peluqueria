@@ -11,7 +11,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			password_actualizado: false,
 			muestras: [],
 			favoritos: [],
-
 			/* 
 			El objeto 'usuario_actual' tiene los datos del usuario que esta 
 			autenticado en un momento dado. Tiene la siguiente forma:
@@ -26,10 +25,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			}
 			*/
 			usuario_actual: {},
-
-			productosServicios: []
+			productosServicios: [],
+			productosServiciosFiltrados: []
 		},
 		actions: {
+			actualizarProductosServiciosFiltrados: items => {
+				setStore({ productosServiciosFiltrados: items });
+			},
+
 			obtener_favoritos: () => {
 				console.log("Obtener Favoritos");
 				const store = getStore();
@@ -278,6 +281,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(res => res.json())
 					.then(result => {
 						setStore({ productosServicios: result });
+						setStore({ productosServiciosFiltrados: result });
 						console.log(productosServicios);
 					})
 					.catch(error => console.log("error", error));

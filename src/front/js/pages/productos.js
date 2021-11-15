@@ -7,7 +7,7 @@ import { Context } from "../store/appContext";
 export const Productos = () => {
 	const { store, actions } = useContext(Context);
 
-	const [lista, setLista] = useState(store.productosServicios);
+	// const [lista, setLista] = useState(store.productosServicios);
 
 	// Genero un array con los valores únicos de todas las categorías que encuentre para popular el dropdown
 	const arrayCategorias = ["---Todas---", ...new Set(store.productosServicios.map(items => items.categoria))];
@@ -15,9 +15,13 @@ export const Productos = () => {
 	// Filtro los resultados según la categoría elegida (esta función se llama en el dropdown)
 	const filtrar = categ => {
 		if (categ == "---Todas---") {
-			setLista(store.productosServicios);
+			actions.actualizarProductosServiciosFiltrados(store.productosServicios);
+			// setLista(store.productosServicios);
 		} else {
-			setLista(store.productosServicios.filter(elem => elem.categoria == categ));
+			actions.actualizarProductosServiciosFiltrados(
+				store.productosServiciosFiltrados.filter(elem => elem.categoria == categ)
+			);
+			// setLista(store.productosServicios.filter(elem => elem.categoria == categ));
 		}
 	};
 
@@ -49,7 +53,8 @@ export const Productos = () => {
 					</div>
 				</div>
 				<div className="row">
-					{lista.map((item, index) => {
+					{/* lista.map((item, index) => { */}
+					{store.productosServiciosFiltrados.map((item, index) => {
 						if (item.tipo == "Producto") return <Card item={item} key={index} id={index} />;
 					})}
 				</div>

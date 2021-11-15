@@ -15,9 +15,11 @@ export const Servicios = () => {
 	// Filtro los resultados según la categoría elegida (esta función se llama en el dropdown)
 	const filtrar = categ => {
 		if (categ == "---Todas---") {
-			setLista(store.productosServicios);
+			// setLista(store.productosServicios);
+			actions.actualizarProductosServiciosFiltrados(store.productosServicios);
 		} else {
-			setLista(store.productosServicios.filter(elem => elem.categoria == categ));
+			// setLista(store.productosServicios.filter(elem => elem.categoria == categ));
+			store.productosServiciosFiltrados.filter(elem => elem.categoria == categ);
 		}
 	};
 
@@ -49,7 +51,8 @@ export const Servicios = () => {
 					</div>
 				</div>
 				<div className="row">
-					{lista.map((item, index) => {
+					{/* {lista.map((item, index) => { */}
+					{store.productosServiciosFiltrados.map((item, index) => {
 						if (item.tipo == "Servicio") return <Card item={item} key={index} id={index} />;
 					})}
 				</div>

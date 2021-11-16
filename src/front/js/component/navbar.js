@@ -78,9 +78,18 @@ export const Navbar = () => {
 													</Link>
 												) : null}
 												<hr className="py-0 my-1" />
-												<Link to="/" className="link-drop">
-													<li className="dropdown-item">Cerrar sesión</li>
-												</Link>
+
+												{/* 	<li className="dropdown-item" onClick={() => {store.usuario_autenticado ? (
+													localStorage.removeItem('user'), 
+													<Link to="/" className="link-drop">
+														<li className="dropdown-item">Cerrar sesión</li>
+													</Link>
+												) : null}   */}
+												<li className="dropdown-item" onClick={actions.cerrarSesion}>
+													<Link to="/" className="link-drop">
+														<li className="dropdown-item">Cerrar sesión</li>
+													</Link>
+												</li>
 											</ul>
 										</div>
 									)}

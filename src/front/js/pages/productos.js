@@ -19,7 +19,7 @@ export const Productos = () => {
 			// setLista(store.productosServicios);
 		} else {
 			actions.actualizarProductosServiciosFiltrados(
-				store.productosServiciosFiltrados.filter(elem => elem.categoria == categ)
+				store.productosServicios.filter(elem => elem.categoria == categ)
 			);
 			// setLista(store.productosServicios.filter(elem => elem.categoria == categ));
 		}

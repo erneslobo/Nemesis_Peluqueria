@@ -19,7 +19,7 @@ export const Servicios = () => {
 			actions.actualizarProductosServiciosFiltrados(store.productosServicios);
 		} else {
 			// setLista(store.productosServicios.filter(elem => elem.categoria == categ));
-			store.productosServiciosFiltrados.filter(elem => elem.categoria == categ);
+			store.productosServicios.filter(elem => elem.categoria == categ);
 		}
 	};
 

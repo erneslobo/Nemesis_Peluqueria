@@ -289,6 +289,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(result => {
 						setStore({ productosServicios: result });
 						setStore({ productosServiciosFiltrados: result });
+						console.log(productosServicios);
 					})
 					.catch(error => console.log("error", error));
 			},

@@ -7,7 +7,7 @@ import { Context } from "../store/appContext";
 export const Servicios = () => {
 	const { store, actions } = useContext(Context);
 
-	// const [lista, setLista] = useState(store.productosServicios);
+	const [lista, setLista] = useState(store.productosServicios);
 
 	// Genero un array con los valores únicos de todas las categorías que encuentre para popular el dropdown
 	const arrayCategorias = ["---Todas---", ...new Set(store.productosServicios.map(items => items.categoria))];
@@ -15,13 +15,11 @@ export const Servicios = () => {
 	// Filtro los resultados según la categoría elegida (esta función se llama en el dropdown)
 	const filtrar = categ => {
 		if (categ == "---Todas---") {
-			actions.actualizarProductosServiciosFiltrados(store.productosServicios);
 			// setLista(store.productosServicios);
+			actions.actualizarProductosServiciosFiltrados(store.productosServicios);
 		} else {
-			actions.actualizarProductosServiciosFiltrados(
-				store.productosServicios.filter(elem => elem.categoria == categ)
-			);
 			// setLista(store.productosServicios.filter(elem => elem.categoria == categ));
+			store.productosServiciosFiltrados.filter(elem => elem.categoria == categ);
 		}
 	};
 

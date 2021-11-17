@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../../styles/checkout.scss";
+import Horizontal_card from "../component/horizontal_card";
+
+import { Context } from "../store/appContext";
 
 export const Checkout = () => {
+	const { store, actions } = useContext(Context);
+
 	const [mapa_visible, setMapa_visible] = useState(false);
 
 	return (
@@ -9,7 +14,7 @@ export const Checkout = () => {
 			<h2 className="text-center pt-4">Mi Carrito</h2>
 			<div className="container pt-2">
 				<p className="lead pl-3 font-weight-bold">Artículos a Comprar</p>
-				<div className="row py-1">
+				{/* <div className="row py-1">
 					<div className="col">Nombre</div>
 					<div className="col">Precio</div>
 					<div className="col">Cantidad</div>
@@ -30,6 +35,11 @@ export const Checkout = () => {
 					<div className="col">
 						<b>$ 1000</b>
 					</div>
+				</div> */}
+				<div className="container">
+					{store.productosServiciosFiltrados.map((item, index) => {
+						return <Horizontal_card item={item} key={index} id={index} />;
+					})}
 				</div>
 				<p className="lead pl-3 font-weight-bold">Opciones de Pago</p>
 				<div id="imput" className="pl-2">

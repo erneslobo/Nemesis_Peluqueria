@@ -19,3 +19,13 @@ div .col{
 #boton_mapa{
     width: 15%;
 }
+
+.horizontal-card {
+    filter: drop-shadow(1px 1px 4px grey);
+}
+
+.horizontal-card img {
+    height: 120px;
+    width: auto;
+    object-fit: cover;
+}

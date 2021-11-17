@@ -10,7 +10,7 @@ export const ImagenMuestra = ({ item, index }) => {
 
 	return (
 		<div className="col">
-			<div className="card imagenMuestra h-100">
+			<div className="card card-producto imagenMuestra h-100">
 				<img src={item.thumbnail} className="card-img-top" alt="..." />
 				<div
 					className="icono"

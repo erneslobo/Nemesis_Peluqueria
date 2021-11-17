@@ -14,6 +14,7 @@
 
 .imagenMuestra {
     position: relative;
+    filter: drop-shadow(3px 3px 7px grey);
 }
 
 .icono {
@@ -28,6 +29,12 @@
 
 .fa-heart:hover {
     color: red;
+}
+
+.imagenMuestra img {
+    height: 300px;
+    width: auto;
+    object-fit: cover;
 }
 
 .imagenMuestra:hover .icono, .mostarIcono {

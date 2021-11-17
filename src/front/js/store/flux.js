@@ -26,6 +26,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 			}
 			*/
 			usuario_actual: {},
+
+			/* 
+			Es un array de objetos, con los items en el carrito, con la siguiente forma:
+			items_carrito: [
+								{
+									"title": "My Item",
+									"quantity": 1,
+									"unit_price": 75.76
+								}
+							]
+			*/
+			items_carrito: [],
+
 			productosServicios: [],
 			productosServiciosFiltrados: []
 		},
@@ -282,7 +295,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			// *********************** TRAER PRODUCTOS Y SERVICIOS ***********************
-
 			getProductosYServicios: () => {
 				fetch(`${URL_BASE}productos`)
 					.then(res => res.json())

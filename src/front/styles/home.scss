@@ -21,6 +21,9 @@
     position: absolute;
     top: 2%;
     right: 5%;
+}
+
+.ocultarIcono {
     display: none;
 }
 
@@ -34,6 +37,6 @@
     object-fit: cover;
 }
 
-.imagenMuestra:hover .icono {
+.imagenMuestra:hover .icono, .mostarIcono {
     display: flex;
 }

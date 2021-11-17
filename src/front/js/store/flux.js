@@ -10,6 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			correo_password_enviado: false,
 			password_actualizado: false,
 			muestras: [],
+			muestrasFiltrados: [],
 			favoritos: [],
 			/* 
 			El objeto 'usuario_actual' tiene los datos del usuario que esta 
@@ -42,12 +43,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			productosServiciosFiltrados: []
 		},
 		actions: {
+			actualizarMuestrasFiltrados: items => {
+				setStore({ muestrasFiltrados: items });
+			},
 			actualizarProductosServiciosFiltrados: items => {
 				setStore({ productosServiciosFiltrados: items });
 			},
 
 			obtener_favoritos: () => {
-				console.log("Obtener Favoritos");
 				const store = getStore();
 				let myHeaders = new Headers();
 				myHeaders.append("Authorization", `Bearer ${localStorage.getItem("Token")}`);
@@ -64,7 +67,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(result);
 						for (let i in result) {
 							setStore({
-								favoritos: [...store.favoritos, store.muestras[result[i]["id"] - 1]]
+								favoritos: [
+									...store.favoritos,
+									...store.muestras.filter(item => item["id"] == result[i]["muestra_id"])
+								]
 							});
 						}
 					})
@@ -120,7 +126,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						.then(result => {
 							console.log(result);
 							setStore({ muestras: result });
-							localStorage.setItem("muestras", JSON.stringify(result));
+							setStore({ muestrasFiltrados: result });
+							// localStorage.setItem("muestras", JSON.stringify(result));
 						})
 						.catch(error => console.log("error", error));
 				} else {

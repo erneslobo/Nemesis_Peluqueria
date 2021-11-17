@@ -15,11 +15,13 @@ export const Servicios = () => {
 	// Filtro los resultados según la categoría elegida (esta función se llama en el dropdown)
 	const filtrar = categ => {
 		if (categ == "---Todas---") {
-			// setLista(store.productosServicios);
 			actions.actualizarProductosServiciosFiltrados(store.productosServicios);
+			// setLista(store.productosServicios);
 		} else {
+			actions.actualizarProductosServiciosFiltrados(
+				store.productosServicios.filter(elem => elem.categoria == categ)
+			);
 			// setLista(store.productosServicios.filter(elem => elem.categoria == categ));
-			store.productosServicios.filter(elem => elem.categoria == categ);
 		}
 	};
 

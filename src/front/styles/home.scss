@@ -20,6 +20,9 @@
     position: absolute;
     top: 2%;
     right: 5%;
+}
+
+.ocultarIcono {
     display: none;
 }
 
@@ -27,6 +30,6 @@
     color: red;
 }
 
-.imagenMuestra:hover .icono {
+.imagenMuestra:hover .icono, .mostarIcono {
     display: flex;
 }

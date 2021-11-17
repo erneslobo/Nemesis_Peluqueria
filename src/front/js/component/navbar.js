@@ -69,8 +69,14 @@ export const Navbar = () => {
 												{store.usuario_actual.nombre}
 											</button>
 											<ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-												<Link to="/#/" className="link-drop">
-													<li className="dropdown-item">Mis Favoritos</li>
+												<Link to="/trabajos/" className="link-drop">
+													<li
+														className="dropdown-item"
+														onClick={() =>
+															actions.actualizarMuestrasFiltrados(store.favoritos)
+														}>
+														Mis Favoritos
+													</li>
 												</Link>
 												{store.usuario_actual.admin ? (
 													<Link to="/#/" className="link-drop">

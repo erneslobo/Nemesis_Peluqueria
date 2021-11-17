@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import Card from "../component/card";
 import "../../styles/card.scss";
 
@@ -7,8 +7,6 @@ import { Context } from "../store/appContext";
 export const Productos = () => {
 	const { store, actions } = useContext(Context);
 
-	// const [lista, setLista] = useState(store.productosServicios);
-
 	// Genero un array con los valores únicos de todas las categorías que encuentre para popular el dropdown
 	const arrayCategorias = ["---Todas---", ...new Set(store.productosServicios.map(items => items.categoria))];
 
@@ -16,12 +14,11 @@ export const Productos = () => {
 	const filtrar = categ => {
 		if (categ == "---Todas---") {
 			actions.actualizarProductosServiciosFiltrados(store.productosServicios);
-			// setLista(store.productosServicios);
 		} else {
+			console.log("Test");
 			actions.actualizarProductosServiciosFiltrados(
 				store.productosServicios.filter(elem => elem.categoria == categ)
 			);
-			// setLista(store.productosServicios.filter(elem => elem.categoria == categ));
 		}
 	};
 
@@ -44,7 +41,7 @@ export const Productos = () => {
 						<ul className="dropdown-menu drop-categorias" aria-labelledby="dropdownMenuButton1">
 							{arrayCategorias.map((item, index) => {
 								return (
-									<li className="dropdown-item" key={index} onClick={e => filtrar(item)}>
+									<li className="dropdown-item" key={index} onClick={filtrar(item)}>
 										{item}
 									</li>
 								);

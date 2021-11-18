@@ -36,8 +36,13 @@ export const Checkout = () => {
 						<b>$ 1000</b>
 					</div>
 				</div> */}
-				<div className="container">
+				{/* <div className="container">
 					{store.productosServiciosFiltrados.map((item, index) => {
+						return <Horizontal_card item={item} key={index} id={index} />;
+					})}
+				</div> */}
+				<div className="container">
+					{store.items_carrito.map((item, index) => {
 						return <Horizontal_card item={item} key={index} id={index} />;
 					})}
 				</div>

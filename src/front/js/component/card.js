@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import "../../styles/card.scss";
 
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 const Card = props => {
+	const { store, actions } = useContext(Context);
+
 	return (
 		<div className="col-lg-3 col-md-4 col-sm-6">
 			<div className="card card-producto my-2" style={{ width: "18rem" }}>
@@ -22,7 +25,7 @@ const Card = props => {
 						{props.item.tipo == "Producto" ? (
 							<div>
 								<Link to="#" className="btn btn-dark">
-									<span>Agregar al carrito</span>
+									<span onClick={() => actions.agregarCarrito(props.item)}>Agregar al carrito</span>
 								</Link>
 							</div>
 						) : null}

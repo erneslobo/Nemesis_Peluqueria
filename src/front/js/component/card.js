@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "../../styles/card.scss";
 
@@ -7,6 +7,25 @@ import { Context } from "../store/appContext";
 
 const Card = props => {
 	const { store, actions } = useContext(Context);
+	// const [existeItem, setExisteItem] = useState(false);
+	// const [cantidad, setCantidad] = useState(1);
+
+	// const existeItemCarrito = item => {
+	// 	const encontrarArticulo = elem => elem == item;
+	// 	let indice = store.items_carrito.findIndex(encontrarArticulo);
+	// 	indice >= 0 ? setExisteItem(true) : setExisteItem(false);
+	// };
+
+	// const updateCantidad = e => {
+	// 	console.log(props.item);
+	// 	console.log(e.target.value);
+	// 	// e.target.value > 0 ? setCantidad(e.target.value) : null;
+	// 	// actions.actualizarCantidad(props.item, e.target.value);
+	// };
+
+	// useEffect(() => {
+	// 	existeItemCarrito(props.item);
+	// }, []);
 
 	return (
 		<div className="col-lg-3 col-md-4 col-sm-6">
@@ -23,12 +42,32 @@ const Card = props => {
 							</Link>
 						</div>
 						{props.item.tipo == "Producto" ? (
+							// <>
+							// 	{existeItem ? (
+							// 		<div className="d-flex">
+							// 			<input
+							// 				className="form-control"
+							// 				type="number"
+							// 				min="1"
+							// 				value={cantidad}
+							// 				onChange={e => updateCantidad(e)}
+							// 			/>
+							// 		</div>
+							// 	) : (
 							<div>
 								<Link to="#" className="btn btn-dark">
-									<span onClick={() => actions.agregarCarrito(props.item)}>Agregar al carrito</span>
+									<span
+										onClick={() => {
+											actions.agregarCarrito(props.item);
+											// setExisteItem(true);
+										}}>
+										Agregar al carrito
+									</span>
 								</Link>
 							</div>
-						) : null}
+						) : // 	)}
+						// </>
+						null}
 					</div>
 				</div>
 			</div>

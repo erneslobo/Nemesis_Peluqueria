@@ -29,3 +29,11 @@ div .col{
     width: auto;
     object-fit: cover;
 }
+
+.btn-eliminar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2em;
+    border: none;
+}

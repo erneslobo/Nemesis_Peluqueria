@@ -1,12 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import "../../styles/checkout.scss";
+import { Context } from "../store/appContext";
 
 const Horizontal_card = props => {
+	const { store, actions } = useContext(Context);
 	const [cantidad, setCantidad] = useState(1);
 
 	const updateCantidad = e => {
-		setCantidad(e.target.value);
+		e.target.value > 0 ? setCantidad(e.target.value) : null;
+		actions.actualizarCantidad(props.item, e.target.value);
 	};
 
 	return (
@@ -18,38 +21,37 @@ const Horizontal_card = props => {
 					</div>
 					<div className="col-md-3">
 						<div className="card-body">
-							<h4 className="card-title">{props.item.nombre}</h4>
+							<h4 className="card-title">{props.item.articulo.title}</h4>
 							<h5 className="card-text">
-								{cantidad} x ${props.item.precio}
+								{cantidad} x ${props.item.articulo.unit_price}
 							</h5>
 						</div>
 					</div>
 					<div className="col-md-1 d-flex">
-						<div className="d-flex justify-content-center align-items-center">
-							<select className="form-select" onChange={e => updateCantidad(e)}>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option>
-								<option value="11">11</option>
-								<option value="12">12</option>
-								<option value="13">13</option>
-								<option value="14">14</option>
-								<option value="15">15</option>
-							</select>
+						<div className="d-flex py-5">
+							<input
+								className="form-control"
+								type="number"
+								min="1"
+								value={cantidad}
+								onChange={e => updateCantidad(e)}
+							/>
 						</div>
 					</div>
-					<div className="col-md-4 d-flex justify-content-end align-items-center mr-5">
+					<div className="col-md-4 d-flex justify-content-end align-items-center mr-2">
 						<div className="d-flex">
 							<h5 className="card-title">Subtotal:</h5>
-							<h5 className="card-text">${parseInt(cantidad) * parseInt(props.item.precio)}</h5>
+							<h5 className="card-text">
+								${parseInt(cantidad) * parseInt(props.item.articulo.unit_price)}
+							</h5>
 						</div>
+					</div>
+					<div className="col-2 d-flex justify-content-center align-items-center">
+						<button
+							className="btn btn-outline-dark btn-eliminar"
+							onClick={() => actions.borrarItemCarrito(props.item)}>
+							<i className="fas fa-trash-alt" />
+						</button>
 					</div>
 				</div>
 			</div>

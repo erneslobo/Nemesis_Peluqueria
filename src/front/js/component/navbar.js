@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
@@ -102,7 +102,13 @@ export const Navbar = () => {
 								</li>
 								<Link to="/checkout/" className="link">
 									<li className="nav-item mx-2 carrito">
-										<i className="fa fa-shopping-cart" aria-hidden="true" />
+										<button type="button" className="btn boton position-relative">
+											<i className="fa fa-shopping-cart" aria-hidden="true" />
+											<span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+												{store.items_carrito.length}
+												<span className="visually-hidden">unread messages</span>
+											</span>
+										</button>
 									</li>
 								</Link>
 							</ul>

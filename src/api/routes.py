@@ -3,14 +3,46 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import sys
 sys.path.append("..")
-
+import os
 from flask import Flask, request, jsonify, url_for, Blueprint, current_app
 from api.models import db, Usuario, Producto, Muestra, Orden, DetalleOrden, Favoritos
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 #from flask_mail import Message
+import mercadopago
 
 api = Blueprint('api', __name__)
+
+mercado_pago_sdk = mercadopago.SDK(os.getenv("MERCADO_PAGO_TOKEN"))
+
+@api.route('/mercado_pago', methods=['POST'])
+@jwt_required()
+def mercado_pago():
+    items = []
+
+    request_data = request.get_json()
+
+    for item in request_data:
+        items.append(item["articulo"])
+    print("*"*10)
+    print("items")
+    print(items)
+
+    preference_data = {
+        "items": items,
+        "back_urls": {
+			"success": "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/feedback",
+			"failure": "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/feedback",
+			"pending": "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/feedback"
+		},
+		"auto_return": "approved"
+    }
+    preference_response = mercado_pago_sdk.preference().create(preference_data)
+    print("*"*10)
+    print("preference_response")
+    print(preference_response)
+    preference = preference_response["response"]
+    return preference, 200
 
 """
 URL = https://url_base/api/usuarios ['GET']

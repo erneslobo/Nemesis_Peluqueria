@@ -8,14 +8,44 @@ from flask import Flask, request, jsonify, url_for, Blueprint, current_app
 from api.models import db, Usuario, Producto, Muestra, Orden, DetalleOrden, Favoritos
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
-#from flask_mail import Message
+
+# Mercado Pago SDK
 import mercadopago
 
 api = Blueprint('api', __name__)
 
+#Agregar Development Token a Mercado Pago SDK
 mercado_pago_sdk = mercadopago.SDK(os.getenv("MERCADO_PAGO_TOKEN"))
 
-@api.route('/mercado_pago', methods=['POST'])
+
+"""
+URL = https://url_base/api/mercado_pago_prefencias ['POST']
+Endpoint utilizado para crear las preferencia de mercado pago para iniciar el pago. 
+En el body se envia los items del carrito de compras en una lista con formato JSON
+
+[
+	{
+		"imagen": "imagen1",
+		"articulo": {
+			"title": "test2",
+			"quantity": 1,
+			"unit_price": 100
+		}
+	},
+	{
+		"imagen": "imagen1",
+		"articulo": {
+			"title": "test1",
+			"quantity": 1,
+			"unit_price": 100
+		}
+	}
+]
+
+Retorna un objecto de preferencias creado por mercado pago con la informacion que se le envio
+"""
+
+@api.route('/mercado_pago_prefencias', methods=['POST'])
 @jwt_required()
 def mercado_pago():
     items = []
@@ -24,9 +54,6 @@ def mercado_pago():
 
     for item in request_data:
         items.append(item["articulo"])
-    print("*"*10)
-    print("items")
-    print(items)
 
     preference_data = {
         "items": items,
@@ -38,9 +65,6 @@ def mercado_pago():
 		"auto_return": "approved"
     }
     preference_response = mercado_pago_sdk.preference().create(preference_data)
-    print("*"*10)
-    print("preference_response")
-    print(preference_response)
     preference = preference_response["response"]
     return preference, 200
 

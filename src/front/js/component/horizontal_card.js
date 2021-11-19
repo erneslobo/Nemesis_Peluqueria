@@ -26,7 +26,7 @@ const Horizontal_card = props => {
 					</div>
 					<div className="col-md-1 d-flex">
 						<div className="d-flex justify-content-center align-items-center">
-							<select className="form-select" onChange={e => updateCantidad(e)}>
+							{/* <select className="form-select" onChange={e => updateCantidad(e)}>
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
@@ -42,7 +42,8 @@ const Horizontal_card = props => {
 								<option value="13">13</option>
 								<option value="14">14</option>
 								<option value="15">15</option>
-							</select>
+							</select> */}
+							<input className="form-control" type="number" min="1" />
 						</div>
 					</div>
 					<div className="col-md-4 d-flex justify-content-end align-items-center mr-5">

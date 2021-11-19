@@ -305,10 +305,55 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.log("error", error));
 			},
+
+			// *********************** CERRAR SESIÓN ***********************
 			cerrarSesion: () => {
 				localStorage.removeItem("Token");
 				setStore({ usuario_autenticado: false });
 				setStore({ usuario_actual: {} });
+			},
+
+			// *********************** AGREGAR AL CARRITO ***********************
+			agregarCarrito: item => {
+				const store = getStore();
+				setStore({
+					items_carrito: [
+						...store.items_carrito,
+						{
+							imagen: item.imagen,
+
+							articulo: {
+								title: item.nombre,
+								quantity: 1,
+								unit_price: item.precio
+							}
+						}
+					]
+				});
+			},
+
+			// *********************** ACTUALIZAR CANTIDAD ***********************
+			actualizarCantidad: (item, cantidad) => {
+				//Función de condición para el findIndex
+				const encontrarArticulo = elem => elem == item;
+
+				let articuloACambiar = [...getStore().items_carrito];
+
+				//Busco el index del item que cumple la condicion de 'encontrarArticulo'
+				let indice = articuloACambiar.findIndex(encontrarArticulo);
+
+				//Actualizo cantidad
+				articuloACambiar[indice]["articulo"]["quantity"] = cantidad;
+				setStore({ items_carrito: articuloACambiar });
+			},
+
+			// *********************** BORRAR ITEM DE CARRITO ***********************
+			borrarItemCarrito: item => {
+				const todosMenosItem = elem => elem != item;
+
+				let newCarrito = getStore().items_carrito.filter(todosMenosItem);
+
+				setStore({ items_carrito: newCarrito });
 			}
 		}
 	};

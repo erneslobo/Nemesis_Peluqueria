@@ -14,30 +14,8 @@ export const Checkout = () => {
 			<h2 className="text-center pt-4">Mi Carrito</h2>
 			<div className="container pt-2">
 				<p className="lead pl-3 font-weight-bold">Artículos a Comprar</p>
-				{/* <div className="row py-1">
-					<div className="col">Nombre</div>
-					<div className="col">Precio</div>
-					<div className="col">Cantidad</div>
-					<div className="col">Subtotal</div>
-				</div>
-				<div className="row">
-					<div className="col">Ejemplo 1</div>
-					<div className="col">$ 500</div>
-					<div className="col"> 2 </div>
-					<div className="col">$ 1000</div>
-				</div>
-				<div className="row">
-					<div className="col">
-						<b>Total del carrito</b>
-					</div>
-					<div className="col" />
-					<div className="col"> </div>
-					<div className="col">
-						<b>$ 1000</b>
-					</div>
-				</div> */}
 				<div className="container">
-					{store.productosServiciosFiltrados.map((item, index) => {
+					{store.items_carrito.map((item, index) => {
 						return <Horizontal_card item={item} key={index} id={index} />;
 					})}
 				</div>

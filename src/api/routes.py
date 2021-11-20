@@ -61,6 +61,12 @@ def mercado_pago():
 			"success": "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/feedback",
 			"failure": "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/feedback",
 			"pending": "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/feedback"
+      
+       """  ---------------- NUEVAS RUTAS SEGUN ESTADO ---------------- """
+       """ "success": "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/compra-exitosa", """
+       """ "failure": "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/compra-pendiente", """
+       """ "pending": "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/compra-error", """
+
 		},
 		"auto_return": "approved"
     }

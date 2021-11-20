@@ -16,9 +16,12 @@ export const Checkout = () => {
 			<div className="container pt-2">
 				<p className="lead pl-3 font-weight-bold">Artículos a Comprar</p>
 				<div className="container">
-					{store.items_carrito.map((item, index) => {
-						return <Horizontal_card item={item} key={index} id={index} />;
-					})}
+					<div>
+						{store.items_carrito.map((item, index) => {
+							return <Horizontal_card item={item} key={index} id={index} />;
+						})}
+					</div>
+					<div>Tabla con datos</div>
 				</div>
 				<p className="lead pl-3 font-weight-bold">Opciones de Pago</p>
 				<div id="imput" className="pl-2">

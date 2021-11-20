@@ -15,6 +15,7 @@ import { Servicios } from "./pages/servicios";
 import { Trabajos } from "./pages/trabajos";
 import { Recuperar_Password } from "./pages/recuperar_password";
 import { Reset_Password } from "./pages/password_reset";
+import { DetalleOrden } from "./pages/detalleOrden";
 
 import injectContext from "./store/appContext";
 
@@ -56,6 +57,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/checkout">
 							<Checkout />
+						</Route>
+						<Route exact path="/detalle_orden">
+							<DetalleOrden />
 						</Route>
 						<Route exact path="/admin">
 							<Admin />

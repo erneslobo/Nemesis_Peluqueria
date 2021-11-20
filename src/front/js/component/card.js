@@ -45,20 +45,7 @@ const Card = props => {
 									data-bs-target={`#modal${props.id}`}>
 									Detalles
 								</button>
-								{/* <Link to={"/detalle/" + props.id} className="btn btn-dark">
-								<span>Detalles</span>
-							</Link> */}
 							</div>
-							{/* <div
-							className="modal fade"
-							id={`modal${props.id}`}
-							tabIndex="-1"
-							aria-labelledby="exampleModalLabel"
-							aria-hidden="true">
-							<div className="modal-dialog modal-dialog-centered">
-								<p>Hola</p>
-							</div>
-						</div> */}
 							{props.item.tipo == "Producto" ? (
 								// <>
 								// 	{existeItem ? (
@@ -96,23 +83,30 @@ const Card = props => {
 				tabIndex="3"
 				aria-labelledby="exampleModalLabel"
 				aria-hidden="true">
-				<div className="modal-dialog">
+				<div className="modal-dialog modal-dialog-centered modal-lg">
 					<div className="modal-content">
 						<div className="modal-header">
-							<h5 className="modal-title" id="exampleModalLabel">
-								Modal title
-								{props.id}
-							</h5>
 							<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
 						</div>
-						<div className="modal-body">...</div>
-						<div className="modal-footer">
-							<button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
-								Close
-							</button>
-							<button type="button" className="btn btn-primary">
-								Save changes
-							</button>
+						<div className="modal-body">
+							<div className="container-fluid">
+								<div className="row">
+									<div className="col-7 col-sm-7">
+										<img src={props.item.imagen} className="card-img-top" alt="..." />
+									</div>
+									<div className="col-md-auto ms-auto" />
+									<div className="col-4 col-sm-4">
+										<h5 className="card-title ml-1">{props.item.nombre}</h5>
+										<p className="card-text descripcion">
+											Many desktop publishing packages and web page editors now use Lorem Ipsum as
+											their default model text, and a search for lorem ipsum will uncover many web
+											sites still in their infancy. Various versions have evolved over the years,
+											sometimes by accident, sometimes on purpose.
+											{props.item.descripcion}
+										</p>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

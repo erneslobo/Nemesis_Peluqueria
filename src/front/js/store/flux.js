@@ -1,6 +1,13 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	const URL_BASE = process.env.URL_BASE;
 	const WEB_URL_BASE = process.env.WEB_URL_BASE;
+	const MERCADO_PAGO_PUBLIC_KEY = process.env.MERCADO_PAGO_PUBLIC_KEY;
+
+	const mercadopago = new MercadoPago(MERCADO_PAGO_PUBLIC_KEY, {
+		locale: "es-AR" // The most common are: 'pt-BR', 'es-AR' and 'en-US'
+	});
+
+	console.log(mercadopago);
 
 	return {
 		store: {
@@ -12,6 +19,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			muestras: [],
 			muestrasFiltrados: [],
 			favoritos: [],
+
 			/* 
 			El objeto 'usuario_actual' tiene los datos del usuario que esta 
 			autenticado en un momento dado. Tiene la siguiente forma:
@@ -28,7 +36,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			usuario_actual: {},
 
 			/* 
-			Es un array de objetos, con los items en el carrito, con la siguiente forma:
+			items_carrito es un array de objetos, con los items en el carrito, con la siguiente forma:
 			items_carrito: [
 								{
 									"title": "My Item",
@@ -354,6 +362,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let newCarrito = getStore().items_carrito.filter(todosMenosItem);
 
 				setStore({ items_carrito: newCarrito });
+			},
+			// *********************** INTEGRACION MERCADO PAGO ***********************
+			pagarMercadoPago: carrito => {
+				let myHeaders = new Headers();
+				myHeaders.append("Authorization", `Bearer ${localStorage.getItem("Token")}`);
+				myHeaders.append("Content-Type", "application/json");
+				let raw = JSON.stringify(carrito);
+
+				let requestOptions = {
+					method: "POST",
+					headers: myHeaders,
+					body: raw,
+					redirect: "follow"
+				};
+
+				fetch(`${URL_BASE}mercado_pago_prefencias`, requestOptions)
+					.then(response => response.json())
+					.then(preference => {
+						console.log(preference);
+						// Para renderizar el botón de checkout
+						mercadopago.checkout({
+							preference: {
+								id: preference["id"]
+							},
+							render: {
+								container: "#button-checkout", // Class name where the payment button will be displayed
+								label: "Pagar" // Change the payment button text (optional)
+							}
+						});
+					})
+					.catch(error => console.log("error", error));
 			}
 		}
 	};

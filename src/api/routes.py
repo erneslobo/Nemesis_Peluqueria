@@ -475,6 +475,58 @@ def agregar_detalle_orden():
     return jsonify(detalle_orden), 201
 
 """
+URL = https://url_base/api/mercado_pago_prefencias ['POST']
+Endpoint utilizado para crear las preferencia de mercado pago para iniciar el pago. 
+En el body se envia los items del carrito de compras en una lista con formato JSON
+
+[
+	{
+		"imagen": "imagen1",
+		"articulo": {
+			"title": "test2",
+			"quantity": 1,
+			"unit_price": 100
+		}
+	},
+	{
+		"imagen": "imagen1",
+		"articulo": {
+			"title": "test1",
+			"quantity": 1,
+			"unit_price": 100
+		}
+	}
+]
+
+Retorna un objecto de preferencias creado por mercado pago con la informacion que se le envio
+"""
+
+@api.route('/mercado_pago_prefencias', methods=['POST'])
+@jwt_required()
+def mercado_pago_prefencias():
+    print("mercado_pago_prefencias")
+    items = []
+    request_data = request.get_json()
+
+    print(request_data)
+
+    for item in request_data:
+        items.append(item["articulo"])
+
+    preference_data = {
+        "items": items,
+        "back_urls": {
+			"success": "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/feedback",
+			"failure": "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/feedback",
+			"pending": "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/feedback"
+		},
+		"auto_return": "approved"
+    }
+    preference_response = mercado_pago_sdk.preference().create(preference_data)
+    preference = preference_response["response"]
+    return preference, 200
+
+"""
 URL = https://url_base/api/favoritos/<int:muestra_id> ['DELETE']
 Endpoint utilizado para borrar muestras de la lista de favoritos. 
 

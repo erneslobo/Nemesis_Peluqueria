@@ -18,6 +18,7 @@ import { Reset_Password } from "./pages/password_reset";
 import { Compra_Exitosa } from "./pages/compra_exitosa";
 import { Compra_Pendiente } from "./pages/compra_pendiente";
 import { Compra_Error } from "./pages/compra_error";
+import { DetalleOrden } from "./pages/detalleOrden";
 
 import injectContext from "./store/appContext";
 
@@ -59,6 +60,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/checkout">
 							<Checkout />
+						</Route>
+						<Route exact path="/detalle_orden">
+							<DetalleOrden />
 						</Route>
 						<Route exact path="/admin">
 							<Admin />

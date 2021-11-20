@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Redirect } from "react-router-dom";
 import "../../styles/checkout.scss";
 import Horizontal_card from "../component/horizontal_card";
 
@@ -63,10 +64,14 @@ export const Checkout = () => {
 				) : null}
 
 				<div className="col-auto pt-3">
-					<button type="submit" className="btn btn-dark mb-3">
+					<button
+						type="submit"
+						className="btn btn-dark mb-3"
+						onClick={() => actions.pagarMercadoPago(store.items_carrito)}>
 						Comprar!
 					</button>
 				</div>
+				<div id="button-checkout" />
 			</div>
 		</>
 	);

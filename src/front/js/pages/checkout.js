@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import "../../styles/checkout.scss";
 import Horizontal_card from "../component/horizontal_card";
@@ -9,19 +9,37 @@ export const Checkout = () => {
 	const { store, actions } = useContext(Context);
 
 	const [mapa_visible, setMapa_visible] = useState(false);
+	const [total, setTotal] = useState(0);
+
+	const calcularTotal = () => {
+		let resultado = store.items_carrito.reduce(
+			(aPagar, subtotal) =>
+				(aPagar = aPagar + parseInt(subtotal.articulo.quantity) * parseInt(subtotal.articulo.unit_price)),
+			0
+		);
+
+		console.log("aPagar :" + resultado);
+		setTotal(resultado);
+	};
+
+	useEffect(() => {
+		calcularTotal();
+	}, []);
 
 	return (
 		<>
 			<h2 className="text-center pt-4">Mi Carrito</h2>
 			<div className="container pt-2">
 				<p className="lead pl-3 font-weight-bold">Artículos a Comprar</p>
-				<div className="container">
-					<div>
+				<div className="row container">
+					<div className="col-8">
 						{store.items_carrito.map((item, index) => {
-							return <Horizontal_card item={item} key={index} id={index} />;
+							return (
+								<Horizontal_card item={item} key={index} id={index} recalcularTotal={calcularTotal} />
+							);
 						})}
 					</div>
-					<div>Tabla con datos</div>
+					<div className="col-4 card card-detalle mb-0">Total: ${total}</div>
 				</div>
 				<p className="lead pl-3 font-weight-bold">Opciones de Pago</p>
 				<div id="imput" className="pl-2">

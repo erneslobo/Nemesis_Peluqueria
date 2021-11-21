@@ -10,6 +10,7 @@ const Horizontal_card = props => {
 	const updateCantidad = e => {
 		e.target.value > 0 ? setCantidad(e.target.value) : null;
 		actions.actualizarCantidad(props.item, e.target.value);
+		props.recalcularTotal();
 	};
 
 	return (
@@ -61,7 +62,8 @@ const Horizontal_card = props => {
 
 Horizontal_card.propTypes = {
 	item: PropTypes.object,
-	id: PropTypes.number
+	id: PropTypes.number,
+	recalcularTotal: PropTypes.func
 };
 
 export default Horizontal_card;

@@ -7,8 +7,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 		locale: "es-AR" // The most common are: 'pt-BR', 'es-AR' and 'en-US'
 	});
 
-	console.log(mercadopago);
-
 	return {
 		store: {
 			message: null,

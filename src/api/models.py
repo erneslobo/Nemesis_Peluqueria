@@ -36,6 +36,7 @@ class Producto(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(250), unique=True, nullable=False)
     descripcion = db.Column(db.Text, nullable=False)
+    descripcionCorta = db.Column(db.Text)
     precio = db.Column(db.Float, nullable=False)
     tipo = db.Column(db.String(250), nullable=False)
     categoria = db.Column(db.String(250), nullable=False)
@@ -52,6 +53,7 @@ class Producto(db.Model):
             "id": self.id,
             "nombre": self.nombre,
             "descripcion": self.descripcion,
+            "descripcionCorta": self.descripcionCorta,
             "precio": self.precio,
             "tipo": self.tipo,
             "categoria": self.categoria,

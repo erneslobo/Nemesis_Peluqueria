@@ -16,6 +16,7 @@ api = Blueprint('api', __name__)
 
 #Agregar Development Token a Mercado Pago SDK
 mercado_pago_sdk = mercadopago.SDK(os.getenv("MERCADO_PAGO_TOKEN"))
+WEB_URL_BASE = os.getenv("URL_BASE")
 
 
 @api.route("/validarToken", methods=["GET"])
@@ -29,6 +30,61 @@ def validarToken():
 
     usuario = usuario.serialize()
     return jsonify(usuario), 200
+"""
+URL = https://url_base/api/mercado_pago_prefencias ['POST']
+Endpoint utilizado para crear las preferencia de mercado pago para iniciar el pago. 
+En el body se envia los items del carrito de compras en una lista con formato JSON
+
+[
+	{
+		"imagen": "imagen1",
+		"articulo": {
+			"title": "test2",
+			"quantity": 1,
+			"unit_price": 100
+		}
+	},
+	{
+		"imagen": "imagen1",
+		"articulo": {
+			"title": "test1",
+			"quantity": 1,
+			"unit_price": 100
+		}
+	}
+]
+
+Retorna un objecto de preferencias creado por mercado pago con la informacion que se le envio
+"""
+
+@api.route('/mercado_pago_prefencias', methods=['POST'])
+@jwt_required()
+def mercado_pago():
+    items = []
+
+    request_data = request.get_json()
+
+    for item in request_data:
+        items.append(item["articulo"])
+
+    preference_data = {
+        "items": items,
+        "back_urls": {
+			"success": f"{WEB_URL_BASE}/compra-exitosa",
+			"failure": f"{WEB_URL_BASE}//compra-error",
+			"pending": f"{WEB_URL_BASE}//compra-pendiente"
+      
+       """  ---------------- NUEVAS RUTAS SEGUN ESTADO ---------------- """
+       """ "success": "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/compra-exitosa", """
+       """ "failure": "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/compra-pendiente", """
+       """ "pending": "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/compra-error", """
+
+		},
+		"auto_return": "approved"
+    }
+    preference_response = mercado_pago_sdk.preference().create(preference_data)
+    preference = preference_response["response"]
+    return preference, 200
 
 """
 URL = https://url_base/api/usuarios ['GET']
@@ -472,9 +528,9 @@ def mercado_pago_prefencias():
     preference_data = {
         "items": items,
         "back_urls": {
-			"success": "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/feedback",
-			"failure": "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/feedback",
-			"pending": "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/feedback"
+			"success": "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/compra-exitosa",
+			"failure": "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/compra-pendiente",
+			"pending": "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/compra-error"
 		},
 		"auto_return": "approved"
     }

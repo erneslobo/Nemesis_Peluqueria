@@ -70,7 +70,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(`${URL_BASE}favoritos`, requestOptions)
 					.then(response => response.json())
 					.then(result => {
-						console.log(result);
 						for (let i in result) {
 							setStore({
 								favoritos: [
@@ -122,7 +121,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			obtener_muestras: () => {
 				if (localStorage.getItem("muestras") == null) {
-					console.log("muestrasS");
 					let requestOptions = {
 						method: "GET",
 						redirect: "follow"
@@ -130,14 +128,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					fetch(`${URL_BASE}muestras`, requestOptions)
 						.then(response => response.json())
 						.then(result => {
-							console.log(result);
 							setStore({ muestras: result });
 							setStore({ muestrasFiltrados: result });
 							// localStorage.setItem("muestras", JSON.stringify(result));
 						})
 						.catch(error => console.log("error", error));
 				} else {
-					console.log(JSON.parse(localStorage.getItem("muestras")));
 					setStore({ muestras: JSON.parse(localStorage.getItem("muestras")) });
 				}
 			},
@@ -161,7 +157,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(`${URL_BASE}usuario`, requestOptions)
 					.then(response => response.json())
 					.then(result => {
-						console.log(result);
 						setStore({ password_actualizado: true });
 					})
 					.catch(error => console.log("error", error));
@@ -205,8 +200,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(`${URL_BASE}password_reset`, requestOptions)
 					.then(response => response.json())
 					.then(result => {
-						console.log(result.access_token);
-
 						raw = JSON.stringify({
 							service_id: process.env.EMAIL_SERVICE_ID,
 							template_id: process.env.EMAIL_TEMPLATE_ID,
@@ -220,9 +213,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 								token: result.access_token
 							}
 						});
-
-						console.log(process.env.EMAIL_USER_ID);
-
 						requestOptions = {
 							method: "POST",
 							headers: myHeaders,
@@ -290,7 +280,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(`${URL_BASE}login`, requestOptions)
 					.then(response => response.json())
 					.then(result => {
-						console.log(result);
 						if (result.access_token) {
 							localStorage.setItem("Token", result.access_token);
 							setStore({ usuario_autenticado: true });
@@ -307,7 +296,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(result => {
 						setStore({ productosServicios: result });
 						setStore({ productosServiciosFiltrados: result });
-						console.log(productosServicios);
 					})
 					.catch(error => console.log("error", error));
 			},
@@ -407,7 +395,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					};
 
 					fetch(`${URL_BASE}validarToken`, requestOptions)
-						.then(response => response.json())
+						.then(response => {
+							if (response.status !== 200) {
+								throw new Error(response.status);
+							}
+							response.json();
+						})
 						.then(result => {
 							setStore({ usuario_autenticado: true });
 							setStore({ usuario_actual: result });

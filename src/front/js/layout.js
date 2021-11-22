@@ -15,6 +15,9 @@ import { Servicios } from "./pages/servicios";
 import { Trabajos } from "./pages/trabajos";
 import { Recuperar_Password } from "./pages/recuperar_password";
 import { Reset_Password } from "./pages/password_reset";
+import { Compra_Exitosa } from "./pages/compra_exitosa";
+import { Compra_Pendiente } from "./pages/compra_pendiente";
+import { Compra_Error } from "./pages/compra_error";
 import { DetalleOrden } from "./pages/detalleOrden";
 
 import injectContext from "./store/appContext";
@@ -75,6 +78,15 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/trabajos">
 							<Trabajos />
+						</Route>
+						<Route exact path="/compra-exitosa">
+							<Compra_Exitosa />
+						</Route>
+						<Route exact path="/compra-pendiente">
+							<Compra_Pendiente />
+						</Route>
+						<Route exact path="/compra-error">
+							<Compra_Error />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>

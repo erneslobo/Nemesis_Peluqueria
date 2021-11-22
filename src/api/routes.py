@@ -67,12 +67,14 @@ def mercado_pago():
     for item in request_data:
         items.append(item["articulo"])
 
+    print(WEB_URL_BASE)
+
     preference_data = {
         "items": items,
         "back_urls": {
 			"success": f"{WEB_URL_BASE}/compra-exitosa",
-			"failure": f"{WEB_URL_BASE}//compra-error",
-			"pending": f"{WEB_URL_BASE}//compra-pendiente"
+			"failure": f"{WEB_URL_BASE}/compra-error",
+			"pending": f"{WEB_URL_BASE}/compra-pendiente"
       
        """  ---------------- NUEVAS RUTAS SEGUN ESTADO ---------------- """
        """ "success": "https://3000-sapphire-weasel-sb8nj8yz.ws-us18.gitpod.io/compra-exitosa", """

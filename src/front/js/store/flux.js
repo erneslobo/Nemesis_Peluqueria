@@ -399,9 +399,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 							if (response.status !== 200) {
 								throw new Error(response.status);
 							}
-							response.json();
+							return response.json();
 						})
 						.then(result => {
+							console.log(result);
 							setStore({ usuario_autenticado: true });
 							setStore({ usuario_actual: result });
 						})

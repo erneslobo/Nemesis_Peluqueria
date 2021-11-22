@@ -391,6 +391,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 						});
 					})
 					.catch(error => console.log("error", error));
+			},
+
+			// *********************** VALIR TOKEN SI EXISTE EN LOCAL STORAGE PARA MANTENER SESION ABIERTA ***********************
+
+			mantenerSesion: () => {
+				if (localStorage.getItem("Token") != null) {
+					let myHeaders = new Headers();
+					myHeaders.append("Authorization", `Bearer ${localStorage.getItem("Token")}`);
+
+					let requestOptions = {
+						method: "GET",
+						headers: myHeaders,
+						redirect: "follow"
+					};
+
+					fetch(`${URL_BASE}validarToken`, requestOptions)
+						.then(response => response.json())
+						.then(result => {
+							setStore({ usuario_autenticado: true });
+							setStore({ usuario_actual: result });
+						})
+						.catch(error => console.log("error", error));
+				}
 			}
 		}
 	};

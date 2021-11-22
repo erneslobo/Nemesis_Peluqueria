@@ -17,6 +17,19 @@ api = Blueprint('api', __name__)
 #Agregar Development Token a Mercado Pago SDK
 mercado_pago_sdk = mercadopago.SDK(os.getenv("MERCADO_PAGO_TOKEN"))
 
+
+@api.route("/validarToken", methods=["GET"])
+@jwt_required()
+def validarToken():
+    identidad_usuario = get_jwt_identity()
+    usuario = Usuario.query.filter_by(email=identidad_usuario).first()
+
+    if usuario is None:
+        raise APIException('Token invalido', status_code=401)
+
+    usuario = usuario.serialize()
+    return jsonify(usuario), 200
+
 """
 URL = https://url_base/api/usuarios ['GET']
 Retorna una lista de objetos de usuario.

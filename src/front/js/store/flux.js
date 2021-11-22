@@ -404,7 +404,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						.then(result => {
 							console.log(result);
 							setStore({ usuario_autenticado: true });
-							setStore({ usuario_actual: result });
+							setStore({ usuario_actual: result.usuario });
 						})
 						.catch(error => console.log("error", error));
 				}

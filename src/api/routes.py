@@ -18,6 +18,20 @@ api = Blueprint('api', __name__)
 mercado_pago_sdk = mercadopago.SDK(os.getenv("MERCADO_PAGO_TOKEN"))
 WEB_URL_BASE = os.getenv("WEB_URL_BASE")
 
+"""
+URL = https://url_base/api/validarToken ['GET']
+Retorna el objecto de usuario si el token es valido
+Ejemplo de respuesta:
+
+{
+    "admin": true,
+    "apellido": "Solorzano",
+    "email": "erneslobo@gmail.com",
+    "id": 2,
+    "nombre": "Ernesto",
+    "telefono": "+50683408811"
+}
+"""
 
 @api.route("/validarToken", methods=["GET"])
 @jwt_required()
@@ -29,7 +43,7 @@ def validarToken():
         raise APIException('Token invalido', status_code=401)
 
     usuario = usuario.serialize()
-    return jsonify(usuario), 200
+    return jsonify(usuario=usuario), 200
 
 """
 URL = https://url_base/api/usuarios ['GET']

@@ -381,7 +381,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("error", error));
 			},
 
-			// *********************** VALIR TOKEN SI EXISTE EN LOCAL STORAGE PARA MANTENER SESION ABIERTA ***********************
+			// *********************** VALIDAR TOKEN SI EXISTE EN LOCAL STORAGE PARA MANTENER SESION ABIERTA ***********************
 
 			mantenerSesion: () => {
 				if (localStorage.getItem("Token") != null) {

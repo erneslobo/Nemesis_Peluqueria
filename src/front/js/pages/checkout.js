@@ -18,7 +18,6 @@ export const Checkout = () => {
 			0
 		);
 
-		console.log("aPagar :" + resultado);
 		setTotal(resultado);
 	};
 
@@ -35,6 +34,11 @@ export const Checkout = () => {
 					<h2 className="text-center pt-4">Mi Carrito</h2>
 					<div className="container pt-2">
 						<p className="lead pl-3 font-weight-bold">Artículos a Comprar</p>
+						<div className="row container">
+							<div className="col-8">
+								<div className="col-md-5">TOTAL: ${total}</div>
+							</div>
+						</div>
 						<div className="row container">
 							<div className="col-8">
 								{store.items_carrito.map((item, index) => {

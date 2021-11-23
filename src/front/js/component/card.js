@@ -26,7 +26,7 @@ const Card = props => {
 					<img src={props.item.imagen} className="card-img-top" alt="..." />
 					<div className="card-body">
 						<h5 className="card-title">{props.item.nombre}</h5>
-						<p className="card-text descripcion">{props.item.descripcion}</p>
+						<p className="card-text descripcion">{props.item.descripcionCorta}</p>
 						<h5 className="card-text">${props.item.precio}</h5>
 						<div className="d-flex justify-content-between">
 							<div>

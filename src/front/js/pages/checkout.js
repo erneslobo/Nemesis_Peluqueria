@@ -26,7 +26,6 @@ export const Checkout = () => {
 		calcularTotal();
 	}, []);
 
-	
 	return (
 		<>
 			{Object.keys(store.usuario_actual).length == 0 ? (

@@ -7,7 +7,7 @@ export const Login = () => {
 	const { store, actions } = useContext(Context);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	let history = useHistory();
+	const history = useHistory();
 
 	const ingresar = () => {
 		actions.login(email, password);

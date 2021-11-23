@@ -15,9 +15,12 @@ const Card = props => {
 		indice >= 0 ? setExisteItem(true) : setExisteItem(false);
 	};
 
-	useEffect(() => {
-		existeItemCarrito(props.item);
-	}, []);
+	useEffect(
+		() => {
+			existeItemCarrito(props.item);
+		},
+		[store.items_carrito]
+	);
 
 	return (
 		<>

@@ -482,8 +482,6 @@ def mercado_pago_prefencias():
     for item in request_data:
         items.append(item["articulo"])
 
-    print(items)
-
     preference_data = {
         "items": items,
         "back_urls": {

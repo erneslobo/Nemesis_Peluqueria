@@ -2,30 +2,22 @@ import React, { useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "../../styles/card.scss";
 
-import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 const Card = props => {
 	const { store, actions } = useContext(Context);
-	// const [existeItem, setExisteItem] = useState(false);
-	// const [cantidad, setCantidad] = useState(1);
+	const [existeItem, setExisteItem] = useState();
 
-	// const existeItemCarrito = item => {
-	// 	const encontrarArticulo = elem => elem == item;
-	// 	let indice = store.items_carrito.findIndex(encontrarArticulo);
-	// 	indice >= 0 ? setExisteItem(true) : setExisteItem(false);
-	// };
+	const existeItemCarrito = item => {
+		const nombreEsIgual = elem => elem.articulo.title == item.nombre;
+		let indice = store.items_carrito.findIndex(nombreEsIgual);
+		console.log(indice);
+		indice >= 0 ? setExisteItem(true) : setExisteItem(false);
+	};
 
-	// const updateCantidad = e => {
-	// 	console.log(props.item);
-	// 	console.log(e.target.value);
-	// 	// e.target.value > 0 ? setCantidad(e.target.value) : null;
-	// 	// actions.actualizarCantidad(props.item, e.target.value);
-	// };
-
-	// useEffect(() => {
-	// 	existeItemCarrito(props.item);
-	// }, []);
+	useEffect(() => {
+		existeItemCarrito(props.item);
+	}, []);
 
 	return (
 		<>
@@ -60,15 +52,21 @@ const Card = props => {
 								// 		</div>
 								// 	) : (
 								<div>
-									<Link to="#" className="btn btn-dark">
+									{!existeItem ? (
 										<span
+											className="btn btn-dark btn-agregar"
 											onClick={() => {
 												actions.agregarCarrito(props.item);
-												// setExisteItem(true);
+												existeItemCarrito(props.item);
+												//setExisteItem(true);
 											}}>
 											Agregar al carrito
 										</span>
-									</Link>
+									) : (
+										<span className="btn btn-secondary btn-agregar" disabled>
+											Agregado!
+										</span>
+									)}
 								</div>
 							) : // 	)}
 							// </>

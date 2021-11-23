@@ -11,6 +11,8 @@ from api.models import db
 from api.routes import api
 from api.admin import setup_admin
 from flask_jwt_extended import JWTManager
+import datetime
+
 # from flask_mail import Mail
 
 ENV = os.getenv("FLASK_ENV")
@@ -19,6 +21,7 @@ app = Flask(__name__)
 
 #integration de JWT token
 app.config["JWT_SECRET_KEY"] = "proyectoFinal" 
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(days=1)
 jwt = JWTManager(app)
 
 #integration de email server para enviar correos desde del back end.

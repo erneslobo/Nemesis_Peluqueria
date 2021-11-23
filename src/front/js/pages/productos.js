@@ -6,12 +6,15 @@ import { Context } from "../store/appContext";
 
 export const Productos = () => {
 	const { store, actions } = useContext(Context);
+	const [categoria, setCategoria] = useState("Categorías");
 
 	// Genero un array con los valores únicos de todas las categorías que encuentre para popular el dropdown
 	const arrayCategorias = ["---Todas---", ...new Set(store.productosServicios.map(items => items.categoria))];
 
 	// Filtro los resultados según la categoría elegida (esta función se llama en el dropdown)
 	const filtrar = categ => {
+		setCategoria(categ);
+		setCategoria(categ);
 		if (categ == "---Todas---") {
 			actions.actualizarProductosServiciosFiltrados(store.productosServicios);
 		} else {
@@ -35,7 +38,7 @@ export const Productos = () => {
 							id="dropdownMenuButton1"
 							data-bs-toggle="dropdown"
 							aria-expanded="false">
-							Categorías
+							{categoria}
 						</button>
 						<ul className="dropdown-menu drop-categorias" aria-labelledby="dropdownMenuButton1">
 							{arrayCategorias.map((item, index) => {

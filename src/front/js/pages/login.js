@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/login.scss";
 
@@ -7,6 +7,7 @@ export const Login = () => {
 	const { store, actions } = useContext(Context);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	let history = useHistory();
 
 	const ingresar = () => {
 		actions.login(email, password);
@@ -15,7 +16,8 @@ export const Login = () => {
 	return (
 		<>
 			{store.usuario_autenticado ? (
-				<Redirect to="/" />
+				// <Redirect to="/" />
+				<>{history.goBack()}</>
 			) : (
 				<div className="mega ">
 					<div className="container box">

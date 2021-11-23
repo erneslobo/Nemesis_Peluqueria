@@ -4,12 +4,14 @@ import { Context } from "../store/appContext";
 
 export const Trabajos = () => {
 	const { store, actions } = useContext(Context);
+	const [categoria, setCategoria] = useState("Categorías");
 
-	const arrayCategorias = ["---Todas---", "Favoritos", ...new Set(store.muestras.map(items => items.categoria))];
+	const arrayCategorias = ["---Todos---", "Favoritos", ...new Set(store.muestras.map(items => items.categoria))];
 
 	// Filtro los resultados según la categoría elegida (esta función se llama en el dropdown)
 	const filtrar = categ => {
-		if (categ == "---Todas---") {
+		setCategoria(categ);
+		if (categ == "---Todos---") {
 			actions.actualizarMuestrasFiltrados(store.muestras);
 		} else if (categ == "Favoritos") {
 			actions.actualizarMuestrasFiltrados(store.favoritos);
@@ -31,7 +33,7 @@ export const Trabajos = () => {
 						id="dropdownMenuButton1"
 						data-bs-toggle="dropdown"
 						aria-expanded="false">
-						Categorías
+						{categoria}
 					</button>
 					<ul className="dropdown-menu drop-categorias" aria-labelledby="dropdownMenuButton1">
 						{arrayCategorias.map((item, index) => {

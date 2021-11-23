@@ -8,8 +8,8 @@ const Horizontal_card = props => {
 	const [cantidad, setCantidad] = useState(1);
 
 	const updateCantidad = e => {
-		e.target.value > 0 ? setCantidad(e.target.value) : null;
-		actions.actualizarCantidad(props.item, e.target.value);
+		e.target.value > 0 ? setCantidad(parseInt(e.target.value)) : null;
+		actions.actualizarCantidad(props.item, parseInt(e.target.value));
 		props.recalcularTotal();
 	};
 
@@ -23,9 +23,7 @@ const Horizontal_card = props => {
 					<div className="col-md-3">
 						<div className="card-body">
 							<h4 className="card-title">{props.item.articulo.title}</h4>
-							<h5 className="card-text">
-								{cantidad} x ${props.item.articulo.unit_price}
-							</h5>
+							<h5 className="card-text">${props.item.articulo.unit_price}</h5>
 						</div>
 					</div>
 					<div className="col-md-1 d-flex">

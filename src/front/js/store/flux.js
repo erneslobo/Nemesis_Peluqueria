@@ -49,13 +49,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 			productosServiciosFiltrados: []
 		},
 		actions: {
+			// *********************** Actualizar filtro de muestras ***********************
 			actualizarMuestrasFiltrados: items => {
 				setStore({ muestrasFiltrados: items });
 			},
+
+			// *********************** Actualizar filtro de Productos y Servicios ***********************
+
 			actualizarProductosServiciosFiltrados: items => {
 				setStore({ productosServiciosFiltrados: items });
 			},
 
+			// *********************** Traer favoritos de la base de datos ***********************
 			obtener_favoritos: () => {
 				const store = getStore();
 				let myHeaders = new Headers();
@@ -82,6 +87,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("error", error));
 			},
 
+			// *********************** Agregar favoritos de la base de datos ***********************
+
 			agregar_favoritos: muestra => {
 				const store = getStore();
 				let myHeaders = new Headers();
@@ -98,6 +105,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(result => setStore({ favoritos: [...store.favoritos, muestra] }))
 					.catch(error => console.log("error", error));
 			},
+
+			// *********************** Remover favoritos de la base de datos ***********************
 
 			remover_favoritos: muestra => {
 				const store = getStore();
@@ -119,6 +128,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("error", error));
 			},
 
+			// *********************** Traer lista de muestras de trabajo de la base de datos ***********************
+
 			obtener_muestras: () => {
 				if (localStorage.getItem("muestras") == null) {
 					let requestOptions = {
@@ -137,6 +148,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ muestras: JSON.parse(localStorage.getItem("muestras")) });
 				}
 			},
+
+			// *********************** Cambiar la contraseña ***********************
 
 			cambiar_password: (password, token) => {
 				let myHeaders = new Headers();

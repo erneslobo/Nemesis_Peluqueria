@@ -6,7 +6,7 @@ import { Context } from "../store/appContext";
 export const Compra_Exitosa = () => {
 	const { store, actions } = useContext(Context);
 	const mostrarAlerta = () => {
-		actions.borrarItemCarrito();
+		actions.limpiarCarrito();
 		swal({
 			title: "Su compra ha sido realizada exitosamente",
 			icon: "success",

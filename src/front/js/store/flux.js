@@ -368,7 +368,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			// *********************** BORRAR CARRITO COMPLETO***********************
-			borrarItemCarrito: () => {
+			limpiarCarrito: () => {
 				setStore({ items_carrito: [] });
 				localStorage.setItem("items_carrito", JSON.stringify([]));
 			},

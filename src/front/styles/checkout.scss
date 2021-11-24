@@ -38,8 +38,22 @@ div .col{
     border: none;
 }
 
+.btn-eliminar:hover {
+    color: rgb(202, 118, 118);
+}
+
+
 .card-detalle{
     filter: drop-shadow(3px 3px 7px grey);
     height: 290px!important;
     
+}
+
+.pagar img {
+    width: 40%;
+}
+
+#button-checkout{
+    width: 200px;
+    font-size: 18px;
 }

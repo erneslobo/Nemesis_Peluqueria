@@ -49,13 +49,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 			productosServiciosFiltrados: []
 		},
 		actions: {
+			// *********************** Actualizar filtro de muestras ***********************
 			actualizarMuestrasFiltrados: items => {
 				setStore({ muestrasFiltrados: items });
 			},
+
+			// *********************** Actualizar filtro de Productos y Servicios ***********************
+
 			actualizarProductosServiciosFiltrados: items => {
 				setStore({ productosServiciosFiltrados: items });
 			},
 
+			// *********************** Traer favoritos de la base de datos ***********************
 			obtener_favoritos: () => {
 				const store = getStore();
 				let myHeaders = new Headers();
@@ -82,6 +87,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("error", error));
 			},
 
+			// *********************** Agregar favoritos de la base de datos ***********************
+
 			agregar_favoritos: muestra => {
 				const store = getStore();
 				let myHeaders = new Headers();
@@ -98,6 +105,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(result => setStore({ favoritos: [...store.favoritos, muestra] }))
 					.catch(error => console.log("error", error));
 			},
+
+			// *********************** Remover favoritos de la base de datos ***********************
 
 			remover_favoritos: muestra => {
 				const store = getStore();
@@ -119,6 +128,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("error", error));
 			},
 
+			// *********************** Traer lista de muestras de trabajo de la base de datos ***********************
+
 			obtener_muestras: () => {
 				if (localStorage.getItem("muestras") == null) {
 					let requestOptions = {
@@ -137,6 +148,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ muestras: JSON.parse(localStorage.getItem("muestras")) });
 				}
 			},
+
+			// *********************** Cambiar la contraseña ***********************
 
 			cambiar_password: (password, token) => {
 				let myHeaders = new Headers();
@@ -303,27 +316,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// *********************** CERRAR SESIÓN ***********************
 			cerrarSesion: () => {
 				localStorage.removeItem("Token");
+				localStorage.setItem("items_carrito", JSON.stringify([]));
 				setStore({ usuario_autenticado: false });
 				setStore({ usuario_actual: {} });
+				setStore({ items_carrito: [] });
 			},
 
 			// *********************** AGREGAR AL CARRITO ***********************
 			agregarCarrito: item => {
 				const store = getStore();
-				setStore({
-					items_carrito: [
-						...store.items_carrito,
-						{
-							imagen: item.imagen,
+				let itemsCarrito = [
+					...store.items_carrito,
+					{
+						imagen: item.imagen,
 
-							articulo: {
-								title: item.nombre,
-								quantity: 1,
-								unit_price: item.precio
-							}
+						articulo: {
+							title: item.nombre,
+							quantity: 1,
+							unit_price: item.precio
 						}
-					]
-				});
+					}
+				];
+				setStore({ items_carrito: itemsCarrito });
+				localStorage.setItem("items_carrito", JSON.stringify(itemsCarrito));
 			},
 
 			// *********************** ACTUALIZAR CANTIDAD ***********************
@@ -339,6 +354,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//Actualizo cantidad
 				articuloACambiar[indice]["articulo"]["quantity"] = cantidad;
 				setStore({ items_carrito: articuloACambiar });
+				localStorage.setItem("items_carrito", JSON.stringify(articuloACambiar));
 			},
 
 			// *********************** BORRAR ITEM DE CARRITO ***********************
@@ -348,7 +364,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let newCarrito = getStore().items_carrito.filter(todosMenosItem);
 
 				setStore({ items_carrito: newCarrito });
+				localStorage.setItem("items_carrito", JSON.stringify(newCarrito));
 			},
+
+			// *********************** BORRAR CARRITO COMPLETO***********************
+			limpiarCarrito: () => {
+				setStore({ items_carrito: [] });
+				localStorage.setItem("items_carrito", JSON.stringify([]));
+			},
+
 			// *********************** INTEGRACION MERCADO PAGO ***********************
 			pagarMercadoPago: carrito => {
 				let myHeaders = new Headers();
@@ -381,7 +405,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("error", error));
 			},
 
-			// *********************** VALIR TOKEN SI EXISTE EN LOCAL STORAGE PARA MANTENER SESION ABIERTA ***********************
+			// *********************** VALIDAR TOKEN SI EXISTE EN LOCAL STORAGE PARA MANTENER SESION ABIERTA ***********************
 
 			mantenerSesion: () => {
 				if (localStorage.getItem("Token") != null) {
@@ -397,12 +421,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 					fetch(`${URL_BASE}validarToken`, requestOptions)
 						.then(response => {
 							if (response.status !== 200) {
+								if (localStorage.getItem("items_carrito") != null) {
+									localStorage.setItem("items_carrito", JSON.stringify([]));
+								}
 								throw new Error(response.status);
 							}
 							return response.json();
 						})
 						.then(result => {
-							console.log(result);
+							if (localStorage.getItem("items_carrito") == null) {
+								localStorage.setItem("items_carrito", JSON.stringify([]));
+							} else {
+								setStore({ items_carrito: JSON.parse(localStorage.getItem("items_carrito")) });
+							}
 							setStore({ usuario_autenticado: true });
 							setStore({ usuario_actual: result.usuario });
 						})

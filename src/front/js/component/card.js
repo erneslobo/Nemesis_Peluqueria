@@ -15,9 +15,12 @@ const Card = props => {
 		indice >= 0 ? setExisteItem(true) : setExisteItem(false);
 	};
 
-	useEffect(() => {
-		existeItemCarrito(props.item);
-	}, []);
+	useEffect(
+		() => {
+			existeItemCarrito(props.item);
+		},
+		[store.items_carrito]
+	);
 
 	return (
 		<>
@@ -39,18 +42,6 @@ const Card = props => {
 								</button>
 							</div>
 							{props.item.tipo == "Producto" ? (
-								// <>
-								// 	{existeItem ? (
-								// 		<div className="d-flex">
-								// 			<input
-								// 				className="form-control"
-								// 				type="number"
-								// 				min="1"
-								// 				value={cantidad}
-								// 				onChange={e => updateCantidad(e)}
-								// 			/>
-								// 		</div>
-								// 	) : (
 								<div>
 									{!existeItem ? (
 										<span
@@ -58,7 +49,6 @@ const Card = props => {
 											onClick={() => {
 												actions.agregarCarrito(props.item);
 												existeItemCarrito(props.item);
-												//setExisteItem(true);
 											}}>
 											Agregar al carrito
 										</span>

@@ -368,7 +368,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			// *********************** BORRAR CARRITO COMPLETO***********************
-			borrarItemCarrito: () => {
+			limpiarCarrito: () => {
 				setStore({ items_carrito: [] });
 				localStorage.setItem("items_carrito", JSON.stringify([]));
 			},
@@ -405,7 +405,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("error", error));
 			},
 
-			// *********************** VALIR TOKEN SI EXISTE EN LOCAL STORAGE PARA MANTENER SESION ABIERTA ***********************
+			// *********************** VALIDAR TOKEN SI EXISTE EN LOCAL STORAGE PARA MANTENER SESION ABIERTA ***********************
 
 			mantenerSesion: () => {
 				if (localStorage.getItem("Token") != null) {

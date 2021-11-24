@@ -479,12 +479,8 @@ def mercado_pago_prefencias():
     items = []
     request_data = request.get_json()
 
-    # print(request_data)
-
     for item in request_data:
         items.append(item["articulo"])
-    
-    print(items)
 
     preference_data = {
         "items": items,
@@ -497,6 +493,7 @@ def mercado_pago_prefencias():
     }
     preference_response = mercado_pago_sdk.preference().create(preference_data)
     preference = preference_response["response"]
+    print(preference)
     return preference, 200
 
 """

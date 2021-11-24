@@ -10,6 +10,7 @@ export const Login = () => {
 	const history = useHistory();
 
 	const ingresar = () => {
+		console.log(history);
 		actions.login(email, password);
 	};
 

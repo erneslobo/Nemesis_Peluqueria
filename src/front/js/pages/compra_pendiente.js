@@ -8,6 +8,10 @@ export const Compra_Pendiente = () => {
 			title: "Su compra se encuentra pendiente",
 			icon: "warning",
 			button: "Aceptar"
+		}).then(okay => {
+			if (okay) {
+				history.push("/");
+			}
 		});
 	};
 

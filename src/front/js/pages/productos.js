@@ -14,7 +14,6 @@ export const Productos = () => {
 	// Filtro los resultados según la categoría elegida (esta función se llama en el dropdown)
 	const filtrar = categ => {
 		setCategoria(categ);
-		setCategoria(categ);
 		if (categ == "---Todas---") {
 			actions.actualizarProductosServiciosFiltrados(store.productosServicios);
 		} else {

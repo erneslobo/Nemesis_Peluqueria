@@ -35,63 +35,65 @@ const Layout = () => {
 		<div>
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
-					<Navbar />
-					<Switch>
-						<Route exact path="/">
-							<Home />
-						</Route>
-						<Route exact path="/demo">
-							<Demo />
-						</Route>
-						<Route exact path="/detalle/:theid">
-							<Detalle />
-						</Route>
-						<Route exact path="/login">
-							<Login />
-						</Route>
-						<Route exact path="/registro">
-							<Registro />
-						</Route>
-						<Route exact path="/reset_password">
-							<Reset_Password />
-						</Route>
-						<Route exact path="/recuperar_password">
-							<Recuperar_Password />
-						</Route>
-						<Route exact path="/checkout">
-							<Checkout />
-						</Route>
-						<Route exact path="/detalle_orden">
-							<DetalleOrden />
-						</Route>
-						<Route exact path="/admin">
-							<Admin />
-						</Route>
-						<Route exact path="/contacto">
-							<Contacto />
-						</Route>
-						<Route exact path="/productos">
-							<Productos />
-						</Route>
-						<Route exact path="/servicios">
-							<Servicios />
-						</Route>
-						<Route exact path="/trabajos">
-							<Trabajos />
-						</Route>
-						<Route exact path="/compra-exitosa">
-							<Compra_Exitosa />
-						</Route>
-						<Route exact path="/compra-pendiente">
-							<Compra_Pendiente />
-						</Route>
-						<Route exact path="/compra-error">
-							<Compra_Error />
-						</Route>
-						<Route>
-							<h1>Not found!</h1>
-						</Route>
-					</Switch>
+					<div className="content">
+						<Navbar />
+						<Switch>
+							<Route exact path="/">
+								<Home />
+							</Route>
+							<Route exact path="/demo">
+								<Demo />
+							</Route>
+							<Route exact path="/detalle/:theid">
+								<Detalle />
+							</Route>
+							<Route exact path="/login">
+								<Login />
+							</Route>
+							<Route exact path="/registro">
+								<Registro />
+							</Route>
+							<Route exact path="/reset_password">
+								<Reset_Password />
+							</Route>
+							<Route exact path="/recuperar_password">
+								<Recuperar_Password />
+							</Route>
+							<Route exact path="/checkout">
+								<Checkout />
+							</Route>
+							<Route exact path="/detalle_orden">
+								<DetalleOrden />
+							</Route>
+							<Route exact path="/admin">
+								<Admin />
+							</Route>
+							<Route exact path="/contacto">
+								<Contacto />
+							</Route>
+							<Route exact path="/productos">
+								<Productos />
+							</Route>
+							<Route exact path="/servicios">
+								<Servicios />
+							</Route>
+							<Route exact path="/trabajos">
+								<Trabajos />
+							</Route>
+							<Route exact path="/compra-exitosa">
+								<Compra_Exitosa />
+							</Route>
+							<Route exact path="/compra-pendiente">
+								<Compra_Pendiente />
+							</Route>
+							<Route exact path="/compra-error">
+								<Compra_Error />
+							</Route>
+							<Route>
+								<h1>Not found!</h1>
+							</Route>
+						</Switch>
+					</div>
 					<Footer />
 				</ScrollToTop>
 			</BrowserRouter>

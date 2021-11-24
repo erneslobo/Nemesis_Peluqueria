@@ -8,6 +8,10 @@ export const Compra_Error = () => {
 			title: "Hubo un error con su compra",
 			icon: "error",
 			button: "Aceptar"
+		}).then(okay => {
+			if (okay) {
+				history.push("/");
+			}
 		});
 	};
 

@@ -12,10 +12,6 @@ from api.routes import api
 from api.admin import setup_admin
 from flask_jwt_extended import JWTManager
 import datetime
-<<<<<<< HEAD
-
-=======
->>>>>>> develop
 # from flask_mail import Mail
 
 ENV = os.getenv("FLASK_ENV")
@@ -23,11 +19,7 @@ static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../
 app = Flask(__name__)
 
 #integration de JWT token
-<<<<<<< HEAD
-app.config["JWT_SECRET_KEY"] = "proyectoFinal" 
-=======
 app.config["JWT_SECRET_KEY"] = "proyectoFinal"
->>>>>>> develop
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(days=1)
 jwt = JWTManager(app)
 

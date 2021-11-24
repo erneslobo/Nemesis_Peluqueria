@@ -47,32 +47,12 @@ export const Trabajos = () => {
 				</div>
 			</div>
 
-			<h1 className="text-dark muestrasTitulo text-center bg-dark text-white rounded">Cortes de Cabello</h1>
+			{/* <h1 className="text-dark muestrasTitulo text-center bg-dark text-white rounded">Cortes de Cabello</h1> */}
 			<div className="row flex-row flex-wrap row-cols-1 row-cols-md-3 g-4">
 				{store.muestrasFiltrados.map((item, index) => {
-					if (item.categoria == "Cabello") {
-						return <ImagenMuestra key={index} item={item} index={index} />;
-					}
+					return <ImagenMuestra key={index} item={item} index={index} />;
 				})}
 			</div>
-			<br />
-			<h1 className="text-dark muestrasTitulo text-center bg-dark text-white rounded">Uñas</h1>
-			<div className="row flex-row flex-wrap row-cols-1 row-cols-md-3 g-4">
-				{store.muestrasFiltrados.map((item, index) => {
-					if (item.categoria == "Uñas") {
-						return <ImagenMuestra key={index} item={item} index={index} />;
-					}
-				})}
-			</div>
-			<br />
-			{/* <h1 className="text-dark">Pestañas</h1>
-			<div className="row flex-row flex-wrap row-cols-1 row-cols-md-3 g-4">
-				{store.muestrasFiltrados.map((item, index) => {
-					if (item.categoria == "Pestañas") {
-						return <ImagenMuestra key={index} item={item} index={index} />;
-					}
-				})}
-			</div> */}
 			<br />
 		</div>
 	);

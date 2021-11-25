@@ -38,6 +38,7 @@ const Horizontal_card = props => {
 								min="1"
 								onChange={e => updateCantidad(e)}
 								value={cantidad}
+								disabled={props.confirmada ? true : false}
 							/>
 						</div>
 					</div>
@@ -48,9 +49,12 @@ const Horizontal_card = props => {
 							</h5>
 						</div>
 					</div>
-					<div className="col-1 d-flex justify-content-end align-items-start">
-						<button className="btn btn-eliminar" onClick={() => actions.borrarItemCarrito(props.item)}>
-							<i className="fas fa-times" aria-hidden="true" />
+					<div className="col-1 d-flex justify-content-center align-items-center">
+						<button
+							className="btn btn-eliminar"
+							onClick={() => actions.borrarItemCarrito(props.item)}
+							disabled={props.confirmada ? true : false}>
+							<i className="fas fa-trash" />
 						</button>
 					</div>
 				</div>
@@ -62,7 +66,8 @@ const Horizontal_card = props => {
 Horizontal_card.propTypes = {
 	item: PropTypes.object,
 	id: PropTypes.number,
-	recalcularTotal: PropTypes.func
+	recalcularTotal: PropTypes.func,
+	confirmada: PropTypes.bool
 };
 
 export default Horizontal_card;

@@ -44,7 +44,7 @@ div .col{
 
 
 .card-detalle{
-    filter: drop-shadow(3px 3px 7px grey);
+    filter: drop-shadow(1px 1px 4px grey);
     height: 290px!important;
     
 }
@@ -54,6 +54,7 @@ div .col{
 }
 
 #button-checkout{
-    width: 200px;
+    width: 180px;
     font-size: 18px;
+    // filter: drop-shadow(1px 1px 4px grey);
 }

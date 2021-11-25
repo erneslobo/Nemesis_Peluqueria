@@ -12,8 +12,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			message: null,
 			usuario_creado: false,
 			usuario_autenticado: false,
+			email_password_invalido_alerta: false,
 			correo_password_enviado: false,
+			correo_enviado_error_alerta: false,
 			password_actualizado: false,
+			password_no_iguales_alerta: false,
+			usuario_existe_alerta: false,
+			token_invalido_alerta: false,
 			muestras: [],
 			muestrasFiltrados: [],
 			favoritos: [],
@@ -49,6 +54,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 			productosServiciosFiltrados: []
 		},
 		actions: {
+			// *********************** Ocultar alertas para ocultar alerta ***********************
+			ocultar_alertas: () => {
+				setStore({ email_password_invalido_alerta: false });
+				setStore({ correo_enviado_error_alerta: false });
+				setStore({ password_no_iguales_alerta: false });
+				setStore({ usuario_existe_alerta: false });
+				setStore({ token_invalido_alerta: false });
+			},
+
+			// *********************** mostrar alerta passwords no coinciden **********************
+			mostrar_password_no_iguales_alerta: () => setStore({ password_no_iguales_alerta: true }),
+
+			// *********************** cambiar usuario_creado a false **********************
+			cambiar_usuario_creado_false: () => setStore({ usuario_creado: false }),
+
+			// *********************** cambiar password_actualizado a false **********************
+			cambiar_password_actualizado_false: () => setStore({ password_actualizado: false }),
+
 			// *********************** Actualizar filtro de muestras ***********************
 			actualizarMuestrasFiltrados: items => {
 				setStore({ muestrasFiltrados: items });
@@ -168,8 +191,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 
 				fetch(`${URL_BASE}usuario`, requestOptions)
-					.then(response => response.json())
+					.then(response => {
+						if (response.status !== 200) {
+							setStore({ token_invalido_alerta: true });
+							throw new Error(response.status);
+						}
+						return response.json();
+					})
 					.then(result => {
+						setStore({ token_invalido_alerta: true });
 						setStore({ password_actualizado: true });
 					})
 					.catch(error => console.log("error", error));
@@ -235,9 +265,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 						return fetch("https://api.emailjs.com/api/v1.0/email/send", requestOptions);
 					})
-					.then(response => response.text())
+					.then(response => {
+						if (response.status !== 200) {
+							setStore({ correo_enviado_error_alerta: true });
+							throw new Error(response.status);
+						}
+						return response.text();
+					})
 					.then(result => {
-						console.log(result);
+						setStore({ correo_enviado_error_alerta: false });
 						setStore({ correo_password_enviado: true });
 					})
 					.catch(error => console.log("error", error));
@@ -263,11 +299,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: raw,
 					redirect: "follow"
 				};
-
+				// usuario_existe_alerta
 				fetch(`${URL_BASE}registro`, requestOptions)
-					.then(response => response.json())
+					.then(response => {
+						if (response.status == 409) {
+							setStore({ usuario_existe_alerta: true });
+							throw new Error(response.status);
+						}
+						return response.json();
+					})
 					.then(result => {
-						console.log(result);
+						setStore({ usuario_existe_alerta: false });
 						setStore({ usuario_creado: true });
 					})
 					.catch(error => console.log("error", error));
@@ -291,10 +333,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 
 				fetch(`${URL_BASE}login`, requestOptions)
-					.then(response => response.json())
+					.then(response => {
+						if (response.status == 401) {
+							setStore({ email_password_invalido_alerta: true });
+							throw new Error(response.status);
+						}
+						return response.json();
+					})
 					.then(result => {
 						if (result.access_token) {
 							localStorage.setItem("Token", result.access_token);
+							setStore({ email_password_invalido_alerta: false });
 							setStore({ usuario_autenticado: true });
 							setStore({ usuario_actual: result.user });
 						}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Alerta } from "../component/alerta";
 import { Context } from "../store/appContext";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import "../../styles/registro.scss";
 
 export const Registro = () => {
@@ -11,17 +12,23 @@ export const Registro = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [password1, setPassword1] = useState("");
+	const history = useHistory();
 
 	const guardar = e => {
 		actions.registro(nombre, apellido, numero, email, password, false);
 	};
 
+	const irLogin = () => {
+		actions.cambiar_usuario_creado_false();
+		history.push("/login");
+	};
+
 	return (
 		<>
 			{store.usuario_creado ? (
-				<Redirect to="/login" />
+				irLogin()
 			) : (
-				<div className="mega ">
+				<div className="mega position-relative">
 					<div className="container box">
 						<div id="div1">
 							<h4>Registrarse</h4>
@@ -67,7 +74,6 @@ export const Registro = () => {
 									onChange={e => setPassword(e.target.value)}
 									value={password}
 								/>
-								<p>* La contraseña debe tener entre 6 y 8 caracteres</p>
 							</div>
 							<div className="mb-3">
 								<input
@@ -84,7 +90,9 @@ export const Registro = () => {
 									type="submit"
 									className="btn btn-dark mb-3"
 									onClick={e => {
-										password == password1 ? guardar() : alert("Los password no coinciden");
+										password == password1
+											? guardar()
+											: actions.mostrar_password_no_iguales_alerta(true);
 									}}>
 									Registrarse
 								</button>
@@ -92,6 +100,8 @@ export const Registro = () => {
 							<Link to={`/login`}>{"Iniciar sesion"}</Link>
 						</div>
 					</div>
+					<Alerta alerta={store.password_no_iguales_alerta} mensaje="Password no coinciden!" />
+					<Alerta alerta={store.usuario_existe_alerta} mensaje="Usuario ya existe!" />
 				</div>
 			)}
 		</>

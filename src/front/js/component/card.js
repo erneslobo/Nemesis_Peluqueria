@@ -26,7 +26,14 @@ const Card = props => {
 		<>
 			<div className="col-lg-3 col-md-4 col-sm-6">
 				<div className="card card-producto my-2" style={{ width: "18rem" }}>
-					<img src={props.item.imagen} className="card-img-top" alt="..." />
+					<img
+						id="imgModal"
+						src={props.item.imagen}
+						className="card-img-top"
+						alt="..."
+						data-bs-toggle="modal"
+						data-bs-target={`#modal${props.id}`}
+					/>
 					<div className="card-body">
 						<h5 className="card-title">{props.item.nombre}</h5>
 						<p className="card-text descripcion">{props.item.descripcionCorta}</p>
@@ -34,6 +41,7 @@ const Card = props => {
 						<div className="d-flex justify-content-between">
 							<div>
 								<button
+									id="imgModal"
 									type="button"
 									className="btn btn-dark"
 									data-bs-toggle="modal"

@@ -76,6 +76,7 @@
 		]
 	},
 	"dependencies": {
+		"14": "^3.1.6",
 		"@splidejs/react-splide": "^0.6.7",
 		"bootstrap": "^5.1.1",
 		"prop-types": "^15.6.1",

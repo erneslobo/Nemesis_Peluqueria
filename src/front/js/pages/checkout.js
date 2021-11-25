@@ -26,6 +26,7 @@ export const Checkout = () => {
 	useEffect(
 		() => {
 			calcularTotal();
+			setConfirmada(false);
 		},
 		[store.items_carrito]
 	);
@@ -56,56 +57,79 @@ export const Checkout = () => {
 
 						{store.items_carrito.map((item, index) => {
 							return (
-								<Horizontal_card item={item} key={index} id={index} recalcularTotal={calcularTotal} />
+								<Horizontal_card
+									item={item}
+									key={index}
+									id={index}
+									recalcularTotal={calcularTotal}
+									confirmada={confirmada}
+								/>
 							);
 						})}
 					</div>
-					<div className="col-4 card card-detalle mb-0 d-flex flex-column justify-content-between container">
-						<div>
-							<div className="mt-3">
-								<b>RESUMEN DE LA ORDEN</b>
-							</div>
-							<hr />
-							<div className="d-flex justify-content-between">
-								<div>SUBTOTAL </div>
-								<div>${Math.round(total / 1.22)}</div>
-							</div>
-							<div className="d-flex justify-content-between mt-3">
-								<div>IVA (22%) </div>
-								<div>${total - Math.round(total / 1.22)}</div>
-							</div>
-							<hr />
-							<div className="d-flex justify-content-between">
-								<div>
-									<b>TOTAL</b>{" "}
+
+					<div className="col-4 ">
+						<div className="card card-detalle mb-0 d-flex flex-column justify-content-between container">
+							<div>
+								<div className="mt-3">
+									<b>RESUMEN DE LA ORDEN</b>
 								</div>
-								<div>
-									<b>${total}</b>
+								<hr />
+								<div className="d-flex justify-content-between">
+									<div>SUBTOTAL </div>
+									<div>${Math.round(total / 1.22)}</div>
 								</div>
+								<div className="d-flex justify-content-between mt-3">
+									<div>IVA (22%) </div>
+									<div>${total - Math.round(total / 1.22)}</div>
+								</div>
+								<hr />
+								<div className="d-flex justify-content-between">
+									<div>
+										<b>TOTAL</b>{" "}
+									</div>
+									<div>
+										<b>${total}</b>
+									</div>
+								</div>
+							</div>
+							<div className="d-flex">
+								{confirmada ? (
+									<>
+										<div className="d-flex justify-content-around align-items-center mb-3 pagar">
+											<img className="img-fluid" src={logo_mercadopago} alt="..." />
+											<div id="button-checkout" />
+										</div>
+									</>
+								) : (
+									<button
+										type="submit"
+										className="btn btn-dark mb-3"
+										onClick={() => {
+											if (Object.keys(store.usuario_actual).length > 0) {
+												setConfirmada(true);
+												actions.pagarMercadoPago(store.items_carrito);
+											} else {
+												history.push("/login");
+											}
+										}}>
+										Confirmar compra!
+									</button>
+								)}
 							</div>
 						</div>
-						<div className="d-flex">
+						<div className="mt-3 horizontal-card">
 							{confirmada ? (
-								<div className="d-flex justify-content-around align-items-center mb-2 pagar">
-									<img className="img-fluid" src={logo_mercadopago} alt="..." />
-									<div id="button-checkout" />
+								<div>
+									<button
+										className="btn btn-dark mb-3"
+										onClick={() => {
+											setConfirmada(false);
+										}}>
+										Editar compra
+									</button>
 								</div>
-							) : (
-								<button
-									type="submit"
-									className="btn btn-dark mb-3"
-									onClick={() => {
-										if (Object.keys(store.usuario_actual).length > 0) {
-											setConfirmada(true);
-
-											actions.pagarMercadoPago(store.items_carrito);
-										} else {
-											history.push("/login");
-										}
-									}}>
-									Confirmar compra!
-								</button>
-							)}
+							) : null}
 						</div>
 					</div>
 				</div>

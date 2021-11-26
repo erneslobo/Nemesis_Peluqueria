@@ -7,12 +7,81 @@ import "../../styles/registro.scss";
 export const Registro = () => {
 	const { store, actions } = useContext(Context);
 	const [nombre, setNombre] = useState("");
+	const [validNombre, setValidNombre] = useState(true);
 	const [apellido, setApellido] = useState("");
+	const [validApellido, setValidApellido] = useState(true);
 	const [numero, setNumero] = useState("");
+	const [validNumero, setValidNumero] = useState(true);
 	const [email, setEmail] = useState("");
+	const [validEmail, setValidEmail] = useState(true);
 	const [password, setPassword] = useState("");
+	const [validPassword, setValidPassword] = useState(true);
 	const [password1, setPassword1] = useState("");
+	const [validPassword1, setValidPassword1] = useState(true);
 	const history = useHistory();
+
+	const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+	const telefonoRegex = /^((09[1-9](\s?)([0-9]{3})(\s?)([0-9]{3}))|((2|4)(\s?)([0-9]{3})(\s?)([0-9]{2})(\s?)([0-9]{2})))$/g;
+
+	const validarNombre = e => {
+		const nombre = e.target.value;
+		setNombre(e.target.value);
+		if (nombre.length > 0) {
+			setValidNombre(true);
+		} else {
+			setValidNombre(false);
+		}
+	};
+
+	const validarApellido = e => {
+		const apellido = e.target.value;
+		setApellido(e.target.value);
+		if (apellido.length > 0) {
+			setValidApellido(true);
+		} else {
+			setValidApellido(false);
+		}
+	};
+
+	const validarTelefono = e => {
+		const tel = e.target.value;
+		setNumero(e.target.value);
+		if (telefonoRegex.test(tel) || tel == "") {
+			setValidNumero(true);
+		} else {
+			setValidNumero(false);
+		}
+	};
+
+	const validarEmail = e => {
+		const email = e.target.value;
+		setEmail(e.target.value);
+		if (emailRegex.test(email)) {
+			setValidEmail(true);
+		} else {
+			setValidEmail(false);
+		}
+	};
+
+	const validarPassword = e => {
+		const pass = e.target.value;
+		setPassword(e.target.value);
+		if (pass.length > 0) {
+			setValidPassword(true);
+		} else {
+			setValidPassword(false);
+		}
+	};
+
+	const validarPassword1 = e => {
+		const pass1 = e.target.value;
+		setPassword1(e.target.value);
+		if (pass1.length > 0 && pass1 == password) {
+			setValidPassword1(true);
+		} else {
+			setValidPassword1(false);
+		}
+	};
 
 	const guardar = e => {
 		actions.registro(nombre, apellido, numero, email, password, false);
@@ -37,70 +106,84 @@ export const Registro = () => {
 									type="text"
 									className="form-control"
 									placeholder="Nombre"
-									onChange={e => setNombre(e.target.value)}
+									onChange={e => validarNombre(e)}
 									value={nombre}
 								/>
 								<input
 									type="text"
 									className="form-control"
 									placeholder="Apellido"
-									onChange={e => setApellido(e.target.value)}
+									onChange={e => validarApellido(e)}
 									value={apellido}
 								/>
+								<p>{!(validNombre && validApellido) && "Nombre o Apellido inválido"}</p>
 							</div>
 							<div className="mb-3">
 								<input
 									type="text"
 									className="form-control"
 									placeholder="Número de Teléfono"
-									onChange={e => setNumero(e.target.value)}
+									onChange={e => validarTelefono(e)}
 									value={numero}
 								/>
+								<p>{!validNumero && "Numero de teléfono inválido"}</p>
 							</div>
 							<div className="mb-3">
 								<input
 									type="email"
 									className="form-control"
 									placeholder="Email"
-									onChange={e => setEmail(e.target.value)}
+									onChange={e => validarEmail(e)}
 									value={email}
 								/>
+								<p>{!validEmail && "Email inválido"}</p>
 							</div>
 							<div className="mb-3">
 								<input
 									type="password"
 									className="form-control"
 									placeholder="Contraseña"
-									onChange={e => setPassword(e.target.value)}
+									onChange={e => validarPassword(e)}
 									value={password}
 								/>
+								<p className="invalido">{!validPassword1 && "Contraseña inválida"}</p>
 							</div>
 							<div className="mb-3">
 								<input
 									type="password"
 									className="form-control"
 									placeholder="Repetir contraseña"
-									onChange={e => setPassword1(e.target.value)}
+									onChange={e => validarPassword1(e)}
 									value={password1}
 								/>
-								<p>* Repetir contraseña</p>
+								<p>{!validPassword1 && "Contraseña inválida"}</p>
 							</div>
 							<div className="col-auto">
 								<button
 									type="submit"
 									className="btn btn-dark mb-3"
-									onClick={e => {
-										password == password1
-											? guardar()
-											: actions.mostrar_password_no_iguales_alerta(true);
-									}}>
+									disabled={
+										validNombre &&
+										validApellido &&
+										validEmail &&
+										validPassword &&
+										validPassword1 &&
+										(nombre != "" &&
+											apellido != "" &&
+											email != "" &&
+											password != "" &&
+											password1 != "")
+											? false
+											: true
+									}
+									onClick={e => guardar()}>
 									Registrarse
 								</button>
 							</div>
 							<Link to={`/login`}>{"Iniciar sesion"}</Link>
 						</div>
 					</div>
-					<Alerta alerta={store.password_no_iguales_alerta} mensaje="Password no coinciden!" />
+					{/* <Alerta alerta={store.password_no_iguales_alerta} mensaje="Password no coinciden!" /> */}
 					<Alerta alerta={store.usuario_existe_alerta} mensaje="Usuario ya existe!" />
 				</div>
 			)}

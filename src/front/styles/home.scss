@@ -12,6 +12,18 @@
     width: 100%;
 }
 
+.splideImage img {
+    height: 400px;
+    width: 375px;
+    object-fit: cover;
+    margin: 5px;
+}
+
+.slick-prev:before, .slick-next:before  {
+    color:black;
+    font-size: 25px;
+}
+
 .imagenMuestra {
     position: relative;
     filter: drop-shadow(3px 3px 7px grey);
@@ -44,4 +56,18 @@
 
 .content {
     min-height: calc(100vh - 200px);
+}
+
+.home {
+    background-color: #292929;
+    color: black
+}
+
+.home-wrapper {
+    background-color: white;
+}
+
+.menuImg {
+    height: auto;
+    width: 500px;
 }

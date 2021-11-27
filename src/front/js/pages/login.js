@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { Alerta } from "../component/alerta";
 import { Context } from "../store/appContext";
 import "../../styles/login.scss";

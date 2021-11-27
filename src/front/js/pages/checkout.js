@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "../../styles/checkout.scss";
 import Horizontal_card from "../component/horizontal_card";
 import logo_mercadopago from "../../img/logo_mercadopago.png";
@@ -33,11 +33,11 @@ export const Checkout = () => {
 	);
 
 	return (
-		<>
-			<h1 className="text-center my-5">Mi Carrito</h1>
+		<div className="container home-wrapper mt-0">
+			<h2 className="text-center pt-5">Mi Carrito</h2>
 
 			{store.items_carrito.length == 0 ? (
-				<div className="container my-5 d-flex flex-column justify-content-center align-items-center">
+				<div className="container-fluid mb-0 pt-0 d-flex flex-column justify-content-center align-items-center">
 					<div className="mt-5">
 						<h2>Tu carrito está vacío!</h2>
 					</div>
@@ -54,7 +54,7 @@ export const Checkout = () => {
 				</div>
 			) : (
 				<div>
-					<div className="container pt-2">
+					<div className="container-fluid mb-0 pt-3">
 						<div className="row container my-5">
 							<div className="col-8">
 								<div className="card horizontal-card mb-3 p-2 ps-4">
@@ -154,6 +154,6 @@ export const Checkout = () => {
 					</div>
 				</div>
 			)}
-		</>
+		</div>
 	);
 };

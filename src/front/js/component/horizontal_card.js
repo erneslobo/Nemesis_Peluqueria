@@ -4,7 +4,7 @@ import "../../styles/checkout.scss";
 import { Context } from "../store/appContext";
 
 const Horizontal_card = props => {
-	const { store, actions } = useContext(Context);
+	const { actions } = useContext(Context);
 	const [cantidad, setCantidad] = useState(1);
 
 	const updateCantidad = e => {

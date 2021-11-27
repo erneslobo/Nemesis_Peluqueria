@@ -13,8 +13,8 @@
 }
 
 .splideImage img {
-    height: 400px;
-    width: 375px;
+    height: 300px;
+    width: auto;
     object-fit: cover;
     margin: 5px;
 }
@@ -55,19 +55,24 @@
 }
 
 .content {
-    min-height: calc(100vh - 200px);
+    min-height: calc(100vh - 217px);
 }
 
-.home {
+body, .home, .home-content {
     background-color: #292929;
     color: black
 }
 
 .home-wrapper {
     background-color: white;
+    min-height: calc(100vh - 279px);
 }
 
 .menuImg {
+    width: 575px;
     height: auto;
-    width: 500px;
+}
+
+.menuItem {
+    cursor:pointer;
 }

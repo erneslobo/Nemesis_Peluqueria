@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import Card from "../component/card";
 import "../../styles/card.scss";
 
@@ -24,10 +24,10 @@ export const Servicios = () => {
 	};
 
 	return (
-		<div>
-			<div className="container my-3">
+		<div className="container home-wrapper mt-0">
+			<div className="container-fluid mb-0 pt-3">
 				<div className="d-flex justify-content-between my-3">
-					<div>
+					<div className="text-center">
 						<h2>Servicios</h2>
 					</div>
 					<div className="dropdown">

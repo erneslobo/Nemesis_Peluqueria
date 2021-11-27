@@ -1,9 +1,7 @@
-import React, { useContext } from "react";
-import { Context } from "../store/appContext";
-import { Link, useParams } from "react-router-dom";
+import React from "react";
+import { useParams } from "react-router-dom";
 
 const Detalle = () => {
-	const { store, actions } = useContext(Context);
 	const params = useParams();
 
 	return (

@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const Compra_Exitosa = () => {
-	const { store, actions } = useContext(Context);
+	const { actions } = useContext(Context);
 	const history = useHistory();
 	const mostrarAlerta = () => {
 		actions.limpiarCarrito();

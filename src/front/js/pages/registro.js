@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Alerta } from "../component/alerta";
 import { Context } from "../store/appContext";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "../../styles/registro.scss";
 
 export const Registro = () => {
@@ -116,7 +116,9 @@ export const Registro = () => {
 									onChange={e => validarApellido(e)}
 									value={apellido}
 								/>
-								<p>{!(validNombre && validApellido) && "Nombre o Apellido inválido"}</p>
+								<p className="inputAlert">
+									{!(validNombre && validApellido) && "Nombre o Apellido inválido"}
+								</p>
 							</div>
 							<div className="mb-3">
 								<input
@@ -126,7 +128,7 @@ export const Registro = () => {
 									onChange={e => validarTelefono(e)}
 									value={numero}
 								/>
-								<p>{!validNumero && "Numero de teléfono inválido"}</p>
+								<p className="inputAlert">{!validNumero && "Numero de teléfono inválido"}</p>
 							</div>
 							<div className="mb-3">
 								<input
@@ -136,7 +138,7 @@ export const Registro = () => {
 									onChange={e => validarEmail(e)}
 									value={email}
 								/>
-								<p>{!validEmail && "Email inválido"}</p>
+								<p className="inputAlert">{!validEmail && "Email inválido"}</p>
 							</div>
 							<div className="mb-3">
 								<input
@@ -146,7 +148,7 @@ export const Registro = () => {
 									onChange={e => validarPassword(e)}
 									value={password}
 								/>
-								<p className="invalido">{!validPassword1 && "Contraseña inválida"}</p>
+								<p className="inputAlert">{!validPassword && "Contraseña inválida o no coinciden"}</p>
 							</div>
 							<div className="mb-3">
 								<input
@@ -156,7 +158,7 @@ export const Registro = () => {
 									onChange={e => validarPassword1(e)}
 									value={password1}
 								/>
-								<p>{!validPassword1 && "Contraseña inválida"}</p>
+								<p className="inputAlert">{!validPassword1 && "Contraseña inválida o no coinciden"}</p>
 							</div>
 							<div className="col-auto">
 								<button

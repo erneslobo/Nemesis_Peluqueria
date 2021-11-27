@@ -1,10 +1,9 @@
 #TABLA PRODUCTO
-psql -d example -U gitpod -c "INSERT INTO public.producto (nombre,descripcion, descripcionCorta, precio, tipo, categoria, imagen, thumbnail, activo) 
-                            VALUES ('Producto1','Descripcion Producto1','descripcionCorta', '150','tipo1','Categoria1','https://xxxx','https://xxxx', true),
-                                  ('Producto1','Descripcion Producto1','descripcionCorta', '150','tipo1','Categoria1','https://xxxx','https://xxxx', true);"
+psql -d example -U gitpod -c "INSERT INTO public.producto (nombre,descripcion, precio, tipo, categoria, imagen, thumbnail, activo, "descripcionCorta") 
+                            VALUES ('Producto4','Descripcion Producto4', 150,'tipo4','Categoria4','https://xxxx','https://xxxx', true, 'descripcionCorta4');"
 
 
 TABLE USUARIO
 psql -d example -U gitpod -c "INSERT INTO public.usuario (nombre,apellido, telefono, email, password, admin) 
-                              VALUES ('Ernesto', 'Solorzano','erneslobo@gmail.com','12345',true),
-                                      ('Ernesto', 'Solorzano','erneslobo@gmail.com','12345',true);"
+                              VALUES ('Ernesto', 'Solorzano','83408811','erneslobo@gmail.com','12345',"true"),
+                                      ('Melanaia', 'Moreira','85922635','mel.morle0128@gmail.com','12345',"false");"

@@ -14,7 +14,7 @@ export const ImagenMuestra = ({ item, index }) => {
 				<div className="card card-producto imagenMuestra h-100">
 					<img
 						src={item.thumbnail}
-						className="card-img-top"
+						className="card-img-top imgModal"
 						alt="..."
 						data-bs-toggle="modal"
 						data-bs-target={`#modalT${index}`}

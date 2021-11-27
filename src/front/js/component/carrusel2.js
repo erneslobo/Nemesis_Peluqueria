@@ -8,8 +8,8 @@ export const Carrusel2 = () => {
 		dots: true,
 		infinite: true,
 		speed: 500,
-		slidesToShow: 3,
-		slidesToScroll: 3,
+		slidesToShow: 2,
+		slidesToScroll: 2,
 		adaptiveHeight: true
 	};
 
@@ -18,40 +18,40 @@ export const Carrusel2 = () => {
 			<Slider {...settings}>
 				<div className="splideImage">
 					<img
-						src="https://res.cloudinary.com/erneslobo/image/upload/v1637861944/Salon6_nmr29u.jpg"
+						src="https://res.cloudinary.com/dhcdkw7os/image/upload/v1637977929/Index/20211124_122429_dpxia3.jpg"
 						alt="Image 1"
 					/>
 				</div>
 				<div className="splideImage">
 					<img
-						src="https://res.cloudinary.com/erneslobo/image/upload/v1637861944/Salon7_wozf1k.jpg"
+						src="https://res.cloudinary.com/dhcdkw7os/image/upload/v1637977953/Index/20211124_122008_mk0pij.jpg"
 						alt="Image 1"
 					/>
 				</div>
 				<div className="splideImage">
 					<img
-						src="https://res.cloudinary.com/erneslobo/image/upload/v1637861943/Salon4_zt8cw7.jpg"
+						src="https://res.cloudinary.com/dhcdkw7os/image/upload/v1637977933/Index/20211124_122448_amaobz.jpg"
 						alt="Image 1"
 					/>
 				</div>
 				<div className="splideImage">
 					<img
-						src="https://res.cloudinary.com/erneslobo/image/upload/v1637861943/Salon1_a8yx7m.png"
+						src="https://res.cloudinary.com/dhcdkw7os/image/upload/v1637977931/Index/20211124_122513_r7t58n.jpg"
 						alt="Image 1"
 					/>
 				</div>
 				<div className="splideImage">
 					<img
-						src="https://res.cloudinary.com/erneslobo/image/upload/v1637861943/Salon5_eblcut.jpg"
+						src="https://res.cloudinary.com/dhcdkw7os/image/upload/v1637977930/Index/20211124_121758_bbth9c.jpg"
 						alt="Image 1"
 					/>
 				</div>
-				<div className="splideImage">
+				{/* <div className="splideImage">
 					<img
 						src="https://res.cloudinary.com/erneslobo/image/upload/v1637861943/Salon2_rqxn8c.jpg"
 						alt="Image 1"
 					/>
-				</div>
+				</div> */}
 			</Slider>
 		</div>
 	);

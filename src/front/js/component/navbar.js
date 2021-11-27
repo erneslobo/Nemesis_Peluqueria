@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
@@ -44,11 +44,11 @@ export const Navbar = () => {
 								<Link to="/productos/" className="link">
 									<li className="nav-item mx-2">Productos</li>
 								</Link>
-								<Link to="/contacto/" className="link">
-									<li className="nav-item mx-2">Contacto</li>
-								</Link>
 								<Link to="/trabajos/" className="link">
 									<li className="nav-item text-nowrap mx-2">Nuestro trabajo</li>
+								</Link>
+								<Link to="/contacto/" className="link">
+									<li className="nav-item mx-2">Contacto</li>
 								</Link>
 								<li className="nav-item mx-2">
 									{/* Renderiza distinto según si el usuario esta autenticado */}

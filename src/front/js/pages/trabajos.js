@@ -21,39 +21,41 @@ export const Trabajos = () => {
 	};
 
 	return (
-		<div className="container mt-5">
-			<div className="d-flex justify-content-between my-3">
-				<div>
-					<h2>Nuestros Trabajos</h2>
+		<div className="container home-wrapper mt-0">
+			<div className="container-fluid mb-0 pt-3">
+				<div className="d-flex justify-content-between my-3">
+					<div className="text-center">
+						<h2>Nuestros Trabajos</h2>
+					</div>
+					<div className="dropdown">
+						<button
+							className="btn btn-dark px-4 py-1 dropdown-toggle"
+							type="button"
+							id="dropdownMenuButton1"
+							data-bs-toggle="dropdown"
+							aria-expanded="false">
+							{categoria}
+						</button>
+						<ul className="dropdown-menu drop-categorias" aria-labelledby="dropdownMenuButton1">
+							{arrayCategorias.map((item, index) => {
+								return (
+									<li className="dropdown-item" key={index} onClick={e => filtrar(item)}>
+										{item}
+									</li>
+								);
+							})}
+						</ul>
+					</div>
 				</div>
-				<div className="dropdown">
-					<button
-						className="btn btn-dark px-4 py-1 dropdown-toggle"
-						type="button"
-						id="dropdownMenuButton1"
-						data-bs-toggle="dropdown"
-						aria-expanded="false">
-						{categoria}
-					</button>
-					<ul className="dropdown-menu drop-categorias" aria-labelledby="dropdownMenuButton1">
-						{arrayCategorias.map((item, index) => {
-							return (
-								<li className="dropdown-item" key={index} onClick={e => filtrar(item)}>
-									{item}
-								</li>
-							);
-						})}
-					</ul>
-				</div>
-			</div>
 
-			{/* <h1 className="text-dark muestrasTitulo text-center bg-dark text-white rounded">Cortes de Cabello</h1> */}
-			<div className="row flex-row flex-wrap row-cols-1 row-cols-md-3 g-4">
-				{store.muestrasFiltrados.map((item, index) => {
-					return <ImagenMuestra key={index} item={item} index={index} />;
-				})}
+				{/* <h1 className="text-dark muestrasTitulo text-center bg-dark text-white rounded">Cortes de Cabello</h1> */}
+				<div className="row flex-row flex-wrap row-cols-1 row-cols-md-3 g-4">
+					{store.muestrasFiltrados.map((item, index) => {
+						return <ImagenMuestra key={index} item={item} index={index} />;
+					})}
+				</div>
+				<br />
 			</div>
-			<br />
 		</div>
 	);
 };

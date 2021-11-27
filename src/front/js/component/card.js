@@ -29,7 +29,7 @@ const Card = props => {
 					<img
 						id="imgModal"
 						src={props.item.imagen}
-						className="card-img-top"
+						className="card-img-top imgModal"
 						alt="..."
 						data-bs-toggle="modal"
 						data-bs-target={`#modal${props.id}`}

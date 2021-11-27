@@ -24,7 +24,7 @@ export const Home = () => {
 						</h2>
 						<Carrusel2 />
 					</div>
-					<div className="mt-5 px-5">
+					<div className="mt-5 pt-5 px-5">
 						<Menu />
 					</div>
 				</div>

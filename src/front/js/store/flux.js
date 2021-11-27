@@ -356,8 +356,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(`${URL_BASE}productos`)
 					.then(res => res.json())
 					.then(result => {
-						setStore({ productosServicios: result });
-						setStore({ productosServiciosFiltrados: result });
+						//Ordeno alfabéticamente según el nombre
+						let arrayOrdenado = result.sort((a, b) => a.nombre.localeCompare(b.nombre));
+						setStore({ productosServicios: arrayOrdenado });
+						setStore({ productosServiciosFiltrados: arrayOrdenado });
 					})
 					.catch(error => console.log("error", error));
 			},

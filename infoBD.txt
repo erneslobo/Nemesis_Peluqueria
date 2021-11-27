@@ -8,3 +8,18 @@ TABLE USUARIO
 psql -d example -U gitpod -c "INSERT INTO public.usuario (nombre,apellido, telefono, email, password, admin) 
                               VALUES ('Ernesto', 'Solorzano','erneslobo@gmail.com','12345',true),
                                       ('Ernesto', 'Solorzano','erneslobo@gmail.com','12345',true);"
+
+
+
+SCRIPT PARA AGREGAR PRODUCTOS:
+
+psql -d example -U gitpod -c "INSERT INTO public.producto (nombre,descripcion, precio, tipo, categoria, imagen, thumbnail, activo, "descripcionCorta") 
+                            VALUES ('Producto4',
+                                    'Descripcion Producto4',
+                                     150,
+                                     'tipo4',
+                                     'Categoria4',
+                                     'https://xxxx',
+                                     'https://xxxx',
+                                     true,
+                                     'descripcionCorta4');"

@@ -31,7 +31,7 @@ export const ImagenMuestra = ({ item, index }) => {
 							}
 						}}>
 						<i
-							className={`text-danger icono fa-heart fa-lg ${
+							className={`text-danger icono fa-heart fa-2x ${
 								store.favoritos.includes(item) ? "fas mostarIcono" : "far ocultarIcono"
 							}`}
 						/>
@@ -46,7 +46,7 @@ export const ImagenMuestra = ({ item, index }) => {
 				aria-hidden="true">
 				<div className="modal-dialog modal-dialog-centered modal-lg">
 					<div className="modal-content">
-						<div className="modal-header">
+						<div className="modal-header espacio-btn-close">
 							<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
 						</div>
 						<div className="modal-body">

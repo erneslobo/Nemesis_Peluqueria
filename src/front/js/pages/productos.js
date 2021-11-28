@@ -30,7 +30,7 @@ export const Productos = () => {
 					<div className="text-center">
 						<h2>Productos</h2>
 					</div>
-					<div className="dropdown">
+					<div className="dropdown div-drpdwn">
 						<button
 							className="btn btn-dark px-4 py-1 dropdown-toggle"
 							type="button"
@@ -50,6 +50,7 @@ export const Productos = () => {
 						</ul>
 					</div>
 				</div>
+
 				<div className="row">
 					{store.productosServiciosFiltrados.map((item, index) => {
 						if (item.tipo == "Producto") return <Card item={item} key={index} id={index} />;

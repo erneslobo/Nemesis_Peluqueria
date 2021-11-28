@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { ImagenMuestra } from "../component/imagenMuestra";
 import { Context } from "../store/appContext";
 
@@ -19,6 +19,14 @@ export const Trabajos = () => {
 			actions.actualizarMuestrasFiltrados(store.muestras.filter(elem => elem.categoria == categ));
 		}
 	};
+
+	useEffect(() => {
+		if (store.muestrasFiltrados == store.favoritos) {
+			setCategoria("Favoritos");
+		} else {
+			actions.actualizarMuestrasFiltrados(store.muestras);
+		}
+	}, []);
 
 	return (
 		<div className="container home-wrapper mt-0">

@@ -1,14 +1,8 @@
 """empty message
 
-<<<<<<< HEAD:migrations/versions/c6dd7b6e2636_.py
-Revision ID: c6dd7b6e2636
+Revision ID: 85cec06ac349
 Revises: 
-Create Date: 2021-11-22 22:51:04.085690
-=======
-Revision ID: 17443e0d3230
-Revises: 
-Create Date: 2021-11-22 22:37:22.156387
->>>>>>> develop:migrations/versions/17443e0d3230_.py
+Create Date: 2021-11-27 23:58:38.249555
 
 """
 from alembic import op
@@ -16,11 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-<<<<<<< HEAD:migrations/versions/c6dd7b6e2636_.py
-revision = 'c6dd7b6e2636'
-=======
-revision = '17443e0d3230'
->>>>>>> develop:migrations/versions/17443e0d3230_.py
+revision = '85cec06ac349'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -42,7 +32,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('nombre', sa.String(length=250), nullable=False),
     sa.Column('descripcion', sa.Text(), nullable=False),
-    sa.Column('descripcionCorta', sa.Text(), nullable=True),
+    sa.Column('descripcioncorta', sa.Text(), nullable=False),
     sa.Column('precio', sa.Float(), nullable=False),
     sa.Column('tipo', sa.String(length=250), nullable=False),
     sa.Column('categoria', sa.String(length=250), nullable=False),

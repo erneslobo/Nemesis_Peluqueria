@@ -24,12 +24,12 @@ const Card = props => {
 
 	return (
 		<>
-			<div className="col-lg-3 col-md-4 col-sm-6">
-				<div className="card card-producto my-2" style={{ width: "18rem" }}>
+			<div className="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-center">
+				<div className="card card-producto my-3" style={{ width: "18rem" }}>
 					<img
 						id="imgModal"
 						src={props.item.imagen}
-						className="card-img-top imgModal"
+						className="card-img-top imgModal pt-1"
 						alt="..."
 						data-bs-toggle="modal"
 						data-bs-target={`#modal${props.id}`}
@@ -81,7 +81,7 @@ const Card = props => {
 				aria-hidden="true">
 				<div className="modal-dialog modal-dialog-centered modal-lg">
 					<div className="modal-content">
-						<div className="modal-header">
+						<div className="modal-header espacio-btn-close">
 							<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
 						</div>
 						<div className="modal-body">
@@ -93,13 +93,7 @@ const Card = props => {
 									<div className="col-md-auto ms-auto" />
 									<div className="col-4 col-sm-4">
 										<h5 className="card-title ml-1">{props.item.nombre}</h5>
-										<p className="card-text descripcion">
-											Many desktop publishing packages and web page editors now use Lorem Ipsum as
-											their default model text, and a search for lorem ipsum will uncover many web
-											sites still in their infancy. Various versions have evolved over the years,
-											sometimes by accident, sometimes on purpose.
-											{props.item.descripcion}
-										</p>
+										<p className="card-text descripcion">{props.item.descripcion}</p>
 									</div>
 								</div>
 							</div>

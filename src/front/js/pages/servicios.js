@@ -30,7 +30,7 @@ export const Servicios = () => {
 					<div className="text-center">
 						<h2>Servicios</h2>
 					</div>
-					<div className="dropdown">
+					<div className="dropdown div-drpdwn">
 						<button
 							className="btn btn-dark px-4 py-1 dropdown-toggle"
 							type="button"

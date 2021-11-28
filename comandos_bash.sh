@@ -1,19 +1,29 @@
-#TABLA PRODUCTO
-psql -d example -U gitpod -c "INSERT INTO public.producto (nombre,descripcion, descripcionCorta, precio, tipo, categoria, imagen, thumbnail, activo) 
-                            VALUES ('Producto1','Descripcion Producto1','descripcionCorta', '150','tipo1','Categoria1','https://xxxx','https://xxxx', true),
-                                  ('Producto1','Descripcion Producto1','descripcionCorta', '150','tipo1','Categoria1','https://xxxx','https://xxxx', true);"
+#!/bin/bash
 
-
-TABLE USUARIO
-psql -d example -U gitpod -c "INSERT INTO public.usuario (nombre,apellido, telefono, email, password, admin) 
-                              VALUES ('Ernesto', 'Solorzano','erneslobo@gmail.com','12345',true),
-                                      ('Ernesto', 'Solorzano','erneslobo@gmail.com','12345',true);"
+# Buscar el archivo .bashrc, agregar la siguiente linea al final:
+#                                     source /workspace/Nemesis_Peluqueria/comandos_bash.sh
 
 
 
-**********************SCRIPT PARA AGREGAR PRODUCTOS:
+# Ahora se pueden usar los siguientes comandos en la consola:
+  
+    # fix_consola      : para que ande la consola de npm
 
-psql -d example -U gitpod -c "INSERT INTO public.producto (nombre,descripcion, precio, tipo, categoria, imagen, thumbnail, activo, descripcioncorta) 
+    # subir_productos  : Para subir 12 productos de prueba a la base de datos
+
+
+
+
+
+
+# funcion para que ande la consola de npm
+function fix_consola() {
+  nvm install 14 && npm install && npm run start
+}
+
+# funcion para subir 12 productos de prueba a la base de datos
+function subir_productos() {
+  psql -d example -U gitpod -c "INSERT INTO public.producto (nombre,descripcion, precio, tipo, categoria, imagen, thumbnail, activo, "descripcionCorta") 
                             VALUES ('Shampoo Inforcer 300 ml - LOreal',
         'Shampoo anti quiebre, fortificante con vitamina B6 y Biotina, reducción instantánea de la rotura del pelo, cabello más resistente y más fuerte.\nBeneficios: Fortalece el cabello, suaviza, facilita el peinado\nTipo de Pelo: Quebradizo o dañado\nAplicación: todo el cabello',
         990,
@@ -133,3 +143,4 @@ psql -d example -U gitpod -c "INSERT INTO public.producto (nombre,descripcion, p
         'https://res.cloudinary.com/dhcdkw7os/image/upload/v1638048724/Productos/oriental_premium_ampoulex4_gtutin.jpg',
         true,
         'Ampolla para cabello dañado.');"
+}

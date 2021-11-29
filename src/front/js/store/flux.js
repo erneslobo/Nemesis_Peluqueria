@@ -199,7 +199,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return response.json();
 					})
 					.then(result => {
-						setStore({ token_invalido_alerta: true });
+						setStore({ token_invalido_alerta: false });
 						setStore({ password_actualizado: true });
 					})
 					.catch(error => console.log("error", error));
@@ -371,6 +371,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ usuario_autenticado: false });
 				setStore({ usuario_actual: {} });
 				setStore({ items_carrito: [] });
+				setStore({ favoritos: [] });
 			},
 
 			// *********************** AGREGAR AL CARRITO ***********************

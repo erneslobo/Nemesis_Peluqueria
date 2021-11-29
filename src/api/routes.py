@@ -208,7 +208,7 @@ def actualizar_usuario():
 
     usuario = Usuario.query.get(usuario.id)
     usuario = usuario.serialize()
-    return jsonify(usuario), 201
+    return jsonify(usuario), 200
 
 """
 URL = https://url_base/api/registro ['POST']

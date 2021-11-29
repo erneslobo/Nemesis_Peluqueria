@@ -185,8 +185,7 @@ export const Registro = () => {
 							<Link to={`/login`}>{"Iniciar sesion"}</Link>
 						</div>
 					</div>
-					{/* <Alerta alerta={store.password_no_iguales_alerta} mensaje="Password no coinciden!" /> */}
-					<Alerta alerta={store.usuario_existe_alerta} mensaje="Usuario ya existe!" />
+					<Alerta alerta={store.usuario_existe_alerta} mensaje="Usuario ya existe!" tipoAlerta="danger" />
 				</div>
 			)}
 		</>

@@ -11,6 +11,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			message: null,
 			usuario_creado: false,
+			usuario_creado_alerta: false,
 			usuario_autenticado: false,
 			email_password_invalido_alerta: false,
 			correo_password_enviado: false,
@@ -61,6 +62,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ password_no_iguales_alerta: false });
 				setStore({ usuario_existe_alerta: false });
 				setStore({ token_invalido_alerta: false });
+				setStore({ usuario_creado_alerta: false });
 			},
 
 			// *********************** mostrar alerta passwords no coinciden **********************
@@ -309,6 +311,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return response.json();
 					})
 					.then(result => {
+						setStore({ usuario_creado_alerta: true });
 						setStore({ usuario_existe_alerta: false });
 						setStore({ usuario_creado: true });
 					})
@@ -343,6 +346,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(result => {
 						if (result.access_token) {
 							localStorage.setItem("Token", result.access_token);
+							getStore().ocultar_alertas;
 							setStore({ email_password_invalido_alerta: false });
 							setStore({ usuario_autenticado: true });
 							setStore({ usuario_actual: result.user });
@@ -372,6 +376,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ usuario_actual: {} });
 				setStore({ items_carrito: [] });
 				setStore({ favoritos: [] });
+				getActions().ocultar_alertas;
 			},
 
 			// *********************** AGREGAR AL CARRITO ***********************

@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
 import Detalle from "./pages/detalle";
 import { Checkout } from "./pages/checkout";
 import { Contacto } from "./pages/contacto";
@@ -38,9 +37,6 @@ const Layout = () => {
 						<Switch>
 							<Route exact path="/">
 								<Home />
-							</Route>
-							<Route exact path="/demo">
-								<Demo />
 							</Route>
 							<Route exact path="/detalle/:theid">
 								<Detalle />

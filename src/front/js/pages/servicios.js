@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Card from "../component/card";
 import "../../styles/card.scss";
 
@@ -22,6 +22,10 @@ export const Servicios = () => {
 			store.productosServicios.filter(elem => elem.categoria == categ);
 		}
 	};
+
+	useEffect(() => {
+		actions.actualizarProductosServiciosFiltrados(store.productosServicios);
+	}, []);
 
 	return (
 		<div className="container home-wrapper mt-0">

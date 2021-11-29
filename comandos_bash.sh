@@ -23,7 +23,7 @@ function fix_consola() {
 
 # funcion para subir 12 productos de prueba a la base de datos
 function subir_productos() {
-  psql -d example -U gitpod -c "INSERT INTO public.producto (nombre,descripcion, precio, tipo, categoria, imagen, thumbnail, activo, "descripcionCorta") 
+  psql -d example -U gitpod -c "INSERT INTO public.producto (nombre,descripcion, precio, tipo, categoria, imagen, thumbnail, activo, descripcioncorta) 
                             VALUES ('Shampoo Inforcer 300 ml - LOreal',
         'Shampoo anti quiebre, fortificante con vitamina B6 y Biotina, reducción instantánea de la rotura del pelo, cabello más resistente y más fuerte.\nBeneficios: Fortalece el cabello, suaviza, facilita el peinado\nTipo de Pelo: Quebradizo o dañado\nAplicación: todo el cabello',
         990,

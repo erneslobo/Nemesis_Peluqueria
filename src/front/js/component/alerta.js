@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import "../../styles/home.scss";
 
-export const Alerta = ({ alerta, mensaje }) => {
+export const Alerta = ({ alerta, mensaje, tipoAlerta }) => {
 	const { store, actions } = useContext(Context);
 
 	return (
 		<div className="position-absolute top-0 start-50 translate-middle-x p-3" style={{ zIndex: 11 }}>
 			<div
-				className={`toast align-items-center text-white bg-danger bg-gradient border-0 ${
+				className={`toast align-items-center text-white bg-${tipoAlerta} bg-gradient border-0 ${
 					alerta ? "show" : "hide"
 				}`}
 				role="alert"
@@ -31,5 +31,6 @@ export const Alerta = ({ alerta, mensaje }) => {
 
 Alerta.propTypes = {
 	mensaje: PropTypes.string,
-	alerta: PropTypes.bool
+	alerta: PropTypes.bool,
+	tipoAlerta: PropTypes.string
 };

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, Redirect } from "react-router-dom";
 import { Alerta } from "../component/alerta";
 import { Context } from "../store/appContext";
 import "../../styles/login.scss";
@@ -11,16 +11,15 @@ export const Login = () => {
 	const history = useHistory();
 
 	const ingresar = () => {
-		console.log(history);
 		actions.login(email, password);
 	};
 
 	return (
 		<>
 			{store.usuario_autenticado ? (
-				// <Redirect to="/" />
-				<>{history.goBack()}</>
+				<Redirect to="/" />
 			) : (
+				// <>{history.goBack()}</>
 				<>
 					<div className="mega position-relative">
 						<div className="container box">
@@ -60,7 +59,12 @@ export const Login = () => {
 							</div>
 						</div>
 
-						<Alerta alerta={store.email_password_invalido_alerta} mensaje="Email o password incorrecto!" />
+						<Alerta
+							alerta={store.email_password_invalido_alerta}
+							mensaje="Email o password incorrecto!"
+							tipoAlerta="danger"
+						/>
+						<Alerta alerta={store.usuario_creado_alerta} mensaje="Usuario creado!" tipoAlerta="success" />
 					</div>
 				</>
 			)}

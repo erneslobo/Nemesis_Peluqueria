@@ -14,8 +14,6 @@
 
 
 
-
-
 # funcion para que ande la consola de npm
 function fix_consola() {
   nvm install 14 && npm install && npm run start

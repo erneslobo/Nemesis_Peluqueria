@@ -13,7 +13,7 @@ export const Footer = () => (
 			<div className="container">
 				<div className="row primer-row">
 					<div className="col-4 logoPelu">
-						<img src={nemesis_logo} alt="" />
+						<img className="float-start" src={nemesis_logo} alt="" />
 					</div>
 					<div className="col-5" />
 					<div className="col-3 redes">
@@ -47,7 +47,7 @@ export const Footer = () => (
 					</div>
 				</div>
 				<div className="row">
-					<div className="col-3">
+					<div className="col-3 pt-2">
 						<Link to="/contacto" className="link">
 							<div className="datos">
 								<div className="locacion">

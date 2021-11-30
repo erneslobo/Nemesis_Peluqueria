@@ -11,6 +11,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			message: null,
 			usuario_creado: false,
+			usuario_creado_alerta: false,
 			usuario_autenticado: false,
 			email_password_invalido_alerta: false,
 			correo_password_enviado: false,
@@ -61,6 +62,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ password_no_iguales_alerta: false });
 				setStore({ usuario_existe_alerta: false });
 				setStore({ token_invalido_alerta: false });
+				setStore({ usuario_creado_alerta: false });
 			},
 
 			// *********************** mostrar alerta passwords no coinciden **********************
@@ -249,9 +251,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 							user_id: process.env.EMAIL_USER_ID,
 							template_params: {
 								from_name: "Nemesis Peluqueria",
-								to_name: "Ernesto",
+								to_name: result.user.nombre,
 								to_email: email,
-								message: "please access this link to recover your password",
+								message:
+									"Para cambiar el password, ingrese al siguiente enlance, se le solicitar que ingrese el nuevo password y el token que se le provee en este email",
 								passwordUrl: `${WEB_URL_BASE}/reset_password`,
 								token: result.access_token
 							}
@@ -309,6 +312,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return response.json();
 					})
 					.then(result => {
+						setStore({ usuario_creado_alerta: true });
 						setStore({ usuario_existe_alerta: false });
 						setStore({ usuario_creado: true });
 					})
@@ -343,6 +347,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(result => {
 						if (result.access_token) {
 							localStorage.setItem("Token", result.access_token);
+							getStore().ocultar_alertas;
 							setStore({ email_password_invalido_alerta: false });
 							setStore({ usuario_autenticado: true });
 							setStore({ usuario_actual: result.user });
@@ -372,6 +377,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ usuario_actual: {} });
 				setStore({ items_carrito: [] });
 				setStore({ favoritos: [] });
+				getActions().ocultar_alertas;
 			},
 
 			// *********************** AGREGAR AL CARRITO ***********************

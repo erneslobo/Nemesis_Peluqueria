@@ -53,7 +53,11 @@ export const Recuperar_Password = () => {
 							</div>
 						</div>
 					</div>
-					<Alerta alerta={store.correo_enviado_error_alerta} mensaje="Email incorrecto!" />
+					<Alerta
+						alerta={store.correo_enviado_error_alerta}
+						mensaje="Email incorrecto!"
+						tipoAlerta="danger"
+					/>
 				</div>
 			)}
 			;

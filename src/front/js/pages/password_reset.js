@@ -83,8 +83,16 @@ export const Reset_Password = () => {
 							</div>
 						</div>
 					</div>
-					<Alerta alerta={store.password_no_iguales_alerta} mensaje="Password no coinciden!" />
-					<Alerta alerta={store.token_invalido_alerta} mensaje="Token invalido o expirado!" />
+					<Alerta
+						alerta={store.password_no_iguales_alerta}
+						mensaje="Password no coinciden!"
+						tipoAlerta="danger"
+					/>
+					<Alerta
+						alerta={store.token_invalido_alerta}
+						mensaje="Token invalido o expirado!"
+						tipoAlerta="danger"
+					/>
 				</div>
 			)}
 			;

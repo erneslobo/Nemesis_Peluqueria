@@ -20,11 +20,13 @@ export const Navbar = () => {
 	return (
 		<div className="container-fluid fondo">
 			<div className="container">
-				<nav className="navbar navbar-expand-lg miNavBar">
+				<nav className="navbar navbar-expand-lg navbar-dark bg-black miNavBar">
 					<div className="container-fluid">
-						<Link to="/" className="navbar-brand link">
-							<img src={nemesis_logo_sn} alt="" />
-						</Link>
+						<div>
+							<Link to="/" className="navbar-brand link">
+								<img src={nemesis_logo_sn} alt="" />
+							</Link>
+						</div>
 
 						<button
 							className="navbar-toggler"

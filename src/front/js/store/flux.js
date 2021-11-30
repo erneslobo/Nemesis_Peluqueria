@@ -251,9 +251,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 							user_id: process.env.EMAIL_USER_ID,
 							template_params: {
 								from_name: "Nemesis Peluqueria",
-								to_name: "Ernesto",
+								to_name: result.user.nombre,
 								to_email: email,
-								message: "please access this link to recover your password",
+								message:
+									"Para cambiar el password, ingrese al siguiente enlance, se le solicitar que ingrese el nuevo password y el token que se le provee en este email",
 								passwordUrl: `${WEB_URL_BASE}/reset_password`,
 								token: result.access_token
 							}

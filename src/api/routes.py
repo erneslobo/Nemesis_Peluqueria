@@ -318,8 +318,9 @@ def password_reset():
     if usuario is None:
         raise APIException('usuario no existe', status_code=404)
 
+    usuario = usuario.serialize()
     access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
+    return jsonify(access_token=access_token, user=usuario)
 
 """
 URL = https://url_base/api/favoritos/<int:muestra_id> ['POST']

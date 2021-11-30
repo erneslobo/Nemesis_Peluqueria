@@ -6,9 +6,9 @@ export const Menu = () => {
 	return (
 		<div className="row pb-5 menu d-flex">
 			<div className="row menuItem" onClick={() => history.push("/productos")}>
-				<div className="col">
+				<div className="col menuImg-container">
 					<img
-						src="https://res.cloudinary.com/erneslobo/image/upload/v1637880670/Productos_mwgxfv.jpg"
+						src="https://res.cloudinary.com/dhcdkw7os/image/upload/v1638245795/Index/productos_zxh6ir.jpg"
 						className="rounded img-fluid float-start menuImg horizontal-card"
 						alt="..."
 					/>
@@ -18,7 +18,7 @@ export const Menu = () => {
 						<strong>Productos</strong>
 					</h2>
 					<hr />
-					<h4>Compra aqui los mejores productos para el cuidado de tu cabello y manos.</h4>
+					<h4>Compra aquí los mejores productos para el cuidado de tu cabello y manos.</h4>
 					<h4>Trabajamos con productos de L&#39;Oreal, Kerasys, OPI y FABY entre otros.</h4>
 				</div>
 			</div>
@@ -29,22 +29,22 @@ export const Menu = () => {
 					</h2>
 					<hr />
 					<h4>
-						Somos especialisistas en belleza, queratina, color, peinados para fiestas, depilación, pestañas,
-						esmaltado en gel, y más!
+						Somos especialisistas en belleza. Queratina, color, peinados para fiestas, depilación, pestañas,
+						esmaltado en gel, y mucho más!
 					</h4>
 				</div>
-				<div className="col">
+				<div className="col menuImg-container">
 					<img
-						src="https://res.cloudinary.com/erneslobo/image/upload/v1637880670/Servicios_cjzwte.jpg"
+						src="https://res.cloudinary.com/dhcdkw7os/image/upload/v1638249273/Index/AdobeStock_219385465_g3f8zs.jpg"
 						className="rounded img-fluid float-end menuImg horizontal-card"
 						alt="..."
 					/>
 				</div>
 			</div>
 			<div className="row mt-5 menuItem" onClick={() => history.push("/trabajos")}>
-				<div className="col">
+				<div className="col menuImg-container">
 					<img
-						src="https://res.cloudinary.com/erneslobo/image/upload/v1637880670/Muestras_oqwwsp.jpg"
+						src="https://res.cloudinary.com/dhcdkw7os/image/upload/v1638247942/Index/FotoJet_a3ajzc.jpg"
 						className="rounded img-fluid float-start menuImg horizontal-card"
 						alt="..."
 					/>

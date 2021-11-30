@@ -74,6 +74,16 @@ body, .home, .home-content {
     height: auto;
 }
 
+.menuImg-container img {
+    transition: transform .5s, filter .5s ease-in-out;
+    filter: grayscale(60%);
+}
+
+.menuItem:hover img{
+    transform: scale(1.02);
+    filter: grayscale(0);
+}
+
 .menuItem {
     cursor:pointer;
 }

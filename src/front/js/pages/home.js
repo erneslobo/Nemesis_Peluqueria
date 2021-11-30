@@ -20,7 +20,7 @@ export const Home = () => {
 				<div className="container home-wrapper">
 					<div className="mb-5 pt-5 px-5">
 						<h2 className="text-center pb-4">
-							<strong>Conoce nuestro salon</strong>
+							<strong>Conocé nuestro salón!</strong>
 						</h2>
 						<Carrusel2 />
 					</div>

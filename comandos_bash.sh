@@ -144,3 +144,35 @@ function subir_productos() {
         true,
         'Ampolla para cabello dañado.');"
 }
+
+# funcion para subir muestras de prueba a la base de datos
+function subir_muestras() {
+  psql -d example -U gitpod -c "INSERT INTO public.muestra (nombre,imagen, thumbnail, categoria, activo)                             
+VALUES ('Muestra1','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978949/Muestras/Cabello2_yceqnt.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978949/Muestras/Cabello2_yceqnt.jpg','Peluquería', true),
+('Muestra2','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978949/Muestras/Cabello3_jqncxy.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978949/Muestras/Cabello3_jqncxy.jpg','Peluquería', true),
+('Muestra3','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978949/Muestras/Cabello4_ynxfh2.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978949/Muestras/Cabello4_ynxfh2.jpg','Peluquería', true),
+('Muestra4','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978949/Muestras/Cabello1_s3joci.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978949/Muestras/Cabello1_s3joci.jpg','Peluquería', true),
+('Muestra5','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978949/Muestras/Cabello8_zmz8ab.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978949/Muestras/Cabello8_zmz8ab.jpg','Peluquería', true),
+('Muestra6','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978949/Muestras/Cabello7_vujojl.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978949/Muestras/Cabello7_vujojl.jpg','Peluquería', true),
+('Muestra7','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello9_ajjpgi.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello9_ajjpgi.jpg','Peluquería', true),
+('Muestra8','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello12_x0zwzn.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello12_x0zwzn.jpg','Peluquería', true),
+('Muestra9','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello10_obgn7w.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello10_obgn7w.jpg','Peluquería', true),
+('Muestra10','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello11_ta7hb8.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello11_ta7hb8.jpg','Peluquería', true),
+('Muestra11','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello14_k8gtyc.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello14_k8gtyc.jpg','Peluquería', true),
+('Muestra12','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello13_dudm3j.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello13_dudm3j.jpg','Peluquería', true),
+('Muestra13','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello16_qoafwj.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello16_qoafwj.jpg','Peluquería', true),
+('Muestra14','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello18_b8j3se.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello18_b8j3se.jpg','Peluquería', true),
+('Muestra15','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello19_xcb1hp.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello19_xcb1hp.jpg','Peluquería', true),
+('Muestra16','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello15_mrvjzj.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello15_mrvjzj.jpg','Peluquería', true),
+('Muestra17','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello20_pmepyf.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello20_pmepyf.jpg','Peluquería', true),
+('Muestra18','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello17_gzvkev.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978950/Muestras/Cabello17_gzvkev.jpg','Peluquería', true),
+('Muestra19','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978951/Muestras/Cabello21_icjpzi.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978951/Muestras/Cabello21_icjpzi.jpg','Peluquería', true),
+('Muestra20','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978951/Muestras/Cabello22_t5lrd7.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978951/Muestras/Cabello22_t5lrd7.jpg','Peluquería', true),
+('Muestra21','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978951/Muestras/U%C3%B1as3_yhzeai.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978951/Muestras/U%C3%B1as3_yhzeai.jpg','Manicuría', true),
+('Muestra22','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978951/Muestras/U%C3%B1as2_ylsko6.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978951/Muestras/U%C3%B1as2_ylsko6.jpg','Manicuría', true),
+('Muestra23','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978951/Muestras/U%C3%B1as1_heedcp.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978951/Muestras/U%C3%B1as1_heedcp.jpg','Manicuría', true),
+('Muestra24','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978951/Muestras/U%C3%B1as6_gf2crq.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978951/Muestras/U%C3%B1as6_gf2crq.jpg','Manicuría', true),
+('Muestra25','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978951/Muestras/U%C3%B1as5_h7jcal.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978951/Muestras/U%C3%B1as5_h7jcal.jpg','Manicuría', true),
+('Muestra26','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978951/Muestras/U%C3%B1as4_yxmhob.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978951/Muestras/U%C3%B1as4_yxmhob.jpg','Manicuría', true),
+('Muestra27','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978951/Muestras/U%C3%B1as7_mgc1so.jpg','https://res.cloudinary.com/dhcdkw7os/image/upload/v1637978951/Muestras/U%C3%B1as7_mgc1so.jpg','Manicuría', true);"
+}

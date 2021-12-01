@@ -239,8 +239,8 @@ VALUES ('Balayage',
         250,
         'Servicio',
         'Depilación',
-        'https://res.cloudinary.com/dhcdkw7os/image/upload/v1638321869/Servicios/estetica_pies_pyscbs.jpg',
-        'https://res.cloudinary.com/dhcdkw7os/image/upload/v1638321869/Servicios/estetica_pies_pyscbs.jpg',
+        'https://res.cloudinary.com/dhcdkw7os/image/upload/v1638322247/Servicios/depilacion-768x768_wbinbn.webp',
+        'https://res.cloudinary.com/dhcdkw7os/image/upload/v1638322247/Servicios/depilacion-768x768_wbinbn.webp',
         true,
         'Depilación en general');"
 

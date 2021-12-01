@@ -3,6 +3,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	const WEB_URL_BASE = process.env.WEB_URL_BASE;
 	const MERCADO_PAGO_PUBLIC_KEY = process.env.MERCADO_PAGO_PUBLIC_KEY;
 
+	console.log(URL_BASE);
+
 	const mercadopago = new MercadoPago(MERCADO_PAGO_PUBLIC_KEY, {
 		locale: "es-AR" // The most common are: 'pt-BR', 'es-AR' and 'en-US'
 	});
@@ -23,6 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			muestras: [],
 			muestrasFiltrados: [],
 			favoritos: [],
+			mostrarFavoritos: false,
 
 			/* 
 			El objeto 'usuario_actual' tiene los datos del usuario que esta 
@@ -73,6 +76,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// *********************** cambiar password_actualizado a false **********************
 			cambiar_password_actualizado_false: () => setStore({ password_actualizado: false }),
+			// *********************** cambiar mostrarFavoritos a true **********************
+			mostrarFavoritos: estado => {
+				setStore({ mostrarFavoritos: estado });
+			},
 
 			// *********************** Actualizar filtro de muestras ***********************
 			actualizarMuestrasFiltrados: items => {
@@ -362,6 +369,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(res => res.json())
 					.then(result => {
 						//Ordeno alfabéticamente según el nombre
+						console.log(result);
 						let arrayOrdenado = result.sort((a, b) => a.nombre.localeCompare(b.nombre));
 						setStore({ productosServicios: arrayOrdenado });
 						setStore({ productosServiciosFiltrados: arrayOrdenado });

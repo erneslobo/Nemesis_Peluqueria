@@ -21,9 +21,11 @@ export const Trabajos = () => {
 	};
 
 	useEffect(() => {
-		if (store.muestrasFiltrados == store.favoritos) {
+		if (store.mostrarFavoritos == true) {
 			setCategoria("Favoritos");
+			actions.mostrarFavoritos(false);
 		} else {
+			setCategoria("---Todos---");
 			actions.actualizarMuestrasFiltrados(store.muestras);
 		}
 	}, []);

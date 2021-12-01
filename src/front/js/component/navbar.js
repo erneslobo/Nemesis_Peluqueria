@@ -40,6 +40,9 @@ export const Navbar = () => {
 						</button>
 						<div className="collapse navbar-collapse" id="navbarTogglerDemo02">
 							<ul className="navbar-nav me-auto mb-2 mb-lg-0">
+								<Link to="/" className="link">
+									<li className="nav-item mx-2">Home</li>
+								</Link>
 								<Link to="/servicios/" className="link">
 									<li className="nav-item mx-2">Servicios</li>
 								</Link>

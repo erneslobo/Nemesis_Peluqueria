@@ -264,7 +264,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 								to_name: result.user.nombre,
 								to_email: email,
 								message:
-									"Para cambiar el password, ingrese al siguiente enlance, se le solicitar que ingrese el nuevo password y el token que se le provee en este email",
+									"Para cambiar el password, ingrese al siguiente enlance, por favor ingrese el nuevo password y el token que se le provee en este email",
 								passwordUrl: `${WEB_URL_BASE}/reset_password`,
 								token: result.access_token
 							}

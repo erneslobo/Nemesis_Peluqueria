@@ -47,7 +47,13 @@ export const Navbar = () => {
 									<li className="nav-item mx-2">Productos</li>
 								</Link>
 								<Link to="/trabajos/" className="link">
-									<li className="nav-item text-nowrap mx-2">Nuestro trabajo</li>
+									<li
+										className="nav-item text-nowrap mx-2"
+										onClick={() => {
+											actions.mostrarFavoritos(false);
+										}}>
+										Nuestro trabajo
+									</li>
 								</Link>
 								<Link to="/contacto/" className="link">
 									<li className="nav-item mx-2">Contacto</li>
@@ -74,9 +80,10 @@ export const Navbar = () => {
 												<Link to="/trabajos/" className="link-drop">
 													<li
 														className="dropdown-item"
-														onClick={() =>
-															actions.actualizarMuestrasFiltrados(store.favoritos)
-														}>
+														onClick={() => {
+															actions.mostrarFavoritos(true);
+															actions.actualizarMuestrasFiltrados(store.favoritos);
+														}}>
 														Mis Favoritos
 													</li>
 												</Link>

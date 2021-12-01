@@ -26,7 +26,7 @@ const Horizontal_card = props => {
 					</div>
 					<div className="col-md-3">
 						<div className="card-body">
-							<h4 className="card-title">{props.item.articulo.title}</h4>
+							<h5 className="card-title">{props.item.articulo.title}</h5>
 							<h5 className="card-text">${props.item.articulo.unit_price}</h5>
 						</div>
 					</div>

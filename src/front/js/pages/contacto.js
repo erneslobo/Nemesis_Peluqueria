@@ -75,7 +75,7 @@ export const Contacto = () => {
 				<div className="row mt-2 pb-3">
 					<div>
 						<h5>
-							<strong>Encuentranos en:</strong> Chucarro 1146 esq. Guayaqui
+							<strong>Encontranos en:</strong> Chucarro 1146 esq. Guayaqui
 						</h5>
 					</div>
 					<iframe

@@ -9,7 +9,10 @@ export const Productos = () => {
 	const [categoria, setCategoria] = useState("Categorías");
 
 	// Genero un array con los valores únicos de todas las categorías que encuentre para popular el dropdown
-	const arrayCategorias = ["---Todas---", ...new Set(store.productosServicios.map(items => items.categoria))];
+	const arrayCategorias = [
+		"---Todas---",
+		...new Set(store.productosServicios.map(items => items.tipo == "Producto" && items.categoria))
+	];
 
 	// Filtro los resultados según la categoría elegida (esta función se llama en el dropdown)
 	const filtrar = categ => {

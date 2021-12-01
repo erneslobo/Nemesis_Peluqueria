@@ -82,7 +82,7 @@ export const Navbar = () => {
 											<ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 												<Link to="/trabajos/" className="link-drop">
 													<li
-														className="dropdown-item"
+														className="dropdown-item text-center"
 														onClick={() => {
 															actions.mostrarFavoritos(true);
 															actions.actualizarMuestrasFiltrados(store.favoritos);
@@ -90,11 +90,11 @@ export const Navbar = () => {
 														Mis Favoritos
 													</li>
 												</Link>
-												{store.usuario_actual.admin ? (
+												{/* {store.usuario_actual.admin ? (
 													<Link to="/#/" className="link-drop">
 														<li className="dropdown-item">Admin</li>
 													</Link>
-												) : null}
+												) : null} */}
 												<hr className="py-0 my-1" />
 
 												{/* 	<li className="dropdown-item" onClick={() => {store.usuario_autenticado ? (
@@ -105,7 +105,7 @@ export const Navbar = () => {
 												) : null}   */}
 												<li className="dropdown-item" onClick={actions.cerrarSesion}>
 													<Link to="/" className="link-drop">
-														<li className="dropdown-item">Cerrar sesión</li>
+														<li className="dropdown-item text-center">Cerrar sesión</li>
 													</Link>
 												</li>
 											</ul>

@@ -9,17 +9,20 @@ export const Servicios = () => {
 	const [categoria, setCategoria] = useState("Categorías");
 
 	// Genero un array con los valores únicos de todas las categorías que encuentre para popular el dropdown
-	const arrayCategorias = ["---Todas---", ...new Set(store.productosServicios.map(items => items.categoria))];
+	const arrayCategorias = [
+		"---Todas---",
+		...new Set(store.productosServicios.map(items => items.tipo == "Servicio" && items.categoria))
+	];
 
 	// Filtro los resultados según la categoría elegida (esta función se llama en el dropdown)
 	const filtrar = categ => {
 		setCategoria(categ);
 		if (categ == "---Todas---") {
-			// setLista(store.productosServicios);
 			actions.actualizarProductosServiciosFiltrados(store.productosServicios);
 		} else {
-			// setLista(store.productosServicios.filter(elem => elem.categoria == categ));
-			store.productosServicios.filter(elem => elem.categoria == categ);
+			actions.actualizarProductosServiciosFiltrados(
+				store.productosServicios.filter(elem => elem.categoria == categ)
+			);
 		}
 	};
 

@@ -17,7 +17,7 @@ export const Footer = () => (
 					</div>
 					<div className="col-5" />
 					<div className="col-3 redes">
-						<div className="text">Encuéntranos en: </div>
+						<div className="text">Encontranos en: </div>
 						<Link
 							to={{
 								pathname:

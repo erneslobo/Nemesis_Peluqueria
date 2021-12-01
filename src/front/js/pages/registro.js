@@ -182,7 +182,7 @@ export const Registro = () => {
 									Registrarse
 								</button>
 							</div>
-							<Link to={`/login`}>{"Iniciar sesion"}</Link>
+							<Link to={`/login`}>{"Iniciar sesión"}</Link>
 						</div>
 					</div>
 					<Alerta alerta={store.usuario_existe_alerta} mensaje="Usuario ya existe!" tipoAlerta="danger" />

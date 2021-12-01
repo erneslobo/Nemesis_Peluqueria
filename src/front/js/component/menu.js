@@ -18,7 +18,7 @@ export const Menu = () => {
 						<strong>Productos</strong>
 					</h2>
 					<hr />
-					<h4>Compra aquí los mejores productos para el cuidado de tu cabello y manos.</h4>
+					<h4>Comprá aquí los mejores productos para el cuidado de tu cabello y manos.</h4>
 					<h4>Trabajamos con productos de L&#39;Oreal, Kerasys, OPI y FABY entre otros.</h4>
 				</div>
 			</div>
@@ -51,11 +51,11 @@ export const Menu = () => {
 				</div>
 				<div className="col">
 					<h2>
-						<strong>Muestras</strong>
+						<strong>Nuestros Trabajos</strong>
 					</h2>
 					<hr />
 					<h3>
-						Ingresá aquí y conocé nuestros trabajos, crea tu cuenta y guarda el look que más te guste,
+						Ingresá aquí y conocé nuestros trabajos, creá tu cuenta y guarda el look que más te guste,
 						nosotros te lo hacemos realidad
 					</h3>
 				</div>

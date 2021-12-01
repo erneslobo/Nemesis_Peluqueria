@@ -76,6 +76,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// *********************** cambiar password_actualizado a false **********************
 			cambiar_password_actualizado_false: () => setStore({ password_actualizado: false }),
+
+			// *********************** cambiar correo_password_enviado a false **********************
+			cambiar_correo_password_enviado_false: () => setStore({ correo_password_enviado: false }),
 			// *********************** cambiar mostrarFavoritos a true **********************
 			mostrarFavoritos: estado => {
 				setStore({ mostrarFavoritos: estado });

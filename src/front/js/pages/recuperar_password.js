@@ -21,7 +21,6 @@ export const Recuperar_Password = () => {
 		<>
 			{store.correo_password_enviado ? (
 				<div className="mega position-relative">
-					{actions.cambiar_correo_password_enviado_false()}
 					<div className="container box">
 						<div id="div1">
 							<h4>Correo Enviado exitosamente a {email} </h4>
